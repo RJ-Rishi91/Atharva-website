@@ -2,9 +2,105 @@
 <html class="scroll-smooth h-full" lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>{{ page_title | default("ATHARVA SHARMA — Modeling Portfolio & Editorial Book") }}</title>
   
+  <!-- Primary SEO Meta Tags -->
+  <meta name="description" content="{{ meta_description | default('Official portfolio of Atharva Sharma, Indian male editorial and runway fashion model based in Udaipur, India. 6\'1\" (186cm), high luxury couture, runway poise, and commercial campaign bookings.') }}">
+  <meta name="keywords" content="{{ meta_keywords | default('Atharva Sharma, male model India, Indian runway model, fashion model Udaipur, high fashion editorial, menswear model, 6\'1 model') }}">
+  <meta name="author" content="Atharva Sharma">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#FBF9F6">
+  <link rel="canonical" href="{{ canonical_url | default('https://rj-rishi91.github.io/Atharva-website/index.html') }}">
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:site_name" content="ATHARVA SHARMA // Modeling Portfolio">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ meta_description }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:type" content="{{ page_type | default('website') }}">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="{{ base_url }}/{{ og_image | default('assets/images/atharva-studio-bw-stool.png') }}">
+  <meta property="og:image:alt" content="{{ page_title }}">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ meta_description }}">
+  <meta name="twitter:image" content="{{ base_url }}/{{ og_image | default('assets/images/atharva-studio-bw-stool.png') }}">
+  <meta name="twitter:creator" content="@atharvasharma.co.in">
+
+  <!-- Local / Regional SEO -->
+  <meta name="geo.region" content="IN-RJ">
+  <meta name="geo.placename" content="Udaipur">
+  <meta name="geo.position" content="24.5854;73.7125">
+  <meta name="ICBM" content="24.5854, 73.7125">
+
+  <!-- JSON-LD Structured Data Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "{{ base_url }}/#atharva-sharma",
+        "name": "Atharva Sharma",
+        "alternateName": ["Atharva", "Model Atharva Sharma"],
+        "url": "{{ base_url }}/index.html",
+        "image": "{{ base_url }}/assets/images/atharva-studio-bw-stool.png",
+        "jobTitle": ["Fashion Model", "Editorial Model", "Runway Model"],
+        "gender": "Male",
+        "height": {
+          "@type": "QuantitativeValue",
+          "value": 186,
+          "unitCode": "CMT"
+        },
+        "description": "Atharva Sharma is an Indian male editorial and runway fashion model based in Udaipur, India. Height 6'1\" (186cm), Chest 38\", Waist 30\", Hazel eyes, Dark Brown hair.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Udaipur",
+          "addressRegion": "Rajasthan",
+          "addressCountry": "IN"
+        },
+        "email": "atharva@atharvasharma.co.in",
+        "telephone": "+918209225998",
+        "sameAs": [
+          "https://www.instagram.com/atharvasharma.co.in",
+          "https://github.com/RJ-Rishi91/Atharva-website"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ base_url }}/#website",
+        "url": "{{ base_url }}/",
+        "name": "ATHARVA SHARMA — Official Modeling Portfolio",
+        "description": "Official editorial book, model composite card, measurements, and dispatches for Indian male runway model Atharva Sharma.",
+        "publisher": {
+          "@id": "{{ base_url }}/#atharva-sharma"
+        }
+      }{% if page_type == 'article' %},
+      {
+        "@type": "BlogPosting",
+        "@id": "{{ canonical_url }}#article",
+        "isPartOf": {
+          "@id": "{{ base_url }}/journal.html"
+        },
+        "headline": "{{ page_title }}",
+        "description": "{{ meta_description }}",
+        "image": "{{ base_url }}/{{ og_image }}",
+        "datePublished": "{{ date_published | default('2025-01-01') }}",
+        "author": {
+          "@id": "{{ base_url }}/#atharva-sharma"
+        },
+        "publisher": {
+          "@id": "{{ base_url }}/#atharva-sharma"
+        },
+        "articleSection": "{{ category | default('Editorial') }}"
+      }{% endif %}
+    ]
+  }
+  </script>
+
   <!-- Preconnect and Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -192,12 +288,38 @@
   {% include 'footer.html' %}
 
   <script>
-    // Mobile navigation toggle
+    // Mobile navigation toggle with icon swap, aria-expanded, and click-outside
     const navToggle = document.getElementById('mobile-nav-toggle');
     const navDrawer = document.getElementById('mobile-nav-drawer');
+    const menuIcon = document.getElementById('menu-icon');
+    
     if (navToggle && navDrawer) {
-      navToggle.addEventListener('click', () => {
-        navDrawer.classList.toggle('hidden');
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = navDrawer.classList.toggle('hidden');
+        const isExpanded = !isHidden;
+        navToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        if (menuIcon) {
+          menuIcon.textContent = isExpanded ? 'close' : 'menu';
+        }
+      });
+
+      // Close drawer on click outside
+      document.addEventListener('click', (e) => {
+        if (!navDrawer.classList.contains('hidden') && !navDrawer.contains(e.target) && !navToggle.contains(e.target)) {
+          navDrawer.classList.add('hidden');
+          navToggle.setAttribute('aria-expanded', 'false');
+          if (menuIcon) menuIcon.textContent = 'menu';
+        }
+      });
+
+      // Close drawer on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !navDrawer.classList.contains('hidden')) {
+          navDrawer.classList.add('hidden');
+          navToggle.setAttribute('aria-expanded', 'false');
+          if (menuIcon) menuIcon.textContent = 'menu';
+        }
       });
     }
 

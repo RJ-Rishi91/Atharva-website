@@ -1,0 +1,5 @@
+# Robots Exclusion Standard for Atharva Sharma Modeling Portfolio
+User-agent: *
+Allow: /
+
+Sitemap: https://rj-rishi91.github.io/Atharva-website/sitemap.xml
