@@ -1,7 +1,7 @@
 import { getCollection } from 'astro:content';
 
 export async function GET(context: any) {
-  const siteUrl = context.site?.toString().replace(/\/$/, '') || 'https://rj-rishi91.github.io';
+  const siteUrl = context.site?.toString().replace(/\/$/, '') || 'https://atharvasharma.co.in';
   const base = (import.meta.env.BASE_URL || '').replace(/\/$/, '');
   const rootUrl = `${siteUrl}${base}`;
 
