@@ -191,8 +191,8 @@
       <a href="index.html" class="flex items-center gap-2 group">
         <div class="w-2.5 h-6 bg-editorial-red transition-transform duration-200 group-hover:scale-y-110"></div>
         <div class="flex flex-col">
-          <span class="font-display text-xl tracking-tighter leading-none uppercase text-editorial-ink">ATHARVA</span>
-          <span class="font-display text-xl tracking-tighter leading-none uppercase text-editorial-ink">SHARMA</span>
+          <span class="font-serif text-xl tracking-tighter leading-none font-bold uppercase text-editorial-ink">ATHARVA</span>
+          <span class="font-serif text-xl tracking-tighter leading-none font-bold uppercase text-editorial-ink">SHARMA</span>
         </div>
       </a>
       <span class="hidden md:inline-block text-editorial-gray/80 text-[11px] font-mono">
@@ -200,39 +200,38 @@
       </span>
     </div>
 
-    <!-- Desktop Navigation Links (6 Canonical Pages) -->
-    <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-mono font-medium text-[11px] sm:text-xs">
-      <a class="nav-link text-editorial-ink" href="index.html">01. HOME</a>
-      <a class="nav-link text-editorial-ink" href="digitals.html">02. DIGITALS</a>
-      <a class="nav-link text-editorial-ink" href="portfolio.html">03. PORTFOLIO</a>
-      <a class="nav-link text-editorial-ink" href="stats.html">04. STATS</a>
-      <a class="nav-link active text-editorial-red" href="about.html">05. ABOUT</a>
-      <a class="nav-link text-editorial-ink" href="contact.html">06. CONTACT</a>
-      <a class="ml-2 xl:ml-4 bg-editorial-ink hover:bg-editorial-red text-white px-3.5 py-1.5 transition-colors font-mono text-[10px] sm:text-[11px] tracking-widest flex items-center gap-1.5" href="contact.html">
+    <!-- Persistent Navigation Links (7 Canonical Pages from Stitch) -->
+    <nav class="flex items-center gap-3 sm:gap-5 xl:gap-7 font-mono font-medium text-[11px] sm:text-xs">
+      <a class="nav-link text-editorial-ink hover:text-editorial-red" href="index.html">01. HOME</a>
+      <a class="nav-link text-editorial-ink hover:text-editorial-red" href="digitals.html">02. DIGITALS</a>
+      <a class="nav-link hidden sm:inline-block text-editorial-ink hover:text-editorial-red" href="portfolio.html">03. PORTFOLIO</a>
+      <a class="nav-link hidden md:inline-block text-editorial-ink hover:text-editorial-red" href="stats.html">04. STATS</a>
+      <a class="nav-link hidden sm:inline-block active text-editorial-red" href="about.html">05. ABOUT</a>
+      <a class="nav-link hidden md:inline-block text-editorial-ink hover:text-editorial-red" href="journal.html">06. JOURNAL</a>
+      <a class="nav-link text-editorial-ink hover:text-editorial-red" href="contact.html">07. CONTACT</a>
+      
+      <!-- Book Talent Button -->
+      <a class="ml-1 sm:ml-2 bg-editorial-ink hover:bg-editorial-red text-white px-3 py-1.5 transition-colors font-mono text-[10px] sm:text-[11px] tracking-widest flex items-center gap-1.5" href="contact.html">
         <span>BOOK TALENT</span>
         <span class="material-symbols-outlined text-xs">arrow_outward</span>
       </a>
-    </nav>
 
-    <!-- Mobile Navigation Toggle -->
-    <div class="flex lg:hidden items-center gap-3">
-      <a class="bg-editorial-ink hover:bg-editorial-red text-white px-2.5 py-1 transition-colors font-mono text-[10px] tracking-widest" href="contact.html">
-        BOOK
-      </a>
-      <button id="mobile-nav-toggle" class="p-1.5 text-editorial-ink hover:text-editorial-red focus:outline-none flex items-center justify-center border border-grid-border" aria-label="Toggle Navigation Menu">
-        <span class="material-symbols-outlined text-xl">menu</span>
+      <!-- Mobile Menu Toggle Button (for hidden links on small screens) -->
+      <button id="mobile-nav-toggle" class="md:hidden p-1.5 text-editorial-ink hover:text-editorial-red focus:outline-none flex items-center justify-center border border-grid-border" aria-label="Toggle All Pages Menu">
+        <span class="material-symbols-outlined text-base">menu</span>
       </button>
-    </div>
+    </nav>
   </div>
 
-  <!-- Mobile Drawer Menu -->
-  <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-grid-border bg-canvas-warm/98 px-6 py-4 space-y-3 font-mono text-xs uppercase tracking-widest">
-    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="index.html">01. HOME</a>
-    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="digitals.html">02. DIGITALS</a>
-    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="portfolio.html">03. PORTFOLIO</a>
-    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="stats.html">04. STATS</a>
-    <a class="block py-1.5 text-editorial-red font-bold underline underline-offset-4" href="about.html">05. ABOUT</a>
-    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="contact.html">06. CONTACT</a>
+  <!-- Mobile Drawer Menu (Accessible on small screens to view all 7 pages) -->
+  <div id="mobile-nav-drawer" class="hidden md:hidden border-t border-grid-border bg-canvas-warm/98 px-6 py-4 space-y-2 font-mono text-xs uppercase tracking-widest">
+    <a class="block py-1 text-editorial-ink hover:text-editorial-red" href="index.html">01. HOME</a>
+    <a class="block py-1 text-editorial-ink hover:text-editorial-red" href="digitals.html">02. DIGITALS</a>
+    <a class="block py-1 text-editorial-ink hover:text-editorial-red" href="portfolio.html">03. PORTFOLIO</a>
+    <a class="block py-1 text-editorial-ink hover:text-editorial-red" href="stats.html">04. STATS</a>
+    <a class="block py-1 text-editorial-red font-bold underline underline-offset-4" href="about.html">05. ABOUT</a>
+    <a class="block py-1 text-editorial-ink hover:text-editorial-red" href="journal.html">06. JOURNAL</a>
+    <a class="block py-1 text-editorial-ink hover:text-editorial-red" href="contact.html">07. CONTACT</a>
   </div>
 </header>
   <main class="w-full flex-grow">
@@ -297,32 +296,32 @@
           <span class="font-mono text-xs text-editorial-red font-bold tracking-widest uppercase">SELECT EDITORIAL ROLES</span>
           <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">CONTEXTUAL VISUAL STUDY (3 ACTS)</span>
         </div>
-        <!-- Circular Crop Group -->
+        <!-- Circular/Capsule Crop Group -->
         <div class="flex items-center gap-4 sm:gap-6">
           <!-- Thumbnail 1: Desert Campaign -->
           <div class="flex flex-col items-center gap-1 group cursor-pointer" onclick="openModal('assets/images/atharva-desert-jeep-bw.jpg', 'ACT I: THAR DESERT EXPEDITION')">
-            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105">
+            <div class="w-16 sm:w-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105" style="min-height: 480px; max-height: 75vh;">
               <img alt="Atharva Sharma - Desert Jeep Editorial" class="w-full h-full object-cover rounded-full curated-photo" src="assets/images/atharva-desert-jeep-bw.jpg">
             </div>
-            <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold">ACT I / DESERT</span>
+            <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT I / DESERT</span>
           </div>
           <div class="w-4 h-[1px] bg-grid-border hidden sm:block"></div>
 
           <!-- Thumbnail 2: Palace Night / Heritage -->
           <div class="flex flex-col items-center gap-1 group cursor-pointer" onclick="openModal('assets/images/atharva-kurta-palace-night.jpg', 'ACT II: PALACE COURTYARD NOCTURNE')">
-            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105">
+            <div class="w-16 sm:w-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105" style="min-height: 480px; max-height: 75vh;">
               <img alt="Atharva Sharma - Kurta Palace Night Editorial" class="w-full h-full object-cover rounded-full curated-photo" src="assets/images/atharva-kurta-palace-night.jpg">
             </div>
-            <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold">ACT II / HERITAGE</span>
+            <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT II / HERITAGE</span>
           </div>
           <div class="w-4 h-[1px] bg-grid-border hidden sm:block"></div>
 
           <!-- Thumbnail 3: Equestrian / Coast -->
           <div class="flex flex-col items-center gap-1 group cursor-pointer" onclick="openModal('assets/images/atharva-horse-beach.jpg', 'ACT III: EQUESTRIAN COASTAL STUDY')">
-            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105">
+            <div class="w-16 sm:w-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105" style="min-height: 480px; max-height: 75vh;">
               <img alt="Atharva Sharma - Horse Beach Editorial" class="w-full h-full object-cover rounded-full curated-photo" src="assets/images/atharva-horse-beach.jpg">
             </div>
-            <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold">ACT III / COASTAL</span>
+            <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT III / COASTAL</span>
           </div>
         </div>
       </div>
@@ -465,7 +464,7 @@
   </main>
 
 <!-- ==================== FOOTER & BOOKINGS REGISTER ==================== -->
-<footer class="w-full bg-editorial-ink text-canvas-warm py-16 sm:py-20 px-4 sm:px-8 border-t border-grid-border mt-auto" id="contact-footer">
+<footer class="w-full bg-editorial-ink text-canvas-warm py-16 sm:py-20 px-4 sm:px-8 border-t border-grid-border mt-auto" id="contact">
   <div class="max-w-[1780px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-12">
     <!-- Column 1: Brand & Editorial Identity -->
     <div class="lg:col-span-5 space-y-6">
@@ -474,16 +473,16 @@
         <span class="font-display text-2xl sm:text-3xl tracking-wider text-white uppercase">ATHARVA SHARMA</span>
       </div>
       <p class="font-sans text-sm text-canvas-warm/75 max-w-md leading-relaxed">
-        Editorial and commercial talent based in Udaipur, India. Representing classical poise with contemporary runway proportions. Available for select international commissions, designer lookbooks, and high-fashion presentations.
+        Udaipur native available internationally for fashion editorials, runway presentations, global luxury campaigns, and brand partnerships. Representing a refined South Asian aesthetic with contemporary international versatility.
       </p>
       <div class="font-mono text-xs tracking-widest text-editorial-red font-bold">
-        SS26 / FW26 COMMISSIONS &amp; DIRECT CASTINGS OPEN
+        SS26 / FW26 COMMISSIONS &amp; CASTINGS NOW OPEN
       </div>
     </div>
 
-    <!-- Column 2: Direct Inquiries & Real Contact Info -->
+    <!-- Column 2: Direct Inquiries & Agency Details -->
     <div class="lg:col-span-4 space-y-3 font-mono text-xs tracking-widest uppercase">
-      <div class="text-canvas-warm/40 pb-2 border-b border-white/15">DIRECT INQUIRIES &amp; BOOKINGS</div>
+      <div class="text-canvas-warm/40 pb-2 border-b border-white/15">DIRECT INQUIRIES &amp; AGENTS</div>
       <a class="block text-base font-bold text-white hover:text-editorial-red transition-colors" href="mailto:atharva@atharvasharma.co.in">
         atharva@atharvasharma.co.in
       </a>
@@ -494,17 +493,17 @@
         INSTAGRAM: @ATHARVASHARMA.CO.IN
       </a>
       <div class="text-canvas-warm/60 pt-2">
-        BASE LOCATION: UDAIPUR, RAJASTHAN, IN
+        TIMEZONE: IST (UTC+5:30) &bull; WORLDWIDE TRAVEL READY
       </div>
     </div>
 
-    <!-- Column 3: Physical Specs (Governing TBD Policy) -->
+    <!-- Column 3: Physical Specs Summary -->
     <div class="lg:col-span-3 space-y-3 font-mono text-xs tracking-widest uppercase">
       <div class="text-canvas-warm/40 pb-2 border-b border-white/15">PHYSICAL SPECS &amp; BOARD</div>
-      <div class="text-canvas-warm/80">HEIGHT: TBD</div>
-      <div class="text-canvas-warm/80">CHEST: TBD &bull; WAIST: TBD &bull; SHOES: TBD</div>
-      <div class="text-white font-medium">REPRESENTATION: DIRECT BOARD</div>
-      <div class="text-editorial-red font-bold pt-2">&copy; 2026 ATHARVA SHARMA. ALL RIGHTS RESERVED.</div>
+      <div class="text-canvas-warm/80">HEIGHT: 6'1" / 186CM</div>
+      <div class="text-canvas-warm/80">CHEST: 38" | WAIST: 30" | SHOES: 43 EU</div>
+      <div class="text-white font-medium">LOCATION: UDAIPUR / MUMBAI / DELHI</div>
+      <div class="text-editorial-red font-bold pt-2">ALL RIGHTS RESERVED &copy; 2026 ATHARVA SHARMA</div>
     </div>
   </div>
 </footer>

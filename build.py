@@ -59,6 +59,12 @@ PAGES = [
         "page_title": "ABOUT // BIOGRAPHY — Atharva Sharma",
     },
     {
+        "template": "journal.html",
+        "output": "journal.html",
+        "active_page": "journal",
+        "page_title": "EDITORIAL JOURNAL & DISPATCHES — Atharva Sharma",
+    },
+    {
         "template": "contact.html",
         "output": "contact.html",
         "active_page": "contact",
