@@ -12,6 +12,7 @@ Strictly adheres to:
 import os
 import re
 import sys
+from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +29,7 @@ env = Environment(
 )
 
 PAGES = [
+    # 7 Primary Canonical Sections
     {
         "template": "home.html",
         "output": "index.html",
@@ -70,14 +72,72 @@ PAGES = [
         "active_page": "contact",
         "page_title": "CONNECT & DIRECT BOOKINGS — Atharva Sharma",
     },
+    # 7 Editorial Journal Article Detail Pages
+    {
+        "template": "journal-runway-poise.html",
+        "output": "journal-runway-poise.html",
+        "active_page": "journal",
+        "page_title": "DISPATCH 01: The Anatomy of Runway Poise — Atharva Sharma",
+    },
+    {
+        "template": "journal-heritage-couture.html",
+        "output": "journal-heritage-couture.html",
+        "active_page": "journal",
+        "page_title": "DISPATCH 02: Between Heritage & Haute Couture — Atharva Sharma",
+    },
+    {
+        "template": "journal-thar-monoliths.html",
+        "output": "journal-thar-monoliths.html",
+        "active_page": "journal",
+        "page_title": "DISPATCH 03: The Thar Monoliths — Atharva Sharma",
+    },
+    {
+        "template": "journal-untouched-digital.html",
+        "output": "journal-untouched-digital.html",
+        "active_page": "journal",
+        "page_title": "DISPATCH 04: The Untouched Digital — Atharva Sharma",
+    },
+    {
+        "template": "journal-equine-motion.html",
+        "output": "journal-equine-motion.html",
+        "active_page": "journal",
+        "page_title": "DISPATCH 05: Equine Motion & Coastal Textures — Atharva Sharma",
+    },
+    {
+        "template": "journal-architecture-dialogue.html",
+        "output": "journal-architecture-dialogue.html",
+        "active_page": "journal",
+        "page_title": "DISPATCH 06: Architecture as Dialogue — Atharva Sharma",
+    },
+    {
+        "template": "journal-unstructured-blazer.html",
+        "output": "journal-unstructured-blazer.html",
+        "active_page": "journal",
+        "page_title": "DISPATCH 07: The Return of the Unstructured Blazer — Atharva Sharma",
+    },
+    # Essential Tools & Fallback Pages
+    {
+        "template": "comp-card.html",
+        "output": "comp-card.html",
+        "active_page": "comp-card",
+        "page_title": "MODEL COMPOSITE CARD // ATHARVA SHARMA — Official Casting Book",
+    },
+    {
+        "template": "404.html",
+        "output": "404.html",
+        "active_page": "404",
+        "page_title": "404 // DISPATCH NOT FOUND — Atharva Sharma",
+    },
 ]
 
 def build():
     print("=" * 60)
     print("Building Atharva Sharma Portfolio Static Website...")
+    print(f"Total Pages to compile: {len(PAGES)}")
     print("=" * 60)
     
     generated_files = []
+    output_basenames = set(page["output"] for page in PAGES)
     
     for page in PAGES:
         tmpl = env.get_template(page["template"])
@@ -91,33 +151,46 @@ def build():
             f.write(rendered)
             
         file_size = os.path.getsize(output_path)
-        print(f"✓ Generated {page['output']:<16} ({file_size:>6} bytes) [{page['page_title']}]")
+        print(f"✓ Generated {page['output']:<36} ({file_size:>6} bytes)")
         generated_files.append(output_path)
         
     print("-" * 60)
     print("Running Automated Integrity Validations...")
     
-    # 1. Verify Zero googleusercontent.com references
     errors = 0
     for file_path in generated_files:
+        filename = os.path.basename(file_path)
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
-            if "googleusercontent.com" in content:
-                print(f"❌ ERROR: googleusercontent.com found in {os.path.basename(file_path)}")
+            
+        # 1. Verify Zero googleusercontent.com references
+        if "googleusercontent.com" in content:
+            print(f"❌ ERROR: googleusercontent.com found in {filename}")
+            errors += 1
+            
+        # 2. Check for image paths
+        img_matches = re.findall(r'src=["\'](assets/images/[^"\']+)["\']', content)
+        for img in img_matches:
+            full_img_path = os.path.join(ROOT_DIR, img)
+            if not os.path.exists(full_img_path):
+                print(f"❌ ERROR: Missing image reference in {filename}: {img}")
                 errors += 1
-                
-            # Check for image paths
-            img_matches = re.findall(r'src=["\'](assets/images/[^"\']+)["\']', content)
-            for img in img_matches:
-                full_img_path = os.path.join(ROOT_DIR, img)
-                if not os.path.exists(full_img_path):
-                    print(f"❌ ERROR: Missing image reference in {os.path.basename(file_path)}: {img}")
+
+        # 3. Check for internal html links
+        soup = BeautifulSoup(content, "html.parser")
+        for a in soup.find_all("a"):
+            href = a.get("href", "")
+            if href.endswith(".html") or ".html#" in href:
+                target_html = href.split("#")[0]
+                if target_html not in output_basenames:
+                    print(f"❌ ERROR: Broken internal link in {filename} -> {href}")
                     errors += 1
                     
     if errors == 0:
         print("✓ Zero remote googleusercontent.com references.")
         print("✓ All referenced local images exist on disk.")
-        print("✓ Build successful! Site is ready for GitHub Pages deployment.")
+        print("✓ All internal .html navigation links resolve to valid pages.")
+        print("✓ Build successful! All 16 pages are ready for GitHub Pages deployment.")
         print("=" * 60)
         return 0
     else:
