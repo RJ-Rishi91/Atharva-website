@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Subtle noise grain simulation */
+.bg-grain {
+  background-image: radial-gradient(rgba(13, 13, 13, 0.075) 1px, transparent 0);
+  background-size: 3px 3px;
+}
+
+/* Edge-to-edge typography clamp */
+.hero-type-bleed {
+  font-size: clamp(3.8rem, 12vw, 12.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.025em;
+}
+
+/* Grayscale to vibrant color hover effect */
+.curated-photo {
+  filter: grayscale(100%) contrast(108%);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .curated-photo,
+.group.is-active .curated-photo {
+  filter: grayscale(0%) contrast(102%);
+  transform: scale(1.025);
+}
+
+/* Continuous ticker animation */
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: tickerScroll 28s linear infinite;
+}
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Hero Stagger Animations */
+@keyframes heroFadeUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroScaleIn {
+  0% { opacity: 0; transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.anim-fade-up {
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.anim-hero-frame {
+  animation: heroScaleIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker { animation: none !important; }
+  .anim-fade-up, .anim-hero-frame { animation: none !important; opacity: 1 !important; }
+  .curated-photo { transition: none !important; }
+}
+
+.nav-link {
+  transition: color 0.2s ease;
+}
+.nav-link:hover {
+  color: #D72626;
+}
+.nav-link.active {
+  color: #D72626;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}

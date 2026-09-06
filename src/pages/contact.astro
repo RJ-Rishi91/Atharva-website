@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<BaseLayout
+  title="REPRESENTATION & CASTING DESK — Book Atharva Sharma // Global Direct"
+  description="Direct casting, agency representation, and campaign booking desk for fashion model Atharva Sharma. Email direct, WhatsApp direct, and production brief intake."
+  keywords="book male model, fashion casting India, Atharva Sharma contact, hire runway model, model representation Udaipur Mumbai"
+  ogImage="assets/images/atharva-studio-bw-stool.png"
+>
+<div class="flex flex-col w-full bg-canvas-warm">
+  <!-- SECTION HEADER & STATUS -->
+  <div class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pt-10 pb-6 max-w-[1780px] mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-grid-border pb-6">
+      <div class="flex flex-col gap-1">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 bg-editorial-red inline-block"></span>
+          <span class="font-mono text-xs uppercase tracking-widest text-editorial-gray font-bold">SECTION 06 // DIRECT DISPATCH &amp; BOOKINGS</span>
+        </div>
+        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase text-editorial-ink tracking-tight leading-none">
+          CONNECT // BOOKINGS
+        </h1>
+      </div>
+      <div class="flex flex-col items-start md:items-end gap-1 font-mono text-xs">
+        <span class="text-editorial-gray uppercase">CALENDAR: 2026</span>
+        <span class="text-editorial-red font-bold uppercase">STATUS: OPEN FOR COMMISSIONS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTACT & INQUIRY STAGE -->
+  <section class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pb-20 max-w-[1780px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+      <!-- Left Column: Portrait & Direct Details -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <!-- Editorial Portrait Card -->
+        <div class="relative bg-canvas-sheet overflow-hidden group shadow-md border border-grid-border">
+          <div class="aspect-[3/4] w-full relative">
+            <img alt="Atharva Sharma editorial studio portrait seated on stool" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:scale-[1.02] group-hover:grayscale-0" src={url("/assets/images/atharva-studio-bw-stool.png")} style="object-position: center 15%;">
+            <div class="absolute inset-0 bg-gradient-to-t from-editorial-ink/80 via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2 py-1 font-mono text-[10px] tracking-widest uppercase">
+              REF: PORTRAIT_01
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 text-white flex flex-col gap-1">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-editorial-red font-bold">DIRECT ROSTER TALENT</span>
+              <p class="font-display text-3xl uppercase leading-tight">ATHARVA SHARMA</p>
+              <div class="flex items-center justify-between text-white/80 font-mono text-xs pt-1 border-t border-white/20">
+                <span>HEIGHT: TBD</span>
+                <span>BASE: UDAIPUR, RAJASTHAN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Official Communication Matrix -->
+        <div class="bg-canvas-alt p-6 border border-grid-border shadow-sm flex flex-col gap-4">
+          <div class="flex items-center justify-between pb-2 border-b border-grid-border">
+            <span class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold">DIRECT COMMUNICATION</span>
+            <span class="inline-flex w-2 h-2 rounded-full bg-editorial-red animate-pulse"></span>
+          </div>
+          <div class="flex flex-col gap-3 font-mono text-xs">
+            <!-- Email -->
+            <div class="bg-white p-4 border border-grid-border flex flex-col gap-1">
+              <span class="text-editorial-gray text-[10px] tracking-widest uppercase font-bold">DIRECT EMAIL</span>
+              <a class="font-sans text-base sm:text-lg text-editorial-ink font-semibold hover:text-editorial-red transition-colors break-all" href="mailto:atharva@atharvasharma.co.in">
+                atharva@atharvasharma.co.in
+              </a>
+            </div>
+            <!-- Phone & WhatsApp -->
+            <div class="bg-white p-4 border border-grid-border flex flex-col gap-1">
+              <span class="text-editorial-gray text-[10px] tracking-widest uppercase font-bold">PHONE &amp; WHATSAPP DIRECT</span>
+              <a class="font-sans text-base sm:text-lg text-editorial-ink font-semibold hover:text-editorial-red transition-colors" href="https://wa.me/918209225998" target="_blank" rel="noopener noreferrer">
+                +91 8209225998
+              </a>
+            </div>
+            <!-- Instagram -->
+            <div class="bg-white p-4 border border-grid-border flex flex-col gap-1">
+              <span class="text-editorial-gray text-[10px] tracking-widest uppercase font-bold">INSTAGRAM OFFICIAL</span>
+              <a class="font-sans text-base sm:text-lg text-editorial-ink font-semibold hover:text-editorial-red transition-colors flex items-center justify-between" href="https://www.instagram.com/atharvasharma.co.in" target="_blank" rel="noopener noreferrer">
+                <span>@atharvasharma.co.in</span>
+                <span class="material-symbols-outlined text-sm">arrow_outward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comp-Card Status Box -->
+        <div class="bg-editorial-ink text-white p-6 flex flex-col justify-between gap-4 border border-editorial-ink shadow-md">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-editorial-red text-[20px]">badge</span>
+              <span class="font-mono text-xs uppercase text-editorial-red tracking-widest font-bold">MODEL COMP-CARD</span>
+            </div>
+            <h3 class="font-display text-2xl uppercase leading-tight text-white">
+              OFFICIAL COMP-CARD PDF
+            </h3>
+            <p class="font-sans text-xs text-canvas-warm/75 leading-relaxed">
+              Official downloadable PDF comp-card package will be published once verified studio metrics and unretouched digitals are finalized. For agency requisitions, please inquire directly.
+            </p>
+          </div>
+          <div class="flex flex-col gap-2 pt-2 border-t border-white/20">
+            <a href={url("/comp-card")} class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-editorial-red hover:bg-editorial-red-deep text-white font-mono text-xs uppercase tracking-widest transition-colors font-bold shadow-sm" id="compCardBtn">
+              <span class="material-symbols-outlined text-base">badge</span>
+              <span>VIEW &amp; PRINT COMP-CARD</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Inquiry Form -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <div class="bg-canvas-alt p-6 sm:p-8 lg:p-10 border border-grid-border shadow-sm">
+          <div class="flex flex-col gap-2 pb-6 mb-6 border-b border-grid-border">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-editorial-ink inline-block"></span>
+              <span class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold">BOOKING DESK</span>
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl uppercase text-editorial-ink tracking-tight">
+              REPRESENTATION &amp; CASTING INQUIRY
+            </h2>
+            <p class="font-sans text-xs sm:text-sm text-editorial-gray leading-relaxed">
+              For casting directors, production agencies, luxury brands, and photographers. Submissions are reviewed directly by Atharva Sharma with prompt correspondence.
+            </p>
+          </div>
+
+          <form class="flex flex-col gap-6" id="inquiryForm" onsubmit="handleFormSubmit(event)">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-1.5">
+                <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="contactName">
+                  01. FULL NAME *
+                </label>
+                <input class="w-full bg-white border border-grid-border text-editorial-ink font-sans text-base p-3 focus:outline-none focus:border-editorial-red" id="contactName" name="name" placeholder="e.g. Jean-Luc Moreau" required type="text">
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="agencyBrand">
+                  02. AGENCY // BRAND *
+                </label>
+                <input class="w-full bg-white border border-grid-border text-editorial-ink font-sans text-base p-3 focus:outline-none focus:border-editorial-red" id="agencyBrand" name="agency" placeholder="e.g. Maison de Mode / Production" required type="text">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-1.5">
+                <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="contactEmail">
+                  03. DIRECT EMAIL *
+                </label>
+                <input class="w-full bg-white border border-grid-border text-editorial-ink font-sans text-base p-3 focus:outline-none focus:border-editorial-red" id="contactEmail" name="email" placeholder="name@agency.com" required type="email">
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="inquiryType">
+                  04. INQUIRY TYPE *
+                </label>
+                <select class="w-full bg-white border border-grid-border text-editorial-ink font-sans text-base p-3 focus:outline-none focus:border-editorial-red" id="inquiryType" name="inquiryType" required>
+                  <option value="" disabled selected>SELECT CATEGORY</option>
+                  <option value="runway">Runway &amp; Fashion Week Presentation</option>
+                  <option value="editorial">High-Fashion Editorial &amp; Cover</option>
+                  <option value="commercial">Commercial Ready-to-Wear &amp; Campaign</option>
+                  <option value="traditional">Traditional Couture / Heritage Campaign</option>
+                  <option value="lookbook">Brand Lookbook</option>
+                  <option value="agency">Agency Representation</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-1.5">
+                <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="shootDates">
+                  05. PROPOSED DATES
+                </label>
+                <input class="w-full bg-white border border-grid-border text-editorial-ink font-sans text-base p-3 focus:outline-none focus:border-editorial-red" id="shootDates" name="dates" placeholder="e.g. October 2026" type="text">
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="shootLocation">
+                  06. LOCATION
+                </label>
+                <input class="w-full bg-white border border-grid-border text-editorial-ink font-sans text-base p-3 focus:outline-none focus:border-editorial-red" id="shootLocation" name="location" placeholder="e.g. Mumbai, Delhi, Udaipur, International" type="text">
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="message">
+                07. CAMPAIGN BRIEF &amp; SCOPE *
+              </label>
+              <textarea class="w-full bg-white border border-grid-border text-editorial-ink font-sans text-base p-3 focus:outline-none focus:border-editorial-red resize-none" id="message" name="message" placeholder="Include brief overview, planned usage, moodboard links, and production details..." required rows="5"></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2">
+              <div class="flex items-center gap-2 font-mono text-xs text-editorial-gray">
+                <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+                <span>DIRECT TALENT REVIEW</span>
+              </div>
+              <button class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-editorial-ink hover:bg-editorial-red text-white font-mono text-xs uppercase tracking-widest transition-colors font-bold shadow-md" id="submitBtn" type="submit">
+                <span>TRANSMIT INQUIRY</span>
+                <span class="material-symbols-outlined text-sm">send</span>
+              </button>
+            </div>
+
+            <!-- Confirmation Message -->
+            <div class="hidden p-4 bg-white border-l-4 border-editorial-red text-editorial-ink flex items-center justify-between" id="formSuccess">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-editorial-red text-2xl">check_circle</span>
+                <div>
+                  <p class="font-mono text-xs font-bold uppercase text-editorial-red">TRANSMISSION CONFIRMED</p>
+                  <p class="font-sans text-xs text-editorial-gray">Your brief has been forwarded directly to Atharva Sharma.</p>
+                </div>
+              </div>
+              <span class="font-mono text-[10px] text-editorial-gray uppercase">STATUS: LOGGED</span>
+            </div>
+          </form>
+        </div>
+
+        <!-- Professional Standard Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-canvas-alt p-5 border border-grid-border flex flex-col gap-1">
+            <span class="font-mono text-xs text-editorial-gray uppercase font-bold">TRAVEL MOBILITY</span>
+            <p class="font-display text-lg text-editorial-ink uppercase">WORLDWIDE COMMISSIONS</p>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">Available for domestic and international travel on confirmed casting schedules.</p>
+          </div>
+          <div class="bg-canvas-alt p-5 border border-grid-border flex flex-col gap-1">
+            <span class="font-mono text-xs text-editorial-gray uppercase font-bold">PUNCTUALITY STANDARD</span>
+            <p class="font-display text-lg text-editorial-ink uppercase">RIGOROUS DISCIPLINE</p>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">Dedicated professional work ethic for multi-day shoots, runway fittings, and call sheets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  function handleCompCardClick() {
+    const notice = document.getElementById('compCardNotice');
+    if (notice) {
+      notice.classList.remove('hidden');
+    }
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const success = document.getElementById('formSuccess');
+    
+    // Gather form values
+    const name = document.getElementById('contactName').value;
+    const agency = document.getElementById('agencyBrand').value;
+    const email = document.getElementById('contactEmail').value;
+    const type = document.getElementById('inquiryType').value;
+    const dates = document.getElementById('shootDates').value;
+    const loc = document.getElementById('shootLocation').value;
+    const msg = document.getElementById('message').value;
+
+    // Prefill mailto fallback link in background
+    const subject = encodeURIComponent(`Casting Inquiry: ${agency} - ${name} [${type}]`);
+    const body = encodeURIComponent(`Name: ${name}\nAgency/Brand: ${agency}\nEmail: ${email}\nInquiry Type: ${type}\nDates: ${dates}\nLocation: ${loc}\n\nBrief:\n${msg}`);
+    
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<span>TRANSMITTING...</span>';
+    }
+
+    setTimeout(() => {
+      if (btn) {
+        btn.innerHTML = '<span>TRANSMITTED</span><span class="material-symbols-outlined text-sm">check</span>';
+      }
+      if (success) {
+        success.classList.remove('hidden');
+      }
+      // Trigger mailto client as user action
+      window.location.href = `mailto:atharva@atharvasharma.co.in?subject=${subject}&body=${body}`;
+    }, 500);
+  }
+</script>
+</BaseLayout>

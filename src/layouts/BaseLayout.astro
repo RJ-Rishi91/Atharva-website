@@ -1,0 +1,202 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  pageType?: 'website' | 'article';
+  articleDate?: string;
+  category?: string;
+}
+
+const {
+  title = "ATHARVA SHARMA — Modeling Portfolio & Editorial Book",
+  description = "Official portfolio of Atharva Sharma, Indian male editorial and runway fashion model based in Udaipur, India. 6'1\" (186cm), high luxury couture, runway poise, and commercial campaign bookings.",
+  keywords = "Atharva Sharma, male model India, Indian runway model, fashion model Udaipur, high fashion editorial, menswear model, 6'1 model",
+  ogImage = "assets/images/atharva-studio-bw-stool.png",
+  pageType = "website",
+  articleDate = "2026-09-07",
+  category = "Editorial",
+} = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, "") : "https://rj-rishi91.github.io";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+
+const resolvedOgImage = ogImage.startsWith('http') 
+  ? ogImage 
+  : `${siteUrl}${base}/${ogImage.replace(/^\//, '')}`;
+
+const jsonLdGraph = [
+  {
+    "@type": "Person",
+    "@id": `${siteUrl}${base}/#atharva-sharma`,
+    "name": "Atharva Sharma",
+    "alternateName": ["Atharva", "Model Atharva Sharma"],
+    "url": `${siteUrl}${base}/`,
+    "image": `${siteUrl}${base}/assets/images/atharva-studio-bw-stool.png`,
+    "jobTitle": ["Fashion Model", "Editorial Model", "Runway Model"],
+    "gender": "Male",
+    "height": {
+      "@type": "QuantitativeValue",
+      "value": 186,
+      "unitCode": "CMT"
+    },
+    "description": "Atharva Sharma is an Indian male editorial and runway fashion model based in Udaipur, India. Height 6'1\" (186cm), Chest 38\", Waist 30\", Hazel eyes, Dark Brown hair.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Udaipur",
+      "addressRegion": "Rajasthan",
+      "addressCountry": "IN"
+    },
+    "email": "atharva@atharvasharma.co.in",
+    "telephone": "+918209225998",
+    "sameAs": [
+      "https://www.instagram.com/atharvasharma.co.in",
+      "https://github.com/RJ-Rishi91/Atharva-website"
+    ]
+  },
+  {
+    "@type": "WebSite",
+    "@id": `${siteUrl}${base}/#website`,
+    "url": `${siteUrl}${base}/`,
+    "name": "ATHARVA SHARMA — Official Modeling Portfolio",
+    "description": "Official editorial book, model composite card, measurements, and dispatches for Indian male runway model Atharva Sharma.",
+    "publisher": {
+      "@id": `${siteUrl}${base}/#atharva-sharma`
+    }
+  }
+];
+
+if (pageType === 'article') {
+  jsonLdGraph.push({
+    "@type": "BlogPosting",
+    "@id": `${canonicalURL}#article`,
+    "isPartOf": {
+      "@id": `${siteUrl}${base}/journal`
+    },
+    "headline": title,
+    "description": description,
+    "image": resolvedOgImage,
+    "datePublished": articleDate,
+    "author": {
+      "@id": `${siteUrl}${base}/#atharva-sharma`
+    },
+    "publisher": {
+      "@id": `${siteUrl}${base}/#atharva-sharma`
+    },
+    "articleSection": category
+  });
+}
+---
+
+<!DOCTYPE html>
+<html class="scroll-smooth h-full" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>{title}</title>
+  
+  <!-- Primary SEO Meta Tags -->
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content="Atharva Sharma" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#FBF9F6" />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:site_name" content="ATHARVA SHARMA // Modeling Portfolio" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:type" content={pageType} />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content={resolvedOgImage} />
+  <meta property="og:image:alt" content={title} />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={resolvedOgImage} />
+  <meta name="twitter:creator" content="@atharvasharma.co.in" />
+
+  <!-- Local / Regional SEO -->
+  <meta name="geo.region" content="IN-RJ" />
+  <meta name="geo.placename" content="Udaipur" />
+  <meta name="geo.position" content="24.5854;73.7125" />
+  <meta name="ICBM" content="24.5854, 73.7125" />
+
+  <!-- JSON-LD Structured Data Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": jsonLdGraph
+  })} />
+
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-canvas-warm text-editorial-ink font-sans antialiased selection:bg-editorial-red selection:text-white relative overflow-x-hidden min-h-full flex flex-col justify-between">
+  
+  <Header />
+
+  <main class="w-full flex-grow">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <script>
+    // Mobile navigation toggle with icon swap, aria-expanded, and click-outside
+    const navToggle = document.getElementById('mobile-nav-toggle');
+    const navDrawer = document.getElementById('mobile-nav-drawer');
+    const menuIcon = document.getElementById('menu-icon');
+    
+    if (navToggle && navDrawer) {
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = navDrawer.classList.toggle('hidden');
+        const isExpanded = !isHidden;
+        navToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        if (menuIcon) {
+          menuIcon.textContent = isExpanded ? 'close' : 'menu';
+        }
+      });
+
+      // Close drawer on click outside
+      document.addEventListener('click', (e) => {
+        if (!navDrawer.classList.contains('hidden') && !navDrawer.contains(e.target as Node) && !navToggle.contains(e.target as Node)) {
+          navDrawer.classList.add('hidden');
+          navToggle.setAttribute('aria-expanded', 'false');
+          if (menuIcon) menuIcon.textContent = 'menu';
+        }
+      });
+
+      // Close drawer on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !navDrawer.classList.contains('hidden')) {
+          navDrawer.classList.add('hidden');
+          navToggle.setAttribute('aria-expanded', 'false');
+          if (menuIcon) menuIcon.textContent = 'menu';
+        }
+      });
+    }
+
+    // Mobile tap interaction for photos (grayscale to color toggle)
+    document.querySelectorAll('.group').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('is-active');
+      });
+    });
+  </script>
+</body>
+</html>

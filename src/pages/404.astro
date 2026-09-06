@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<BaseLayout
+  title="404 NOT FOUND — Atharva Sharma // Unindexed Specimen"
+  description="Requested editorial document or portfolio look could not be located in the Atharva Sharma archive directory."
+  keywords="404, not found, Atharva Sharma portfolio"
+  ogImage="assets/images/atharva-studio-bw-stool.png"
+>
+<section class="w-full bg-surface-container-lowest px-gutter-mobile lg:px-margin-desktop py-unit-3xl flex items-center justify-center min-h-[70vh]">
+  <div class="max-w-3xl w-full mx-auto border-2 border-pure-black p-unit-lg sm:p-unit-2xl bg-surface shadow-xl">
+    
+    <div class="flex items-center gap-unit-xs mb-unit-sm font-label-code text-label-code text-primary font-bold">
+      <span class="w-3 h-3 bg-primary inline-block"></span>
+      <span>ERROR: 404 // UNINDEXED DIRECTORY SPECIMEN</span>
+    </div>
+
+    <h1 class="font-headline-lg text-6xl sm:text-7xl lg:text-8xl text-pure-black uppercase leading-none tracking-tight mb-unit-md">
+      DISPATCH NOT FOUND
+    </h1>
+
+    <div class="w-20 h-1.5 bg-primary mb-unit-md"></div>
+
+    <p class="font-body-lg text-lg text-secondary leading-relaxed mb-unit-xl">
+      The requested route or portfolio look is unavailable, moved to vault archives, or has not yet been indexed in the live system.
+    </p>
+
+    <div class="border-t border-grid-line pt-unit-lg">
+      <span class="font-label-code text-label-code text-pure-black uppercase font-bold tracking-widest block mb-unit-md">
+        PRIMARY EDITORIAL DIRECTORIES:
+      </span>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-unit-sm font-label-code text-label-code">
+        <a href={url("/")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+          01. HOME
+        </a>
+        <a href={url("/portfolio")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+          02. PORTFOLIO
+        </a>
+        <a href={url("/stats")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+          03. STATS
+        </a>
+        <a href={url("/about")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+          04. ABOUT
+        </a>
+        <a href={url("/journal")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+          05. JOURNAL
+        </a>
+        <a href={url("/digitals")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+          06. DIGITALS
+        </a>
+        <a href={url("/comp-card")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+          07. COMP-CARD
+        </a>
+        <a href={url("/contact")} class="p-unit-sm bg-pure-black text-pure-white hover:bg-primary transition-colors text-center font-bold uppercase">
+          08. CONTACT
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+</BaseLayout>

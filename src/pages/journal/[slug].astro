@@ -1,0 +1,187 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('journal');
+  return articles.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'journal'>;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await entry.render();
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<BaseLayout
+  title={`${data.title} — ATHARVA SHARMA`}
+  description={data.description}
+  ogImage={data.heroImage}
+  pageType="article"
+  articleDate={data.date}
+  category={data.category}
+>
+  <div class="flex flex-col w-full">
+    <!-- Top Metadata Indicator Strip -->
+    <section class="w-full bg-canvas-alt px-4 sm:px-8 lg:px-12 py-3 border-b border-grid-border">
+      <div class="max-w-[1780px] mx-auto flex flex-wrap items-center justify-between gap-y-2">
+        <div class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+          <span class="font-mono text-xs text-editorial-ink font-bold uppercase tracking-widest">{data.volume}</span>
+          <span class="text-editorial-gray text-xs">•</span>
+          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">REF: {data.dispatchId}</span>
+        </div>
+        <div class="flex items-center gap-4 font-mono text-xs text-editorial-gray">
+          <span>BOARD: {data.board}</span>
+          <span class="hidden sm:inline">LOC: {data.location}</span>
+          <span class="text-editorial-red font-bold">STATUS: {data.status}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Header & Hero Banner -->
+    <section class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pt-10 pb-8">
+      <div class="max-w-[1780px] mx-auto flex flex-col gap-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <a href={url('/journal')} class="font-mono text-xs text-editorial-red uppercase tracking-widest hover:underline font-bold">
+            ← [ ALL DISPATCHES ]
+          </a>
+          <span class="text-editorial-gray text-xs">/</span>
+          <span class="font-mono text-xs text-editorial-ink uppercase tracking-widest font-bold">
+            CATEGORY: {data.category}
+          </span>
+          <span class="text-editorial-gray text-xs">•</span>
+          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">
+            PUBLISHED: {data.date} // {data.readTime}
+          </span>
+        </div>
+        <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl uppercase text-editorial-ink tracking-tight leading-tight max-w-5xl m-0">
+          {data.title}
+        </h1>
+      </div>
+    </section>
+
+    <!-- Hero Image Specimen Section -->
+    <section class="w-full px-4 sm:px-8 lg:px-12 pb-12 bg-canvas-warm">
+      <div class="max-w-[1780px] mx-auto">
+        <div class="w-full relative bg-canvas-sheet border border-grid-border overflow-hidden">
+          <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] max-h-[640px] overflow-hidden">
+            <img
+              src={url(data.heroImage)}
+              alt={data.heroImageAlt}
+              class="w-full h-full object-cover grayscale contrast-108 transition-all duration-700 hover:grayscale-0"
+              style={`object-position: ${data.focusPosition};`}
+            />
+          </div>
+          <div class="p-3 bg-canvas-alt border-t border-grid-border flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-editorial-gray uppercase">
+            <span>PLATE SPECIMEN: {data.dispatchId} // LOCAL CAPTURE ARCHIVE</span>
+            <span>ATHARVA SHARMA // 6'1" (186CM)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Editorial Essay Body -->
+    <section class="w-full px-4 sm:px-8 lg:px-12 py-8 bg-canvas-warm border-t border-grid-border">
+      <div class="max-w-[1780px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12">
+        
+        <!-- Article Content Column (8 cols) -->
+        <div class="lg:col-span-8 flex flex-col gap-8 prose prose-neutral max-w-none">
+          <div class="font-sans text-editorial-ink text-base sm:text-lg leading-relaxed space-y-6">
+            <Content />
+          </div>
+
+          <!-- Bottom Action Strip -->
+          <div class="pt-8 border-t border-grid-border flex flex-wrap items-center justify-between gap-4 mt-8">
+            <a href={url('/journal')} class="inline-flex items-center gap-2 font-mono text-xs text-editorial-ink hover:text-editorial-red uppercase tracking-widest font-bold">
+              <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+              <span>RETURN TO JOURNAL ARCHIVE</span>
+            </a>
+            <div class="flex items-center gap-3">
+              <a href={url('/comp-card')} class="inline-flex items-center gap-1.5 px-4 py-2 bg-canvas-sheet text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors font-mono text-xs tracking-widest uppercase">
+                <span class="material-symbols-outlined text-[16px]">badge</span>
+                <span>VIEW COMP-CARD</span>
+              </a>
+              <a href={url('/contact')} class="inline-flex items-center gap-1.5 px-4 py-2 bg-editorial-red text-white hover:bg-editorial-red-deep transition-colors font-mono text-xs tracking-widest uppercase font-bold">
+                <span>BOOK TALENT</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Previous / Next Navigation -->
+          {(data.prevSlug || data.nextSlug) && (
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-grid-border/60">
+              {data.prevSlug ? (
+                <a href={url(`/journal/${data.prevSlug}`)} class="p-4 bg-canvas-alt border border-grid-border hover:border-editorial-red transition-colors flex flex-col gap-1 group">
+                  <span class="font-mono text-[10px] text-editorial-gray uppercase tracking-widest group-hover:text-editorial-red">← PREVIOUS DISPATCH</span>
+                  <span class="font-display text-sm uppercase text-editorial-ink line-clamp-1">{data.prevTitle}</span>
+                </a>
+              ) : <div />}
+              {data.nextSlug && (
+                <a href={url(`/journal/${data.nextSlug}`)} class="p-4 bg-canvas-alt border border-grid-border hover:border-editorial-red transition-colors flex flex-col gap-1 text-right group">
+                  <span class="font-mono text-[10px] text-editorial-gray uppercase tracking-widest group-hover:text-editorial-red">NEXT DISPATCH →</span>
+                  <span class="font-display text-sm uppercase text-editorial-ink line-clamp-1">{data.nextTitle}</span>
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar Column (4 cols) -->
+        <aside class="lg:col-span-4 flex flex-col gap-6">
+          <!-- Author / Model Profile Card -->
+          <div class="bg-canvas-alt p-6 border border-grid-border">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-editorial-ink text-white flex items-center justify-center font-display text-xl">AS</div>
+              <div>
+                <h4 class="font-display text-lg text-editorial-ink uppercase leading-tight">ATHARVA SHARMA</h4>
+                <span class="font-mono text-xs text-editorial-gray tracking-wider uppercase">FASHION &amp; RUNWAY MODEL</span>
+              </div>
+            </div>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed mb-4">
+              Udaipur-based editorial talent with international runway presence. Documenting physical discipline, drapery mechanics, and contemporary South Asian menswear.
+            </p>
+            <div class="pt-3 border-t border-grid-border flex flex-col gap-2 font-mono text-xs">
+              <div class="flex justify-between text-editorial-ink">
+                <span>HEIGHT:</span>
+                <span class="font-bold">6'1" / 186CM</span>
+              </div>
+              <div class="flex justify-between text-editorial-ink">
+                <span>MEASUREMENTS:</span>
+                <span class="font-bold">38" - 30" - 43 EU</span>
+              </div>
+              <div class="flex justify-between text-editorial-ink">
+                <span>REPRESENTATION:</span>
+                <span class="font-bold text-editorial-red">DIRECT INQUIRY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Booking Box -->
+          <div class="bg-editorial-ink text-white p-6 flex flex-col gap-3">
+            <span class="font-mono text-xs text-editorial-red uppercase tracking-widest font-bold">COMMISSIONS &amp; CASTINGS</span>
+            <h4 class="font-display text-xl uppercase leading-snug">BOOK ATHARVA FOR RUNWAY &amp; EDITORIAL</h4>
+            <p class="font-sans text-xs text-canvas-warm/75 leading-relaxed">
+              Available globally for runway presentations, luxury fashion campaigns, and designer lookbooks.
+            </p>
+            <a href={url('/contact')} class="mt-2 inline-flex items-center justify-center gap-2 py-3 bg-editorial-red hover:bg-editorial-red-deep text-white font-mono text-xs uppercase tracking-widest font-bold transition-colors">
+              <span>SUBMIT INQUIRY BRIEF</span>
+              <span class="material-symbols-outlined text-sm">arrow_outward</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

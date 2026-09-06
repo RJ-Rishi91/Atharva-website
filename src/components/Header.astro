@@ -1,0 +1,102 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, "");
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+
+const navItems = [
+  { href: url('/'), label: '01. HOME', key: 'home', active: pathname === base || pathname === `${base}/index.html` || pathname === '' },
+  { href: url('/digitals'), label: '02. DIGITALS', key: 'digitals', active: pathname.startsWith(url('/digitals')) },
+  { href: url('/portfolio'), label: '03. PORTFOLIO', key: 'portfolio', active: pathname.startsWith(url('/portfolio')) },
+  { href: url('/stats'), label: '04. STATS', key: 'stats', active: pathname.startsWith(url('/stats')) },
+  { href: url('/about'), label: '05. ABOUT', key: 'about', active: pathname.startsWith(url('/about')) },
+  { href: url('/journal'), label: '06. JOURNAL', key: 'journal', active: pathname.startsWith(url('/journal')) },
+  { href: url('/contact'), label: '07. CONTACT', key: 'contact', active: pathname.startsWith(url('/contact')) },
+];
+---
+
+<!-- ==================== TOP PERSISTENT NAVIGATION ==================== -->
+<header class="w-full border-b border-grid-border sticky top-0 bg-canvas-warm/95 backdrop-blur-md z-50">
+  <div class="max-w-[1780px] mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between font-mono text-xs uppercase tracking-wider">
+    <!-- Brand & Origin -->
+    <div class="flex items-center gap-3 sm:gap-6">
+      <a href={url('/')} class="flex items-center gap-2 group">
+        <div class="w-2.5 h-6 bg-editorial-red transition-transform duration-200 group-hover:scale-y-110"></div>
+        <div class="flex flex-col">
+          <span class="font-serif text-xl tracking-tighter leading-none font-bold uppercase text-editorial-ink">ATHARVA</span>
+          <span class="font-serif text-xl tracking-tighter leading-none font-bold uppercase text-editorial-ink">SHARMA</span>
+        </div>
+      </a>
+      <span class="hidden md:inline-block text-editorial-gray/80 text-[11px] font-mono">
+        / UDAIPUR, IN // TALENT &amp; EDITORIAL BOOK
+      </span>
+    </div>
+
+    <!-- Desktop Navigation Links (Visible on lg and up) -->
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-7 font-mono font-medium text-xs">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`nav-link ${item.active ? 'active text-editorial-red font-bold underline underline-offset-4' : 'text-editorial-ink hover:text-editorial-red'}`}
+        >
+          {item.label}
+        </a>
+      ))}
+      
+      <!-- Book Talent Button -->
+      <a class="ml-2 bg-editorial-ink hover:bg-editorial-red text-white px-3.5 py-1.5 transition-colors font-mono text-[11px] tracking-widest flex items-center gap-1.5" href={url('/contact')}>
+        <span>BOOK TALENT</span>
+        <span class="material-symbols-outlined text-xs">arrow_outward</span>
+      </a>
+    </nav>
+
+    <!-- Mobile Header Actions (Visible on screens < lg) -->
+    <div class="flex lg:hidden items-center gap-2">
+      <a class="bg-editorial-ink hover:bg-editorial-red text-white px-3 py-1.5 transition-colors font-mono text-[11px] tracking-widest flex items-center gap-1" href={url('/contact')}>
+        <span>BOOK</span>
+        <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+      </a>
+      <button id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" class="p-2 text-editorial-ink hover:text-editorial-red focus:outline-none flex items-center justify-center border border-grid-border bg-canvas-alt active:bg-canvas-sheet" aria-label="Toggle navigation menu">
+        <span id="menu-icon" class="material-symbols-outlined text-xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu (Accessible full-featured editorial directory) -->
+  <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-grid-border bg-canvas-warm/98 backdrop-blur-xl px-5 py-5 space-y-1 font-mono text-xs uppercase tracking-widest transition-all duration-300 shadow-xl">
+    <div class="pb-3 mb-2 border-b border-grid-border/60 flex items-center justify-between text-[10px] text-editorial-gray">
+      <span>INDEX DIRECTORY // 07 SECTIONS</span>
+      <span class="text-editorial-red font-bold">ATHARVA SHARMA</span>
+    </div>
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class={`flex items-center justify-between py-3 px-3 border-b border-grid-border/30 min-h-[48px] ${item.active ? 'bg-canvas-sheet text-editorial-red font-bold' : 'text-editorial-ink hover:bg-canvas-alt hover:text-editorial-red'}`}
+      >
+        <span>{item.label}</span>
+        <span class="material-symbols-outlined text-xs">arrow_forward</span>
+      </a>
+    ))}
+    <a
+      href={url('/comp-card')}
+      class={`flex items-center justify-between py-3 px-3 border-b border-grid-border/60 min-h-[48px] ${pathname.startsWith(url('/comp-card')) ? 'bg-canvas-sheet text-editorial-red font-bold' : 'text-editorial-ink hover:bg-canvas-alt hover:text-editorial-red'}`}
+    >
+      <span class="flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm text-editorial-red">badge</span>
+        <span>DOWNLOAD COMP-CARD</span>
+      </span>
+      <span class="material-symbols-outlined text-xs">download</span>
+    </a>
+    
+    <!-- Quick Contact Actions Strip -->
+    <div class="pt-3 grid grid-cols-2 gap-2 text-[11px] normal-case font-mono">
+      <a href="https://wa.me/918209225998" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 py-2.5 bg-emerald-800 text-white font-mono uppercase text-[10px] tracking-wider min-h-[44px]">
+        <span>WHATSAPP DIRECT</span>
+      </a>
+      <a href="mailto:atharva@atharvasharma.co.in" class="flex items-center justify-center gap-1.5 py-2.5 bg-editorial-ink text-white font-mono uppercase text-[10px] tracking-wider min-h-[44px]">
+        <span>DIRECT EMAIL</span>
+      </a>
+    </div>
+  </div>
+</header>

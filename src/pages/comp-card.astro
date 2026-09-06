@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<BaseLayout
+  title="MODEL COMP-CARD (ZED CARD) — Atharva Sharma // Digital & Print Package"
+  description="Official composite card (zed card) for Atharva Sharma conforming to international modeling agency standards. 6'1&quot; (186cm), print-ready A5 format."
+  keywords="model comp card, zed card India, Atharva Sharma comp card, printable model composite card, male model z-card"
+  ogImage="assets/images/atharva-studio-bw-stool.png"
+>
+<style>
+  @media print {
+    header, footer, .no-print {
+      display: none !important;
+    }
+    body {
+      background: #FFFFFF !important;
+      color: #000000 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .comp-card-container {
+      max-width: 100% !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      border: 1px solid #000 !important;
+      page-break-inside: avoid;
+    }
+    .print-page-break {
+      page-break-after: always;
+    }
+  }
+</style>
+
+<!-- ACTION BAR (NO-PRINT) -->
+<section class="no-print w-full bg-surface border-b border-grid-line px-gutter-mobile lg:px-margin-desktop py-unit-md">
+  <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-unit-md font-label-code text-label-code">
+    <div class="flex items-center gap-unit-xs">
+      <span class="w-2.5 h-2.5 bg-primary inline-block"></span>
+      <span class="text-pure-black font-bold uppercase">MODEL COMPOSITE CARD // ZED CARD</span>
+      <span class="text-secondary hidden sm:inline">• SPECIFICATION: SS26 DIRECT BOARD</span>
+    </div>
+    <div class="flex items-center gap-unit-sm">
+      <button onclick="window.print()" class="inline-flex items-center gap-unit-2xs px-unit-lg py-unit-xs bg-primary text-pure-white hover:bg-pure-black transition-colors font-label-code text-label-code tracking-widest uppercase font-bold shadow-sm">
+        <span class="material-symbols-outlined text-[16px]">print</span>
+        <span>PRINT / SAVE PDF</span>
+      </button>
+      <a href={url("/contact")} class="inline-flex items-center gap-unit-2xs px-unit-md py-unit-xs bg-surface-container text-pure-black hover:bg-pure-black hover:text-pure-white transition-colors font-label-code text-label-code tracking-widest uppercase font-bold">
+        <span>BOOK TALENT</span>
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMP-CARD DOCUMENT CONTAINER -->
+<div class="w-full bg-surface-container-low px-gutter-mobile lg:px-margin-desktop py-unit-xl">
+  <div class="comp-card-container max-w-5xl mx-auto bg-pure-white border border-pure-black shadow-lg p-unit-md sm:p-unit-xl">
+    
+    <!-- COMP CARD HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b-2 border-pure-black pb-unit-md mb-unit-lg gap-unit-sm">
+      <div>
+        <span class="font-label-code text-label-code text-primary uppercase font-bold tracking-widest block">DIRECT TALENT BOARD // UDAIPUR • INDIA</span>
+        <h1 class="font-headline-lg text-5xl sm:text-6xl text-pure-black uppercase tracking-tight leading-none">ATHARVA SHARMA</h1>
+      </div>
+      <div class="font-label-code text-label-code text-secondary sm:text-right flex flex-col gap-0.5">
+        <span class="text-pure-black font-bold uppercase">RUNWAY &amp; EDITORIAL MENSWEAR</span>
+        <span>HEIGHT: 6'1" // 186CM</span>
+        <span>LOCATION: UDAIPUR / WORLDWIDE COMMISSIONS</span>
+      </div>
+    </div>
+
+    <!-- DOUBLE-SIDED GRID PRESENTATION -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-stretch mb-unit-lg">
+      
+      <!-- FRONT SIDE: HERO LEAD SHOT -->
+      <div class="lg:col-span-5 flex flex-col border border-pure-black p-unit-xs bg-surface-container-lowest">
+        <div class="relative w-full aspect-[3/4] overflow-hidden group bg-pure-black">
+          <img src={url("/assets/images/atharva-studio-bw-stool.png")} alt="Atharva Sharma studio portrait" class="w-full h-full object-cover object-top grayscale contrast-115 transition-all duration-500 group-hover:grayscale-0">
+          <div class="absolute top-unit-xs left-unit-xs bg-pure-black text-pure-white font-label-code text-[10px] px-unit-xs py-unit-2xs uppercase tracking-widest">
+            A-SIDE // HERO STUDIO PORTRAIT
+          </div>
+          <div class="absolute bottom-unit-xs left-unit-xs right-unit-xs bg-pure-black/85 text-pure-white font-label-code text-[10px] px-unit-xs py-unit-2xs flex justify-between">
+            <span>STUDIO DIRECT</span>
+            <span>6'1" / 186CM</span>
+          </div>
+        </div>
+        <div class="p-unit-xs pt-unit-sm flex justify-between items-center font-label-code text-label-code">
+          <span class="font-bold text-pure-black uppercase">ATHARVA SHARMA</span>
+          <span class="text-primary font-bold">HAZEL / DARK BROWN</span>
+        </div>
+      </div>
+
+      <!-- REVERSE SIDE: 4-LOOK EDITORIAL QUAD -->
+      <div class="lg:col-span-7 flex flex-col justify-between border border-pure-black p-unit-xs bg-surface-container-lowest">
+        <div class="flex items-center justify-between px-unit-xs py-unit-2xs border-b border-grid-line mb-unit-xs">
+          <span class="font-label-code text-[10px] font-bold text-pure-black uppercase">B-SIDE // EDITORIAL RANGE QUAD</span>
+          <span class="font-label-code text-[10px] text-secondary uppercase">4 DISTINCT LOOK SPECIMENS</span>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-unit-xs flex-grow">
+          <!-- Quad Look 1: Ethnic Heritage -->
+          <div class="relative aspect-[3/4] bg-surface-container overflow-hidden group border border-grid-line">
+            <img src={url("/assets/images/atharva-kurta-palace-night.jpg")} alt="Atharva Sharma royal velvet kurta" class="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500">
+            <div class="absolute bottom-0 inset-x-0 bg-pure-black/80 text-pure-white font-label-code text-[9px] px-1 py-0.5 flex justify-between uppercase">
+              <span>01. ETHNIC HERITAGE</span>
+              <span>UDAIPUR PALACE</span>
+            </div>
+          </div>
+
+          <!-- Quad Look 2: Monolith Desert -->
+          <div class="relative aspect-[3/4] bg-surface-container overflow-hidden group border border-grid-line">
+            <img src={url("/assets/images/atharva-desert-jeep-bw.jpg")} alt="Atharva Sharma Thar desert expedition" class="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 transition-all duration-500">
+            <div class="absolute bottom-0 inset-x-0 bg-pure-black/80 text-pure-white font-label-code text-[9px] px-1 py-0.5 flex justify-between uppercase">
+              <span>02. EXPEDITION</span>
+              <span>THAR DESERT</span>
+            </div>
+          </div>
+
+          <!-- Quad Look 3: Coastal Motion -->
+          <div class="relative aspect-[3/4] bg-surface-container overflow-hidden group border border-grid-line">
+            <img src={url("/assets/images/atharva-horse-beach.jpg")} alt="Atharva Sharma coastal equestrian" class="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500">
+            <div class="absolute bottom-0 inset-x-0 bg-pure-black/80 text-pure-white font-label-code text-[9px] px-1 py-0.5 flex justify-between uppercase">
+              <span>03. RESORT EQUINE</span>
+              <span>COASTLINE</span>
+            </div>
+          </div>
+
+          <!-- Quad Look 4: European Tailored -->
+          <div class="relative aspect-[3/4] bg-surface-container overflow-hidden group border border-grid-line">
+            <img src={url("/assets/images/atharva-citynight-scarf.jpg")} alt="Atharva Sharma European city night" class="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 transition-all duration-500">
+            <div class="absolute bottom-0 inset-x-0 bg-pure-black/80 text-pure-white font-label-code text-[9px] px-1 py-0.5 flex justify-between uppercase">
+              <span>04. NOCTURNAL TAILORED</span>
+              <span>CENTRAL EUROPE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STATS & MEASUREMENTS TABLE -->
+    <div class="border-2 border-pure-black p-unit-md mb-unit-lg bg-surface-container-low">
+      <div class="flex items-center justify-between border-b border-grid-line pb-unit-xs mb-unit-sm">
+        <span class="font-headline-md text-xl uppercase text-pure-black">OFFICIAL PHYSICAL SPECIFICATIONS</span>
+        <span class="font-label-code text-label-code text-primary uppercase font-bold">CALIBRATED SS26</span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-unit-sm text-center font-label-code">
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">HEIGHT</span>
+          <span class="font-bold text-pure-black text-sm block">6'1" / 186CM</span>
+        </div>
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">CHEST</span>
+          <span class="font-bold text-pure-black text-sm block">38" / 96CM</span>
+        </div>
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">WAIST</span>
+          <span class="font-bold text-pure-black text-sm block">30" / 76CM</span>
+        </div>
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">SHOES</span>
+          <span class="font-bold text-pure-black text-sm block">43 EU / 10 US</span>
+        </div>
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">HAIR</span>
+          <span class="font-bold text-pure-black text-sm block">DARK BROWN</span>
+        </div>
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">EYES</span>
+          <span class="font-bold text-pure-black text-sm block">HAZEL</span>
+        </div>
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">COLLAR</span>
+          <span class="font-bold text-pure-black text-sm block">15.5" / 39CM</span>
+        </div>
+        <div class="p-unit-xs bg-pure-white border border-grid-line">
+          <span class="text-[10px] text-secondary block uppercase">SUIT SIZE</span>
+          <span class="font-bold text-pure-black text-sm block">38R // 48 EU</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKING CONTACT BAR -->
+    <div class="bg-pure-black text-pure-white p-unit-md flex flex-col sm:flex-row items-center justify-between gap-unit-md">
+      <div class="flex flex-col text-center sm:text-left">
+        <span class="font-label-code text-[10px] text-primary uppercase font-bold tracking-widest">DIRECT CASTING CORRESPONDENCE</span>
+        <span class="font-headline-md text-2xl uppercase tracking-tight">ATHARVA SHARMA // DIRECT BOOK</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center sm:justify-end gap-unit-md font-label-code text-label-code">
+        <a href="mailto:atharva@atharvasharma.co.in" class="hover:text-primary transition-colors">
+          atharva@atharvasharma.co.in
+        </a>
+        <span class="text-secondary">•</span>
+        <a href="https://wa.me/918209225998" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+          +91 8209225998
+        </a>
+        <span class="text-secondary">•</span>
+        <a href="https://www.instagram.com/atharvasharma.co.in" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline flex items-center gap-1">
+          <span>@atharvasharma.co.in</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</BaseLayout>
