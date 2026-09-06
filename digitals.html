@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html class="scroll-smooth h-full" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIGITALS.RAW — Atharva Sharma</title>
+  
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS with CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            // Governing DESIGN-TOKENS.md palette
+            'canvas-warm': '#FBF9F6',
+            'canvas-alt': '#F5F3F0',
+            'canvas-sheet': '#EFECE6',
+            'editorial-red': '#D72626',
+            'editorial-red-deep': '#B20011',
+            'editorial-ink': '#0D0D0D',
+            'editorial-gray': '#656464',
+            'grid-border': 'rgba(13, 13, 13, 0.16)',
+
+            // Aliases to seamlessly support Stitch section classes
+            'surface': '#FBF9F6',
+            'surface-container': '#EFECE6',
+            'surface-container-low': '#F5F3F0',
+            'surface-container-high': '#EAE8E5',
+            'surface-container-highest': '#E4E2DF',
+            'surface-container-lowest': '#FFFFFF',
+            'surface-variant': '#E4E2DF',
+            'surface-dim': '#DBDAD7',
+            'surface-bright': '#FBF9F6',
+            'primary': '#B20011',
+            'primary-container': '#D72626',
+            'primary-fixed': '#FFDAD6',
+            'pure-black': '#0D0D0D',
+            'pure-white': '#FFFFFF',
+            'secondary': '#656464',
+            'secondary-fixed': '#E5E2E1',
+            'secondary-fixed-dim': '#C9C6C5',
+            'secondary-container': '#E5E2E1',
+            'grid-line': 'rgba(13, 13, 13, 0.16)',
+            'on-surface': '#0D0D0D',
+            'on-surface-variant': '#656464',
+            'on-primary': '#FFFFFF',
+            'on-primary-container': '#FFF1EF',
+            'on-secondary': '#FFFFFF',
+            'on-background': '#1B1C1A'
+          },
+          fontFamily: {
+            display: ['Anton', 'Impact', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+            // Aliases
+            'headline-lg': ['Anton', 'Impact', 'sans-serif'],
+            'headline-md': ['Anton', 'Impact', 'sans-serif'],
+            'display-hero': ['Anton', 'Impact', 'sans-serif'],
+            'body-sm': ['Inter', 'sans-serif'],
+            'body-md': ['Inter', 'sans-serif'],
+            'body-lg': ['Inter', 'sans-serif'],
+            'label-code': ['"Space Mono"', 'monospace'],
+            'label-caps': ['Inter', 'sans-serif'],
+            'title-sm': ['Inter', 'sans-serif']
+          },
+          fontSize: {
+            'body-sm': ['13px', { lineHeight: '20px', fontWeight: '400' }],
+            'body-md': ['15px', { lineHeight: '24px', fontWeight: '400' }],
+            'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+            'headline-md': ['36px', { lineHeight: '40px', fontWeight: '400' }],
+            'headline-lg': ['64px', { lineHeight: '64px', letterSpacing: '-0.02em', fontWeight: '400' }],
+            'display-hero': ['112px', { lineHeight: '96px', letterSpacing: '-0.03em', fontWeight: '400' }],
+            'title-sm': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }],
+            'label-code': ['11px', { lineHeight: '16px', letterSpacing: '0.15em', fontWeight: '500' }],
+            'label-caps': ['11px', { lineHeight: '14px', letterSpacing: '0.2em', fontWeight: '700' }]
+          },
+          spacing: {
+            'unit-2xs': '0.25rem',
+            'unit-xs': '0.5rem',
+            'unit-sm': '0.75rem',
+            'unit-md': '1rem',
+            'unit-lg': '1.5rem',
+            'unit-xl': '2.5rem',
+            'unit-2xl': '4rem',
+            'unit-3xl': '6rem',
+            'unit-4xl': '10rem',
+            'gutter-mobile': '1rem',
+            'gutter-desktop': '2rem',
+            'margin-mobile': '1.25rem',
+            'margin-desktop': '3rem'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Subtle noise grain simulation per DESIGN-TOKENS.md */
+    .bg-grain {
+      background-image: radial-gradient(rgba(13, 13, 13, 0.075) 1px, transparent 0);
+      background-size: 3px 3px;
+    }
+
+    /* Edge-to-edge typography clamp per DESIGN-TOKENS.md */
+    .hero-type-bleed {
+      font-size: clamp(3.8rem, 12vw, 12.5rem);
+      line-height: 0.85;
+      letter-spacing: -0.025em;
+    }
+
+    /* Grayscale to vibrant color hover effect per DESIGN-TOKENS.md */
+    .curated-photo {
+      filter: grayscale(100%) contrast(108%);
+      transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .group:hover .curated-photo,
+    .group.is-active .curated-photo {
+      filter: grayscale(0%) contrast(102%);
+      transform: scale(1.025);
+    }
+
+    /* Continuous ticker animation per DESIGN-TOKENS.md */
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-ticker {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: tickerScroll 28s linear infinite;
+    }
+    .animate-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    /* Hero Stagger Animations per DESIGN-TOKENS.md */
+    @keyframes heroFadeUp {
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroScaleIn {
+      0% { opacity: 0; transform: scale(1.03); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .anim-fade-up {
+      animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .anim-hero-frame {
+      animation: heroScaleIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      opacity: 0;
+    }
+
+    /* Accessibility: prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-ticker { animation: none !important; }
+      .anim-fade-up, .anim-hero-frame { animation: none !important; opacity: 1 !important; }
+      .curated-photo { transition: none !important; }
+    }
+
+    .nav-link {
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #D72626;
+    }
+    .nav-link.active {
+      color: #D72626;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 2px;
+    }
+  </style>
+</head>
+<body class="bg-canvas-warm text-editorial-ink font-sans antialiased selection:bg-editorial-red selection:text-white relative overflow-x-hidden min-h-full flex flex-col justify-between">
+  
+<!-- ==================== TOP PERSISTENT NAVIGATION ==================== -->
+<header class="w-full border-b border-grid-border sticky top-0 bg-canvas-warm/95 backdrop-blur-md z-50">
+  <div class="max-w-[1780px] mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between font-mono text-xs uppercase tracking-wider">
+    <!-- Brand & Origin -->
+    <div class="flex items-center gap-3 sm:gap-6">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <div class="w-2.5 h-6 bg-editorial-red transition-transform duration-200 group-hover:scale-y-110"></div>
+        <div class="flex flex-col">
+          <span class="font-display text-xl tracking-tighter leading-none uppercase text-editorial-ink">ATHARVA</span>
+          <span class="font-display text-xl tracking-tighter leading-none uppercase text-editorial-ink">SHARMA</span>
+        </div>
+      </a>
+      <span class="hidden md:inline-block text-editorial-gray/80 text-[11px] font-mono">
+        / UDAIPUR, IN // TALENT &amp; EDITORIAL BOOK
+      </span>
+    </div>
+
+    <!-- Desktop Navigation Links (6 Canonical Pages) -->
+    <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-mono font-medium text-[11px] sm:text-xs">
+      <a class="nav-link text-editorial-ink" href="index.html">01. HOME</a>
+      <a class="nav-link active text-editorial-red" href="digitals.html">02. DIGITALS</a>
+      <a class="nav-link text-editorial-ink" href="portfolio.html">03. PORTFOLIO</a>
+      <a class="nav-link text-editorial-ink" href="stats.html">04. STATS</a>
+      <a class="nav-link text-editorial-ink" href="about.html">05. ABOUT</a>
+      <a class="nav-link text-editorial-ink" href="contact.html">06. CONTACT</a>
+      <a class="ml-2 xl:ml-4 bg-editorial-ink hover:bg-editorial-red text-white px-3.5 py-1.5 transition-colors font-mono text-[10px] sm:text-[11px] tracking-widest flex items-center gap-1.5" href="contact.html">
+        <span>BOOK TALENT</span>
+        <span class="material-symbols-outlined text-xs">arrow_outward</span>
+      </a>
+    </nav>
+
+    <!-- Mobile Navigation Toggle -->
+    <div class="flex lg:hidden items-center gap-3">
+      <a class="bg-editorial-ink hover:bg-editorial-red text-white px-2.5 py-1 transition-colors font-mono text-[10px] tracking-widest" href="contact.html">
+        BOOK
+      </a>
+      <button id="mobile-nav-toggle" class="p-1.5 text-editorial-ink hover:text-editorial-red focus:outline-none flex items-center justify-center border border-grid-border" aria-label="Toggle Navigation Menu">
+        <span class="material-symbols-outlined text-xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-grid-border bg-canvas-warm/98 px-6 py-4 space-y-3 font-mono text-xs uppercase tracking-widest">
+    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="index.html">01. HOME</a>
+    <a class="block py-1.5 text-editorial-red font-bold underline underline-offset-4" href="digitals.html">02. DIGITALS</a>
+    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="portfolio.html">03. PORTFOLIO</a>
+    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="stats.html">04. STATS</a>
+    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="about.html">05. ABOUT</a>
+    <a class="block py-1.5 text-editorial-ink hover:text-editorial-red" href="contact.html">06. CONTACT</a>
+  </div>
+</header>
+  <main class="w-full flex-grow">
+<div class="flex flex-col w-full bg-canvas-warm">
+  <!-- SECTION HEADER & ARCHITECTURAL OVERVIEW -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 pt-12 pb-8 max-w-[1780px] mx-auto">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-grid-border">
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2.5 h-2.5 bg-editorial-red animate-pulse"></span>
+          <span class="font-mono text-xs uppercase tracking-widest text-editorial-red font-bold">DISPATCH / BOARD STATUS: IN PRODUCTION</span>
+          <span class="text-editorial-gray font-mono text-xs">&bull;</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-editorial-gray">ARCHIVE CODE: DIG-2026-IN</span>
+        </div>
+        <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl uppercase tracking-tight text-editorial-ink leading-none m-0">
+          DIGITALS<span class="text-editorial-red">.</span>RAW
+        </h1>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div class="flex flex-col text-left lg:text-right font-mono text-xs">
+          <span class="text-editorial-gray uppercase">UPDATE WINDOW</span>
+          <span class="text-editorial-ink font-bold tracking-widest">ARRIVING 2026</span>
+          <span class="text-editorial-red tracking-widest uppercase">AGENCY DIRECT REQUESTS ONLY</span>
+        </div>
+        <a href="contact.html" class="px-6 py-3 bg-editorial-ink text-white hover:bg-editorial-red transition-colors duration-200 font-mono text-xs uppercase tracking-widest flex items-center gap-2" id="direct-request-trigger">
+          <span class="material-symbols-outlined text-[16px]">lock</span>
+          <span>REQUEST POLAROID PACKAGE</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PROTOCOL METADATA STRIP -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-4 border-b border-grid-border font-mono text-xs text-editorial-gray">
+      <div class="flex flex-col">
+        <span class="text-editorial-ink font-bold">LIGHTING DIRECTIVE</span>
+        <span>NORTH NATURAL DAYLIGHT // ZERO DIFFUSION</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-editorial-ink font-bold">OPTICAL SYSTEM</span>
+        <span>PRIME 50MM F/2.8 RIGID FOCUS</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-editorial-ink font-bold">POST-PROCESSING</span>
+        <span>UNRETOUCHED // 0% AIRBRUSH // 0% COLOR GRADE</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-editorial-ink font-bold">ATTIRE STANDARD</span>
+        <span>MONOCHROME BASELINE SLATE / BAREFOOT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIMEN WIREFRAME APPARATUS (THE 4 POLAROID PROFILES) -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 py-8 max-w-[1780px] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      <!-- SLOT 01: FULL LENGTH -->
+      <div class="flex flex-col bg-canvas-alt p-4 border border-grid-border group hover:border-editorial-red transition-colors duration-200 relative">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-grid-border font-mono text-xs">
+          <span class="text-editorial-ink font-bold">01 // FULL BODY</span>
+          <span class="text-editorial-red tracking-widest font-bold">PENDING</span>
+        </div>
+        <!-- Wireframe Silhouette Canvas -->
+        <div class="w-full aspect-[3/4] bg-canvas-warm flex flex-col items-center justify-center relative p-4 overflow-hidden border border-grid-border/60">
+          <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute top-2 left-2 font-mono text-[9px] text-editorial-gray tracking-widest">ALIGN: VERTICAL CENTER</div>
+          <div class="absolute bottom-2 right-2 font-mono text-[9px] text-editorial-gray tracking-widest">ASPECT: 3:4 PORTRAIT</div>
+          <svg class="w-32 h-64 text-editorial-ink/30 group-hover:text-editorial-red/60 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 100 200">
+            <circle cx="50" cy="24" r="11" stroke-dasharray="2 2"></circle>
+            <path d="M47 35v10h6v-10"></path>
+            <path d="M28 52h44l-6 50h-32z" stroke-dasharray="3 3"></path>
+            <path d="M28 52l-8 55m52-55l8 55"></path>
+            <path d="M34 102l-4 78m36-78l4 78"></path>
+            <path d="M50 104v70" stroke-dasharray="1 3"></path>
+            <line stroke-width="0.75" x1="20" x2="80" y1="52" y2="52"></line>
+            <line stroke-width="0.75" x1="25" x2="75" y1="80" y2="80"></line>
+            <line stroke-width="0.75" x1="22" x2="78" y1="102" y2="102"></line>
+          </svg>
+          <div class="absolute bottom-4 left-4 right-4 bg-editorial-ink text-white px-2 py-1 flex items-center justify-between font-mono text-[10px]">
+            <span class="tracking-widest">HEIGHT SPEC: TBD</span>
+            <span class="text-editorial-red font-bold">RAW #01</span>
+          </div>
+        </div>
+        <div class="pt-3 flex flex-col gap-1 font-mono text-xs">
+          <div class="flex justify-between text-editorial-gray">
+            <span>FRAMING</span>
+            <span class="text-editorial-ink">CROWN TO BARE FOOT</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>POSE</span>
+            <span class="text-editorial-ink">NEUTRAL ANTERIOR</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>WALL DEPTH</span>
+            <span class="text-editorial-ink">1.5M CLEARANCE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLOT 02: PROFILE -->
+      <div class="flex flex-col bg-canvas-alt p-4 border border-grid-border group hover:border-editorial-red transition-colors duration-200 relative">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-grid-border font-mono text-xs">
+          <span class="text-editorial-ink font-bold">02 // PROFILE 90&deg;</span>
+          <span class="text-editorial-red tracking-widest font-bold">PENDING</span>
+        </div>
+        <div class="w-full aspect-[3/4] bg-canvas-warm flex flex-col items-center justify-center relative p-4 overflow-hidden border border-grid-border/60">
+          <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute top-2 left-2 font-mono text-[9px] text-editorial-gray tracking-widest">ALIGN: LATERAL PROFILE</div>
+          <div class="absolute bottom-2 right-2 font-mono text-[9px] text-editorial-gray tracking-widest">JAWLINE INDEX</div>
+          <svg class="w-32 h-64 text-editorial-ink/30 group-hover:text-editorial-red/60 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 100 200">
+            <path d="M45 14c8 0 16 6 16 16 0 5-2 9-5 12l2 4-5 1c0 6-3 10-7 11v8" stroke-dasharray="2 2"></path>
+            <path d="M46 66c3 22-2 48-1 114"></path>
+            <path d="M46 66c14 6 18 20 16 38l-4 35" stroke-dasharray="3 3"></path>
+            <path d="M44 140l-2 40"></path>
+            <line stroke-width="0.75" x1="20" x2="70" y1="38" y2="38"></line>
+            <line stroke-width="0.75" x1="25" x2="75" y1="66" y2="66"></line>
+          </svg>
+          <div class="absolute bottom-4 left-4 right-4 bg-editorial-ink text-white px-2 py-1 flex items-center justify-between font-mono text-[10px]">
+            <span class="tracking-widest">POSTURE: ZERO SLOUCH</span>
+            <span class="text-editorial-red font-bold">RAW #02</span>
+          </div>
+        </div>
+        <div class="pt-3 flex flex-col gap-1 font-mono text-xs">
+          <div class="flex justify-between text-editorial-gray">
+            <span>FRAMING</span>
+            <span class="text-editorial-ink">LEFT LATERAL FULL</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>HAIR</span>
+            <span class="text-editorial-ink">CLEAN / PULLED BACK</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>EYE LEVEL</span>
+            <span class="text-editorial-ink">HORIZONTAL PARALLEL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLOT 03: WAIST-UP / MID-SHOT -->
+      <div class="flex flex-col bg-canvas-alt p-4 border border-grid-border group hover:border-editorial-red transition-colors duration-200 relative">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-grid-border font-mono text-xs">
+          <span class="text-editorial-ink font-bold">03 // WAIST-UP</span>
+          <span class="text-editorial-red tracking-widest font-bold">PENDING</span>
+        </div>
+        <div class="w-full aspect-[3/4] bg-canvas-warm flex flex-col items-center justify-center relative p-4 overflow-hidden border border-grid-border/60">
+          <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute top-2 left-2 font-mono text-[9px] text-editorial-gray tracking-widest">ALIGN: ILIAC CREST BASE</div>
+          <div class="absolute bottom-2 right-2 font-mono text-[9px] text-editorial-gray tracking-widest">CHEST SPEC: TBD</div>
+          <svg class="w-32 h-64 text-editorial-ink/30 group-hover:text-editorial-red/60 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 100 200">
+            <circle cx="50" cy="40" r="18" stroke-dasharray="2 2"></circle>
+            <path d="M44 58v14h12v-14"></path>
+            <path d="M14 88h72l-10 82h-52z" stroke-dasharray="3 3"></path>
+            <path d="M14 88l-6 82m78-82l6 82"></path>
+            <line stroke-width="0.75" x1="28" x2="72" y1="76" y2="76"></line>
+            <line stroke-width="0.75" x1="20" x2="80" y1="120" y2="120"></line>
+          </svg>
+          <div class="absolute bottom-4 left-4 right-4 bg-editorial-ink text-white px-2 py-1 flex items-center justify-between font-mono text-[10px]">
+            <span class="tracking-widest">PROPORTION: 1:1 NATURAL</span>
+            <span class="text-editorial-red font-bold">RAW #03</span>
+          </div>
+        </div>
+        <div class="pt-3 flex flex-col gap-1 font-mono text-xs">
+          <div class="flex justify-between text-editorial-gray">
+            <span>FRAMING</span>
+            <span class="text-editorial-ink">WAISTBAND TO TOP</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>COLLAR</span>
+            <span class="text-editorial-ink">BARE / STERNUM VISIBLE</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>LIGHT ANGLE</span>
+            <span class="text-editorial-ink">45&deg; SOFT SHADOW</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLOT 04: HEADSHOT / FACIAL METRICS -->
+      <div class="flex flex-col bg-canvas-alt p-4 border border-grid-border group hover:border-editorial-red transition-colors duration-200 relative">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-grid-border font-mono text-xs">
+          <span class="text-editorial-ink font-bold">04 // CLOSE HEADSHOT</span>
+          <span class="text-editorial-red tracking-widest font-bold">PENDING</span>
+        </div>
+        <div class="w-full aspect-[3/4] bg-canvas-warm flex flex-col items-center justify-center relative p-4 overflow-hidden border border-grid-border/60">
+          <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1px] bg-grid-border pointer-events-none"></div>
+          <div class="absolute top-2 left-2 font-mono text-[9px] text-editorial-gray tracking-widest">FOCUS: IRIS / TBD</div>
+          <div class="absolute bottom-2 right-2 font-mono text-[9px] text-editorial-gray tracking-widest">SKIN TEXTURE: 100%</div>
+          <svg class="w-36 h-64 text-editorial-ink/30 group-hover:text-editorial-red/60 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 100 200">
+            <ellipse cx="50" cy="85" rx="34" ry="46" stroke-dasharray="2 2"></ellipse>
+            <line stroke-dasharray="1 3" x1="50" x2="50" y1="39" y2="131"></line>
+            <line stroke-width="0.75" x1="22" x2="78" y1="80" y2="80"></line>
+            <line stroke-width="0.75" x1="36" x2="64" y1="98" y2="98"></line>
+            <line stroke-width="0.75" x1="32" x2="68" y1="112" y2="112"></line>
+            <path d="M12 170c8-26 26-34 38-34s30 8 38 34"></path>
+          </svg>
+          <div class="absolute bottom-4 left-4 right-4 bg-editorial-ink text-white px-2 py-1 flex items-center justify-between font-mono text-[10px]">
+            <span class="tracking-widest">SKIN: ZERO MAKEUP</span>
+            <span class="text-editorial-red font-bold">RAW #04</span>
+          </div>
+        </div>
+        <div class="pt-3 flex flex-col gap-1 font-mono text-xs">
+          <div class="flex justify-between text-editorial-gray">
+            <span>EXPRESSION</span>
+            <span class="text-editorial-ink">SERIOUS / DIRECT GAZE</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>OPTIC DEPTH</span>
+            <span class="text-editorial-ink">SHALLOW FOREGROUND</span>
+          </div>
+          <div class="flex justify-between text-editorial-gray">
+            <span>WALL COLOR</span>
+            <span class="text-editorial-ink">RAW WHITE / MATTE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL SYSTEM SPECIFICATION MANIFESTO -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 py-12 max-w-[1780px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border border-grid-border bg-canvas-alt p-6 sm:p-12 relative">
+      <div class="absolute -top-3 left-6 px-3 py-1 bg-editorial-red text-white font-mono text-[10px] tracking-widest uppercase">
+        AUTHENTICITY PROTOCOL
+      </div>
+      <div class="lg:col-span-4 flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs text-editorial-gray tracking-widest block mb-2">METHODOLOGY</span>
+          <h2 class="font-display text-4xl sm:text-5xl uppercase text-editorial-ink leading-none mb-6">
+            WHY RAW<br>POLAROIDS?
+          </h2>
+        </div>
+        <p class="font-sans text-sm text-editorial-gray leading-relaxed max-w-sm">
+          International mother agencies and casting directors require unadorned anatomical clarity. These upcoming digitals serve as the definitive physical record for 2026 runway and campaign placement.
+        </p>
+      </div>
+      <div class="lg:col-span-8 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-grid-border lg:pl-10 pt-8 lg:pt-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-editorial-red"></span>
+              <span class="font-mono text-xs font-bold tracking-widest text-editorial-ink uppercase">01 // NATURAL DAYLIGHT RIG</span>
+            </div>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">
+              Shot solely using unfiltered diffused daylight. No beauty dishes, ringlights, or reflectors are permitted. Shows true skin undertones and natural bone definition.
+            </p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-editorial-red"></span>
+              <span class="font-mono text-xs font-bold tracking-widest text-editorial-ink uppercase">02 // STRICT ZERO POST-PRODUCTION</span>
+            </div>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">
+              Files are converted straight from sensor RAW without frequency separation, dodge/burn, or skin smoothing. Every contour remains untouched.
+            </p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-editorial-red"></span>
+              <span class="font-mono text-xs font-bold tracking-widest text-editorial-ink uppercase">03 // CANONICAL 50MM FOCAL LENGTH</span>
+            </div>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">
+              50mm perspective matches human optical perspective without wide-angle facial distortion or telephoto flattening, ensuring 100% accurate proportion.
+            </p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-editorial-red"></span>
+              <span class="font-mono text-xs font-bold tracking-widest text-editorial-ink uppercase">04 // UNCOMPROMISED BLANK BACKGROUND</span>
+            </div>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">
+              High-matte, non-reflective white studio backing with zero props or set distractions. Frames the silhouette with brutalist architectural simplicity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECT AGENCY INQUIRY STRIP -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 pb-16 max-w-[1780px] mx-auto">
+    <div class="w-full border border-editorial-ink bg-editorial-ink text-white p-6 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+      <div class="flex flex-col gap-2 max-w-xl">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+          <span class="font-mono text-xs text-white/80 uppercase tracking-widest">EXPEDITED AGENCY CONTACT</span>
+        </div>
+        <h3 class="font-display text-2xl sm:text-4xl uppercase text-white tracking-tight">
+          REQUIRE POLAROIDS PRIOR TO OFFICIAL RELEASE?
+        </h3>
+        <p class="font-sans text-sm text-canvas-warm/75 leading-relaxed">
+          Casting directors, scout agents, and brand bookers may request priority digital contact sheets or book a direct comp session.
+        </p>
+      </div>
+      <div class="flex-shrink-0">
+        <a href="contact.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-editorial-red hover:bg-editorial-red-deep text-white font-mono text-xs uppercase tracking-widest transition-colors duration-200">
+          <span>CONTACT TALENT DESK</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+  </main>
+
+<!-- ==================== FOOTER & BOOKINGS REGISTER ==================== -->
+<footer class="w-full bg-editorial-ink text-canvas-warm py-16 sm:py-20 px-4 sm:px-8 border-t border-grid-border mt-auto" id="contact-footer">
+  <div class="max-w-[1780px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-12">
+    <!-- Column 1: Brand & Editorial Identity -->
+    <div class="lg:col-span-5 space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-3.5 h-3.5 bg-editorial-red"></div>
+        <span class="font-display text-2xl sm:text-3xl tracking-wider text-white uppercase">ATHARVA SHARMA</span>
+      </div>
+      <p class="font-sans text-sm text-canvas-warm/75 max-w-md leading-relaxed">
+        Editorial and commercial talent based in Udaipur, India. Representing classical poise with contemporary runway proportions. Available for select international commissions, designer lookbooks, and high-fashion presentations.
+      </p>
+      <div class="font-mono text-xs tracking-widest text-editorial-red font-bold">
+        SS26 / FW26 COMMISSIONS &amp; DIRECT CASTINGS OPEN
+      </div>
+    </div>
+
+    <!-- Column 2: Direct Inquiries & Real Contact Info -->
+    <div class="lg:col-span-4 space-y-3 font-mono text-xs tracking-widest uppercase">
+      <div class="text-canvas-warm/40 pb-2 border-b border-white/15">DIRECT INQUIRIES &amp; BOOKINGS</div>
+      <a class="block text-base font-bold text-white hover:text-editorial-red transition-colors" href="mailto:atharva@atharvasharma.co.in">
+        atharva@atharvasharma.co.in
+      </a>
+      <a class="block text-canvas-warm/80 hover:text-white transition-colors" href="https://wa.me/918209225998" target="_blank" rel="noopener noreferrer">
+        +91 8209225998 // WHATSAPP DIRECT
+      </a>
+      <a class="block text-canvas-warm/80 hover:text-editorial-red transition-colors" href="https://www.instagram.com/atharvasharma.co.in" target="_blank" rel="noopener noreferrer">
+        INSTAGRAM: @ATHARVASHARMA.CO.IN
+      </a>
+      <div class="text-canvas-warm/60 pt-2">
+        BASE LOCATION: UDAIPUR, RAJASTHAN, IN
+      </div>
+    </div>
+
+    <!-- Column 3: Physical Specs (Governing TBD Policy) -->
+    <div class="lg:col-span-3 space-y-3 font-mono text-xs tracking-widest uppercase">
+      <div class="text-canvas-warm/40 pb-2 border-b border-white/15">PHYSICAL SPECS &amp; BOARD</div>
+      <div class="text-canvas-warm/80">HEIGHT: TBD</div>
+      <div class="text-canvas-warm/80">CHEST: TBD &bull; WAIST: TBD &bull; SHOES: TBD</div>
+      <div class="text-white font-medium">REPRESENTATION: DIRECT BOARD</div>
+      <div class="text-editorial-red font-bold pt-2">&copy; 2026 ATHARVA SHARMA. ALL RIGHTS RESERVED.</div>
+    </div>
+  </div>
+</footer>
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('mobile-nav-toggle');
+    const navDrawer = document.getElementById('mobile-nav-drawer');
+    if (navToggle && navDrawer) {
+      navToggle.addEventListener('click', () => {
+        navDrawer.classList.toggle('hidden');
+      });
+    }
+
+    // Mobile tap interaction for photos (grayscale to color toggle)
+    document.querySelectorAll('.group').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('is-active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex flex-col w-full bg-canvas-warm">
+  <!-- CONTROL STRIP & FILTER BAR -->
+  <section class="w-full bg-canvas-alt px-4 sm:px-8 lg:px-12 py-4 border-b border-grid-border sticky top-[57px] z-40 backdrop-blur-md bg-canvas-alt/95">
+    <div class="max-w-[1780px] mx-auto w-full flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center gap-2 font-mono text-xs text-editorial-ink tracking-widest uppercase font-bold">
+          <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+          PORTFOLIO ARCHIVE // 2026
+        </span>
+        <span class="hidden sm:inline-block text-editorial-gray font-mono text-xs tracking-widest uppercase">
+          [ 03 CATEGORIES / 09 CURATED LOOKS ]
+        </span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+        <a class="px-3 py-1.5 bg-editorial-ink text-white hover:bg-editorial-red transition-colors uppercase tracking-widest" href="#commercial-casual">
+          01. COMMERCIAL &amp; CASUAL
+        </a>
+        <a class="px-3 py-1.5 bg-canvas-sheet text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors uppercase tracking-widest" href="#ethnic-heritage">
+          02. ETHNIC &amp; TRADITIONAL
+        </a>
+        <a class="px-3 py-1.5 bg-canvas-sheet text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors uppercase tracking-widest" href="#editorial-dramatic">
+          03. EDITORIAL &amp; DRAMATIC
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 01: COMMERCIAL & CASUAL -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 py-16 lg:py-24 bg-canvas-warm" id="commercial-casual">
+    <div class="max-w-[1780px] mx-auto">
+      <!-- Header Block -->
+      <div class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b-2 border-editorial-ink">
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-3 h-3 bg-editorial-red"></span>
+            <span class="font-mono text-xs tracking-widest text-editorial-red font-bold uppercase">CATEGORY IDENTIFIER // SEC_01</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase text-editorial-ink tracking-tight">
+            01 // COMMERCIAL &amp; CASUAL
+          </h2>
+        </div>
+        <div class="lg:max-w-md flex flex-col gap-1">
+          <p class="font-sans text-sm text-editorial-gray leading-relaxed">
+            Contemporary ready-to-wear, knitwear, relaxed tailoring, and cinematic lifestyle captures designed for modern brand campaigns.
+          </p>
+          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">
+            INDEX: ARCHIVE-COM-01 THRU ARCHIVE-COM-05 (05 LOOKS)
+          </span>
+        </div>
+      </div>
+
+      <!-- Asymmetrical Visual Mosaic (5 items) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 mt-10">
+        <!-- Item 1: atharva-cafe-beanie.jpg -->
+        <article class="md:col-span-7 group relative bg-canvas-sheet flex flex-col border border-grid-border">
+          <div class="relative w-full aspect-[4/5] overflow-hidden bg-canvas-sheet">
+            <img alt="Commercial look featuring Atharva Sharma in knit beanie and coffeehouse styling" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-cafe-beanie.jpg">
+            <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
+              LOOK // 01-A
+            </div>
+            <div class="absolute bottom-3 right-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
+              CAFE SARTORIAL
+            </div>
+          </div>
+          <div class="p-4 bg-canvas-alt flex flex-col justify-between gap-3">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+              <span class="font-display text-xl text-editorial-ink uppercase tracking-tight">CAF&Eacute; SARTORIAL // KNIT BEANIE &amp; VEST</span>
+              <span class="font-mono text-xs text-editorial-red font-bold uppercase tracking-widest">URBAN LIFESTYLE</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 pt-2 border-t border-grid-border font-mono text-xs text-editorial-gray">
+              <div>
+                <span class="block text-[9px] uppercase tracking-wider text-editorial-gray/80">LOCATION</span>
+                <span class="text-editorial-ink font-semibold">URBAN TERRACE</span>
+              </div>
+              <div>
+                <span class="block text-[9px] uppercase tracking-wider text-editorial-gray/80">STYLING</span>
+                <span class="text-editorial-ink font-semibold">KNITWEAR &amp; EYEWEAR</span>
+              </div>
+              <div>
+                <span class="block text-[9px] uppercase tracking-wider text-editorial-gray/80">FORMAT</span>
+                <span class="text-editorial-ink font-semibold">35MM RAW</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2: atharva-bedroom-blazer.jpg -->
+        <article class="md:col-span-5 group relative bg-canvas-sheet flex flex-col border border-grid-border">
+          <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
+            <img alt="Modern tailored commercial blazer look with Atharva Sharma" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-bedroom-blazer.jpg">
+            <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
+              LOOK // 01-B
+            </div>
+          </div>
+          <div class="p-4 bg-canvas-alt flex flex-col justify-between gap-3">
+            <div>
+              <span class="font-display text-xl text-editorial-ink uppercase tracking-tight">INTERIOR SUITE // STRUCTURED BLAZER</span>
+              <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                Natural interior daylight emphasizing clean tailoring, white shirt, and refined optical eyewear.
+              </p>
+            </div>
+            <div class="flex items-center justify-between font-mono text-xs pt-2 border-t border-grid-border text-editorial-gray">
+              <span>STYLING: RELAXED TAILORING</span>
+              <span class="text-editorial-ink font-semibold uppercase">NATURAL LIGHT</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3: atharva-citynight-scarf.jpg -->
+        <article class="md:col-span-4 group relative bg-canvas-sheet flex flex-col border border-grid-border">
+          <div class="relative w-full aspect-[3/4] overflow-hidden bg-canvas-sheet">
+            <img alt="Atharva Sharma nocturnal city editorial wearing wrapped scarf and structured overcoat" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-citynight-scarf.jpg">
+            <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
+              LOOK // 01-C
+            </div>
+          </div>
+          <div class="p-4 bg-canvas-alt flex flex-col gap-1">
+            <span class="font-display text-lg text-editorial-ink uppercase tracking-tight">CITY NOCTURNE // WOOL SCARF</span>
+            <div class="flex items-center justify-between font-mono text-xs text-editorial-gray pt-1">
+              <span>AMBIENT LIGHT</span>
+              <span class="text-editorial-ink font-semibold">WINTER READY</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 4: atharva-lake-backpack.jpg -->
+        <article class="md:col-span-4 group relative bg-canvas-sheet flex flex-col border border-grid-border">
+          <div class="relative w-full aspect-[3/4] overflow-hidden bg-canvas-sheet">
+            <img alt="Outdoor leisure shoot with Atharva Sharma wearing utilitarian backpack lakeside" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-lake-backpack.jpg">
+            <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
+              LOOK // 01-D
+            </div>
+          </div>
+          <div class="p-4 bg-canvas-alt flex flex-col gap-1">
+            <span class="font-display text-lg text-editorial-ink uppercase tracking-tight">LAKE PICHOLA // UTILITY EXPEDITION</span>
+            <div class="flex items-center justify-between font-mono text-xs text-editorial-gray pt-1">
+              <span>UDAIPUR GHATS</span>
+              <span class="text-editorial-ink font-semibold">TECHNICAL PACK</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 5: atharva-beach-night-linen.jpg -->
+        <article class="md:col-span-4 group relative bg-canvas-sheet flex flex-col border border-grid-border">
+          <div class="relative w-full aspect-[3/4] overflow-hidden bg-canvas-sheet">
+            <img alt="Atharva Sharma in nighttime coastal linen shirt series" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-beach-night-linen.jpg">
+            <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
+              LOOK // 01-E
+            </div>
+          </div>
+          <div class="p-4 bg-canvas-alt flex flex-col gap-1">
+            <span class="font-display text-lg text-editorial-ink uppercase tracking-tight">NOCTURNAL LINEN // COASTAL DRIFT</span>
+            <div class="flex items-center justify-between font-mono text-xs text-editorial-gray pt-1">
+              <span>NIGHT SHORELINE</span>
+              <span class="text-editorial-ink font-semibold">ORGANIC LINEN</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02: ETHNIC & TRADITIONAL -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 py-20 bg-editorial-ink text-white" id="ethnic-heritage">
+    <div class="max-w-[1780px] mx-auto">
+      <!-- Section Top Header -->
+      <div class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/20">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-3 h-3 bg-editorial-red"></span>
+            <span class="font-mono text-xs tracking-widest text-editorial-red uppercase font-bold">CATEGORY IDENTIFIER // SEC_02</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase text-white tracking-tight">
+            02 // ETHNIC &amp; TRADITIONAL
+          </h2>
+        </div>
+        <div class="lg:max-w-md">
+          <span class="font-mono text-xs text-white/60 tracking-widest uppercase">ROYAL HERITAGE &amp; COUTURE</span>
+          <p class="font-sans text-sm text-canvas-warm/75 mt-1 leading-relaxed">
+            Traditional Indian couture, aristocratic silhouettes, and high-jewelry styling framed against historic Rajasthani courtyards.
+          </p>
+        </div>
+      </div>
+
+      <!-- Editorial Centerpiece Layout (1 Image - Authentic Representation) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-12 items-center">
+        <!-- Image Hero (atharva-kurta-palace-night.jpg) -->
+        <div class="lg:col-span-7 group relative overflow-hidden border border-white/20 bg-black">
+          <div class="relative w-full aspect-[4/5] overflow-hidden">
+            <img alt="Heritage look featuring Atharva Sharma in midnight embroidered royal kurta at illuminated Rajasthani palace courtyard" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-kurta-palace-night.jpg">
+            <div class="absolute inset-0 bg-gradient-to-t from-editorial-ink via-transparent to-transparent opacity-60"></div>
+            <div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <span class="font-mono text-[10px] text-editorial-red uppercase block mb-1">LOOK // 02-A</span>
+                <span class="font-display text-2xl uppercase text-white block leading-none">THE PALACE NOCTURNE</span>
+              </div>
+              <div class="bg-editorial-ink/90 px-3 py-1.5 border border-white/20 font-mono text-xs">
+                <span class="text-white block">LOCATION: CITY PALACE, UDAIPUR</span>
+                <span class="text-editorial-gray block">EMBROIDERED RAW SILK KURTA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Note & Production Notice Card -->
+        <div class="lg:col-span-5 flex flex-col justify-between gap-6">
+          <div class="bg-white/5 border border-white/15 p-6 lg:p-8 flex flex-col gap-4">
+            <div class="flex items-center gap-2 text-editorial-red font-mono text-xs tracking-widest uppercase font-bold">
+              <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+              ARCHIVE DISPATCH NOTICE
+            </div>
+            <h3 class="font-display text-2xl uppercase tracking-tight text-white">
+              HERITAGE LOOKBOOK EXPANSION IN PREPARATION
+            </h3>
+            <p class="font-sans text-sm text-canvas-warm/75 leading-relaxed">
+              This category currently showcases a single defining editorial specimen: the handcrafted raw silk kurta series captured in nocturnal palace courtyard illumination. Additional heritage couture, sherwani, and bandhgala shoots are planned for upcoming production cycles.
+            </p>
+            <div class="pt-4 border-t border-white/15 font-mono text-xs text-white/70 space-y-1.5">
+              <div class="flex justify-between">
+                <span>REGISTERED SPECIMENS:</span>
+                <span class="text-white font-bold">01 OF 01 (SOLO FOCUS)</span>
+              </div>
+              <div class="flex justify-between">
+                <span>WARDROBE:</span>
+                <span class="text-white font-bold">ZARDOZI &amp; RAW SILK</span>
+              </div>
+              <div class="flex justify-between">
+                <span>STATUS:</span>
+                <span class="text-editorial-red font-bold">ACTIVE BOOKINGS OPEN</span>
+              </div>
+            </div>
+          </div>
+          <a href="contact.html" class="inline-flex items-center justify-center gap-2 py-4 px-6 bg-editorial-red hover:bg-editorial-red-deep text-white font-mono text-xs uppercase tracking-widest transition-colors font-bold">
+            <span>INQUIRE FOR ETHNIC CAMPAIGNS</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03: EDITORIAL & DRAMATIC -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 py-16 lg:py-24 bg-canvas-warm" id="editorial-dramatic">
+    <div class="max-w-[1780px] mx-auto">
+      <div class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b-2 border-editorial-ink">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-3 h-3 bg-editorial-red"></span>
+            <span class="font-mono text-xs tracking-widest text-editorial-red font-bold uppercase">CATEGORY IDENTIFIER // SEC_03</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase text-editorial-ink tracking-tight">
+            03 // EDITORIAL &amp; DRAMATIC
+          </h2>
+        </div>
+        <div class="lg:max-w-md">
+          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">AVANT-GARDE &amp; HIGH DRAMA</span>
+          <p class="font-sans text-sm text-editorial-gray mt-1 leading-relaxed">
+            Monochrome studio starkness, cinematic equine landscapes, and harsh desert environments highlighting raw physical intensity.
+          </p>
+        </div>
+      </div>
+
+      <!-- Editorial Staggered Grid (3 items) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 mt-10">
+        <!-- Item 1: Studio BW Stool (atharva-studio-bw-stool.png) -->
+        <article class="md:col-span-4 group relative flex flex-col bg-canvas-sheet border border-grid-border">
+          <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
+            <img alt="Dramatic black and white minimalist studio shoot of Atharva Sharma seated on posing stool" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-studio-bw-stool.png" style="object-position: center 15%;">
+            <div class="absolute top-3 left-3 bg-editorial-ink text-white px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase">
+              STUDIO // 03-A
+            </div>
+            <div class="absolute bottom-3 left-3 bg-canvas-warm/95 px-2.5 py-1 font-mono text-[10px] text-editorial-ink uppercase border border-editorial-ink">
+              HIGH CONTRAST MONOCHROME
+            </div>
+          </div>
+          <div class="p-4 flex flex-col justify-between gap-3 bg-canvas-alt">
+            <div>
+              <span class="font-display text-xl text-editorial-ink uppercase tracking-tight">STUDIO MINIMAL // THE STOOL STUDY</span>
+              <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                Direct flash, collarbone emphasis, and sculptural posture in an austere monochrome environment.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-grid-border flex items-center justify-between font-mono text-xs text-editorial-gray">
+              <span>STYLING: MINIMAL RAW</span>
+              <span class="text-editorial-red font-bold">DIRECT FLASH</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2: Horse Beach (atharva-horse-beach.jpg) -->
+        <article class="md:col-span-4 group relative flex flex-col bg-canvas-sheet border border-grid-border">
+          <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
+            <img alt="Cinematic editorial with Atharva Sharma alongside thoroughbred horse on beach" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-horse-beach.jpg">
+            <div class="absolute top-3 left-3 bg-editorial-ink text-white px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase">
+              CINEMATIC // 03-B
+            </div>
+            <div class="absolute bottom-3 left-3 bg-canvas-warm/95 px-2.5 py-1 font-mono text-[10px] text-editorial-ink uppercase border border-editorial-ink">
+              EQUINE SEASCAPE
+            </div>
+          </div>
+          <div class="p-4 flex flex-col justify-between gap-3 bg-canvas-alt">
+            <div>
+              <span class="font-display text-xl text-editorial-ink uppercase tracking-tight">EQUINE DRIFT // SURF &amp; STALLION</span>
+              <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                Natural shoreline framing the tension between equestrian power and raw human composure.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-grid-border flex items-center justify-between font-mono text-xs text-editorial-gray">
+              <span>ATMOSPHERE: COASTAL</span>
+              <span class="text-editorial-red font-bold">NATURAL RAW</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3: Desert Jeep BW (atharva-desert-jeep-bw.jpg) -->
+        <article class="md:col-span-4 group relative flex flex-col bg-canvas-sheet border border-grid-border">
+          <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
+            <img alt="Stark dramatic desert fashion campaign with Atharva Sharma resting on off-road vehicle" class="curated-photo w-full h-full object-cover object-center grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src="assets/images/atharva-desert-jeep-bw.jpg">
+            <div class="absolute top-3 left-3 bg-editorial-ink text-white px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase">
+              DRAMATIC // 03-C
+            </div>
+            <div class="absolute bottom-3 left-3 bg-canvas-warm/95 px-2.5 py-1 font-mono text-[10px] text-editorial-ink uppercase border border-editorial-ink">
+              THAR ARID DUNES
+            </div>
+          </div>
+          <div class="p-4 flex flex-col justify-between gap-3 bg-canvas-alt">
+            <div>
+              <span class="font-display text-xl text-editorial-ink uppercase tracking-tight">EXPEDITION DUNE // 4X4 JEEP</span>
+              <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                High noon desert glare captured in rich monochrome grain, industrial machinery meets untamed terrain.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-grid-border flex items-center justify-between font-mono text-xs text-editorial-gray">
+              <span>LOCATION: THAR DESERT</span>
+              <span class="text-editorial-red font-bold">HARD CONTRAST</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM BOOKING CALL TO ACTION STRIP -->
+  <section class="w-full bg-editorial-ink text-white px-4 sm:px-8 lg:px-12 py-16 border-t border-grid-border">
+    <div class="max-w-[1780px] mx-auto w-full flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div class="flex flex-col">
+        <span class="font-mono text-xs text-editorial-red uppercase tracking-widest mb-1 font-bold">LOOKBOOK ENQUIRIES &amp; HIGH-RES COMP-CARDS</span>
+        <h3 class="font-display text-3xl sm:text-5xl uppercase text-white tracking-tight">
+          DIRECT BOOKINGS // RUNWAY &amp; EDITORIAL
+        </h3>
+      </div>
+      <a href="contact.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-editorial-red hover:bg-editorial-red-deep text-white font-mono text-xs uppercase tracking-widest transition-colors font-bold self-start md:self-auto">
+        <span>BOOK TALENT DIRECT</span>
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+</div>
+{% endblock %}

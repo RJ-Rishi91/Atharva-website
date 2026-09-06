@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="scroll-smooth h-full" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title | default("ATHARVA SHARMA — Modeling Portfolio & Editorial Book") }}</title>
+  
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS with CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            // Governing DESIGN-TOKENS.md palette
+            'canvas-warm': '#FBF9F6',
+            'canvas-alt': '#F5F3F0',
+            'canvas-sheet': '#EFECE6',
+            'editorial-red': '#D72626',
+            'editorial-red-deep': '#B20011',
+            'editorial-ink': '#0D0D0D',
+            'editorial-gray': '#656464',
+            'grid-border': 'rgba(13, 13, 13, 0.16)',
+
+            // Aliases to seamlessly support Stitch section classes
+            'surface': '#FBF9F6',
+            'surface-container': '#EFECE6',
+            'surface-container-low': '#F5F3F0',
+            'surface-container-high': '#EAE8E5',
+            'surface-container-highest': '#E4E2DF',
+            'surface-container-lowest': '#FFFFFF',
+            'surface-variant': '#E4E2DF',
+            'surface-dim': '#DBDAD7',
+            'surface-bright': '#FBF9F6',
+            'primary': '#B20011',
+            'primary-container': '#D72626',
+            'primary-fixed': '#FFDAD6',
+            'pure-black': '#0D0D0D',
+            'pure-white': '#FFFFFF',
+            'secondary': '#656464',
+            'secondary-fixed': '#E5E2E1',
+            'secondary-fixed-dim': '#C9C6C5',
+            'secondary-container': '#E5E2E1',
+            'grid-line': 'rgba(13, 13, 13, 0.16)',
+            'on-surface': '#0D0D0D',
+            'on-surface-variant': '#656464',
+            'on-primary': '#FFFFFF',
+            'on-primary-container': '#FFF1EF',
+            'on-secondary': '#FFFFFF',
+            'on-background': '#1B1C1A'
+          },
+          fontFamily: {
+            display: ['Anton', 'Impact', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+            // Aliases
+            'headline-lg': ['Anton', 'Impact', 'sans-serif'],
+            'headline-md': ['Anton', 'Impact', 'sans-serif'],
+            'display-hero': ['Anton', 'Impact', 'sans-serif'],
+            'body-sm': ['Inter', 'sans-serif'],
+            'body-md': ['Inter', 'sans-serif'],
+            'body-lg': ['Inter', 'sans-serif'],
+            'label-code': ['"Space Mono"', 'monospace'],
+            'label-caps': ['Inter', 'sans-serif'],
+            'title-sm': ['Inter', 'sans-serif']
+          },
+          fontSize: {
+            'body-sm': ['13px', { lineHeight: '20px', fontWeight: '400' }],
+            'body-md': ['15px', { lineHeight: '24px', fontWeight: '400' }],
+            'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+            'headline-md': ['36px', { lineHeight: '40px', fontWeight: '400' }],
+            'headline-lg': ['64px', { lineHeight: '64px', letterSpacing: '-0.02em', fontWeight: '400' }],
+            'display-hero': ['112px', { lineHeight: '96px', letterSpacing: '-0.03em', fontWeight: '400' }],
+            'title-sm': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }],
+            'label-code': ['11px', { lineHeight: '16px', letterSpacing: '0.15em', fontWeight: '500' }],
+            'label-caps': ['11px', { lineHeight: '14px', letterSpacing: '0.2em', fontWeight: '700' }]
+          },
+          spacing: {
+            'unit-2xs': '0.25rem',
+            'unit-xs': '0.5rem',
+            'unit-sm': '0.75rem',
+            'unit-md': '1rem',
+            'unit-lg': '1.5rem',
+            'unit-xl': '2.5rem',
+            'unit-2xl': '4rem',
+            'unit-3xl': '6rem',
+            'unit-4xl': '10rem',
+            'gutter-mobile': '1rem',
+            'gutter-desktop': '2rem',
+            'margin-mobile': '1.25rem',
+            'margin-desktop': '3rem'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Subtle noise grain simulation per DESIGN-TOKENS.md */
+    .bg-grain {
+      background-image: radial-gradient(rgba(13, 13, 13, 0.075) 1px, transparent 0);
+      background-size: 3px 3px;
+    }
+
+    /* Edge-to-edge typography clamp per DESIGN-TOKENS.md */
+    .hero-type-bleed {
+      font-size: clamp(3.8rem, 12vw, 12.5rem);
+      line-height: 0.85;
+      letter-spacing: -0.025em;
+    }
+
+    /* Grayscale to vibrant color hover effect per DESIGN-TOKENS.md */
+    .curated-photo {
+      filter: grayscale(100%) contrast(108%);
+      transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .group:hover .curated-photo,
+    .group.is-active .curated-photo {
+      filter: grayscale(0%) contrast(102%);
+      transform: scale(1.025);
+    }
+
+    /* Continuous ticker animation per DESIGN-TOKENS.md */
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-ticker {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: tickerScroll 28s linear infinite;
+    }
+    .animate-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    /* Hero Stagger Animations per DESIGN-TOKENS.md */
+    @keyframes heroFadeUp {
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroScaleIn {
+      0% { opacity: 0; transform: scale(1.03); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .anim-fade-up {
+      animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .anim-hero-frame {
+      animation: heroScaleIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      opacity: 0;
+    }
+
+    /* Accessibility: prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-ticker { animation: none !important; }
+      .anim-fade-up, .anim-hero-frame { animation: none !important; opacity: 1 !important; }
+      .curated-photo { transition: none !important; }
+    }
+
+    .nav-link {
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #D72626;
+    }
+    .nav-link.active {
+      color: #D72626;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 2px;
+    }
+  </style>
+</head>
+<body class="bg-canvas-warm text-editorial-ink font-sans antialiased selection:bg-editorial-red selection:text-white relative overflow-x-hidden min-h-full flex flex-col justify-between">
+  
+  {% include 'header.html' %}
+
+  <main class="w-full flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'footer.html' %}
+
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('mobile-nav-toggle');
+    const navDrawer = document.getElementById('mobile-nav-drawer');
+    if (navToggle && navDrawer) {
+      navToggle.addEventListener('click', () => {
+        navDrawer.classList.toggle('hidden');
+      });
+    }
+
+    // Mobile tap interaction for photos (grayscale to color toggle)
+    document.querySelectorAll('.group').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('is-active');
+      });
+    });
+  </script>
+</body>
+</html>

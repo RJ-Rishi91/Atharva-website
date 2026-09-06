@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex flex-col w-full bg-canvas-warm">
+  <!-- SPECIFICATION REGISTER TOP STRIP -->
+  <div class="w-full bg-canvas-sheet text-editorial-ink px-4 sm:px-8 lg:px-12 py-3 flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-grid-border">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+      <span class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold">OFFICIAL SPECIFICATION REGISTER // FILE REF: ATH-2026-STD</span>
+    </div>
+    <div class="flex items-center gap-4 font-mono text-xs text-editorial-gray">
+      <span>REVISION: 2026</span>
+      <span class="text-editorial-red font-bold">STATUS: MEASUREMENTS IN VERIFICATION</span>
+    </div>
+  </div>
+
+  <!-- SECTION HEADER & INTRO -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 py-10 max-w-[1780px] mx-auto">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-grid-border">
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 bg-editorial-ink text-white font-mono text-[10px] uppercase">COMP-SHEET ID // 04</span>
+          <span class="px-2 py-0.5 bg-canvas-sheet text-editorial-ink font-mono text-[10px] uppercase">DIVISION: MEN EDITORIAL / RUNWAY</span>
+        </div>
+        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-editorial-ink mt-1">
+          TECHNICAL METRICS
+        </h1>
+        <p class="font-mono text-xs text-editorial-gray tracking-widest uppercase">
+          PHYSICAL SPECIFICATIONS &amp; APPAREL SIZING // VALUES PENDING OFFICIAL CALIBRATION
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a class="px-5 py-2.5 bg-editorial-ink text-white font-mono text-xs uppercase tracking-widest hover:bg-editorial-red transition-colors flex items-center gap-2" href="contact.html">
+          <span class="material-symbols-outlined text-[16px]">mail</span>
+          <span>REQUEST CONFIRMED SPECS</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CALIBRATION RULER GRAPHIC (Brutalist Element) -->
+    <div class="w-full bg-canvas-alt p-2 shadow-sm my-6 border border-grid-border">
+      <div class="flex items-center justify-between text-editorial-gray font-mono text-[10px] px-2 mb-1">
+        <span>000 CM</span>
+        <span>TORSO</span>
+        <span>WAIST</span>
+        <span>INSEAM</span>
+        <span>TOP CROWN [TBD]</span>
+      </div>
+      <div class="w-full h-7 bg-canvas-sheet flex items-end px-1 gap-[3px] overflow-hidden">
+        <div class="h-full w-[2px] bg-editorial-red"></div>
+        {% for i in range(40) %}
+          <div class="w-[1px] bg-editorial-ink/20 {{ 'h-4 bg-editorial-ink/60' if i % 5 == 0 else 'h-2' }}"></div>
+        {% endfor %}
+        <div class="h-full w-[2px] bg-editorial-red ml-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEC TABLE GRID -->
+  <section class="w-full px-4 sm:px-8 lg:px-12 pb-20 max-w-[1780px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left Column: Specs Table -->
+      <div class="lg:col-span-8 flex flex-col gap-6">
+        <!-- SECTION 01: CRITICAL ANATOMICAL METRICS -->
+        <div class="bg-white p-6 shadow-sm border border-grid-border">
+          <div class="flex items-center justify-between pb-3 mb-4 bg-canvas-alt px-3 py-2 border-b border-grid-border">
+            <span class="font-mono text-xs uppercase text-editorial-ink font-bold">SECTION 01 // CRITICAL ANATOMICAL METRICS</span>
+            <span class="font-mono text-xs text-editorial-red font-bold">STATUS: TBD</span>
+          </div>
+          <div class="flex flex-col font-mono text-xs divide-y divide-grid-border">
+            <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
+              <span class="col-span-4 text-editorial-gray uppercase font-bold">HEIGHT</span>
+              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
+              <span class="col-span-4 text-right text-editorial-red font-bold">&mdash;</span>
+            </div>
+            <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
+              <span class="col-span-4 text-editorial-gray uppercase font-bold">CHEST</span>
+              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
+              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+            </div>
+            <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
+              <span class="col-span-4 text-editorial-gray uppercase font-bold">WAIST</span>
+              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
+              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+            </div>
+            <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
+              <span class="col-span-4 text-editorial-gray uppercase font-bold">HIPS</span>
+              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
+              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+            </div>
+            <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
+              <span class="col-span-4 text-editorial-gray uppercase font-bold">INSEAM</span>
+              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
+              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+            </div>
+            <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
+              <span class="col-span-4 text-editorial-gray uppercase font-bold">COLLAR</span>
+              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
+              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 02: SIZING & PHENOTYPE -->
+        <div class="bg-white p-6 shadow-sm border border-grid-border">
+          <div class="flex items-center justify-between pb-3 mb-4 bg-canvas-alt px-3 py-2 border-b border-grid-border">
+            <span class="font-mono text-xs uppercase text-editorial-ink font-bold">SECTION 02 // SIZING SPECIFICATIONS &amp; ATTRIBUTES</span>
+            <span class="font-mono text-xs text-editorial-gray font-bold">SPEC REGISTER</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-canvas-alt p-4 flex flex-col justify-between border border-grid-border">
+              <span class="font-mono text-xs text-editorial-gray uppercase">SUIT / JACKET SIZING</span>
+              <div class="my-2">
+                <span class="font-display text-3xl text-editorial-ink uppercase">TBD</span>
+                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">FIT SPEC: RUNWAY SLIM</span>
+              </div>
+              <span class="font-mono text-[10px] text-editorial-red uppercase tracking-wider">DROP: TBD</span>
+            </div>
+            <div class="bg-canvas-alt p-4 flex flex-col justify-between border border-grid-border">
+              <span class="font-mono text-xs text-editorial-gray uppercase">SHOE / FOOTWEAR SIZE</span>
+              <div class="my-2">
+                <span class="font-display text-3xl text-editorial-ink uppercase">TBD</span>
+                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">EU / UK / US CONVERSIONS PENDING</span>
+              </div>
+              <span class="font-mono text-[10px] text-editorial-gray uppercase tracking-wider">WIDTH: STANDARD</span>
+            </div>
+            <div class="bg-canvas-sheet p-4 flex flex-col justify-between border border-grid-border">
+              <span class="font-mono text-xs text-editorial-gray uppercase">HAIR COLOR &amp; TEXTURE</span>
+              <div class="my-2">
+                <span class="font-display text-2xl text-editorial-ink uppercase">TBD</span>
+                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">NATURAL TEXTURE / MEDIUM LENGTH</span>
+              </div>
+              <span class="font-mono text-[10px] text-editorial-ink uppercase">NATURAL TONE</span>
+            </div>
+            <div class="bg-canvas-sheet p-4 flex flex-col justify-between border border-grid-border">
+              <span class="font-mono text-xs text-editorial-gray uppercase">EYE COLOR</span>
+              <div class="my-2">
+                <span class="font-display text-2xl text-editorial-ink uppercase">TBD</span>
+                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">NATURAL</span>
+              </div>
+              <span class="font-mono text-[10px] text-editorial-ink uppercase">DEEP CONTRAST</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOTLINE CALLOUT -->
+        <div class="bg-editorial-ink text-white p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border border-editorial-ink">
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 bg-editorial-red inline-block"></span>
+              <span class="font-mono text-xs tracking-widest text-white uppercase font-bold">DIRECT CASTING HOTLINE</span>
+            </div>
+            <p class="font-display text-xl text-canvas-warm uppercase tracking-wide">DIRECT CASTING &amp; RUNWAY DESK</p>
+            <p class="font-mono text-xs text-white/70">FOR FIT SESSIONS, TAILOR TESTING &amp; RUNWAY COMP CARDS</p>
+          </div>
+          <div class="flex flex-col items-start md:items-end gap-1">
+            <a href="https://wa.me/918209225998" target="_blank" rel="noopener noreferrer" class="font-display text-2xl sm:text-3xl text-white tracking-tight hover:text-editorial-red transition-colors">
+              +91 8209225998
+            </a>
+            <a href="mailto:atharva@atharvasharma.co.in" class="font-mono text-xs text-editorial-red uppercase tracking-widest hover:underline">
+              ATHARVA@ATHARVASHARMA.CO.IN
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Verification Policy Card -->
+      <div class="lg:col-span-4 flex flex-col gap-6">
+        <div class="bg-canvas-alt p-6 border border-grid-border shadow-sm flex flex-col justify-between gap-6">
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-4 bg-editorial-red inline-block"></span>
+              <span class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold">POLICY TRANSPARENCY</span>
+            </div>
+            <h3 class="font-display text-2xl uppercase tracking-tight text-editorial-ink">
+              NO FABRICATION STANDARD
+            </h3>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">
+              In accordance with our strict accuracy guidelines, zero physical measurements are estimated or inferred from photography. All fields will remain marked as TBD until verified studio measurements are officially recorded.
+            </p>
+            <p class="font-sans text-xs text-editorial-gray leading-relaxed">
+              A visibly incomplete spec card is completely honest; an estimated or invented value is a liability for fashion houses and tailoring teams.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-grid-border flex flex-col gap-2 font-mono text-xs text-editorial-gray">
+            <div class="flex justify-between">
+              <span>BASE LOCATION:</span>
+              <span class="text-editorial-ink font-bold">UDAIPUR, IN</span>
+            </div>
+            <div class="flex justify-between">
+              <span>BOARD STATUS:</span>
+              <span class="text-editorial-red font-bold">DIRECT TALENT</span>
+            </div>
+            <div class="flex justify-between">
+              <span>CALENDAR:</span>
+              <span class="text-editorial-ink font-bold">OPEN FOR 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 bg-canvas-sheet border border-grid-border flex flex-col gap-4">
+          <div class="flex items-center gap-2 font-mono text-xs text-editorial-ink font-bold">
+            <span class="material-symbols-outlined text-editorial-red text-[18px]">verified</span>
+            <span>SPEC COMPLIANCE</span>
+          </div>
+          <p class="font-sans text-xs text-editorial-gray leading-relaxed">
+            Need urgent measurements for an active casting call or tailoring brief? Connect directly with Atharva for real-time spec confirmation.
+          </p>
+          <a href="contact.html" class="w-full py-3 bg-editorial-ink hover:bg-editorial-red text-white text-center font-mono text-xs uppercase tracking-widest transition-colors font-bold block">
+            CONTACT FOR SIZING
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
