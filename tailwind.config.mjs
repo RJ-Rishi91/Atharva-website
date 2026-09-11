@@ -13,6 +13,7 @@ export default {
         'editorial-gray': '#6B6B6B',
         'grid-border': '#E5E0D8',
         'surface': '#FBF9F6',
+        'surface-container-lowest': '#FFFFFF',
         'surface-container-low': '#F5F3F0',
         'surface-container': '#EFECE6',
         'primary-container': '#D72626',
@@ -21,6 +22,7 @@ export default {
         'secondary': '#6B6B6B',
         'on-surface-variant': '#4A4A4A',
         'primary': '#1B1B1B',
+        'grid-line': '#E5E0D8',
       },
       fontFamily: {
         display: ['Anton', 'Impact', 'sans-serif'],
@@ -28,9 +30,14 @@ export default {
         mono: ['"Space Mono"', 'monospace'],
         sans: ['Inter', 'sans-serif'],
         'headline-lg': ['Anton', 'Impact', 'sans-serif'],
+        'headline-md': ['Anton', 'Impact', 'sans-serif'],
         'label-code': ['"Space Mono"', 'monospace'],
         'label-caps': ['Inter', 'sans-serif'],
         'body-md': ['Inter', 'sans-serif'],
+        'body-lg': ['Inter', 'sans-serif'],
+      },
+      screens: {
+        'xs': '400px',
       },
       spacing: {
         'unit-2xs': '0.25rem',

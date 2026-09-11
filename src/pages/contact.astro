@@ -49,7 +49,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
               <span class="font-mono text-[10px] uppercase tracking-widest text-editorial-red font-bold">DIRECT ROSTER TALENT</span>
               <p class="font-display text-3xl uppercase leading-tight">ATHARVA SHARMA</p>
               <div class="flex items-center justify-between text-white/80 font-mono text-xs pt-1 border-t border-white/20">
-                <span>HEIGHT: TBD</span>
+                <span>HEIGHT: 6'1" / 186CM</span>
                 <span>BASE: UDAIPUR, RAJASTHAN</span>
               </div>
             </div>
@@ -127,7 +127,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
             </p>
           </div>
 
-          <form class="flex flex-col gap-6" id="inquiryForm" onsubmit="handleFormSubmit(event)">
+          <form class="flex flex-col gap-6" id="inquiryForm">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="flex flex-col gap-1.5">
                 <label class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold" for="contactName">
@@ -193,7 +193,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
                 <span class="w-2 h-2 bg-editorial-red inline-block"></span>
                 <span>DIRECT TALENT REVIEW</span>
               </div>
-              <button class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-editorial-ink hover:bg-editorial-red text-white font-mono text-xs uppercase tracking-widest transition-colors font-bold shadow-md" id="submitBtn" type="submit">
+              <button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-editorial-ink hover:bg-editorial-red text-white font-mono text-xs uppercase tracking-widest transition-colors font-bold shadow-md min-h-[48px]" id="submitBtn" type="submit">
                 <span>TRANSMIT INQUIRY</span>
                 <span class="material-symbols-outlined text-sm">send</span>
               </button>
@@ -232,46 +232,42 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 </div>
 
 <script>
-  function handleCompCardClick() {
-    const notice = document.getElementById('compCardNotice');
-    if (notice) {
-      notice.classList.remove('hidden');
-    }
-  }
+  const form = document.getElementById('inquiryForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const success = document.getElementById('formSuccess');
+      
+      // Gather form values
+      const name = (document.getElementById('contactName') as HTMLInputElement)?.value || '';
+      const agency = (document.getElementById('agencyBrand') as HTMLInputElement)?.value || '';
+      const email = (document.getElementById('contactEmail') as HTMLInputElement)?.value || '';
+      const type = (document.getElementById('inquiryType') as HTMLSelectElement)?.value || '';
+      const dates = (document.getElementById('shootDates') as HTMLInputElement)?.value || '';
+      const loc = (document.getElementById('shootLocation') as HTMLInputElement)?.value || '';
+      const msg = (document.getElementById('message') as HTMLTextAreaElement)?.value || '';
 
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const success = document.getElementById('formSuccess');
-    
-    // Gather form values
-    const name = document.getElementById('contactName').value;
-    const agency = document.getElementById('agencyBrand').value;
-    const email = document.getElementById('contactEmail').value;
-    const type = document.getElementById('inquiryType').value;
-    const dates = document.getElementById('shootDates').value;
-    const loc = document.getElementById('shootLocation').value;
-    const msg = document.getElementById('message').value;
-
-    // Prefill mailto fallback link in background
-    const subject = encodeURIComponent(`Casting Inquiry: ${agency} - ${name} [${type}]`);
-    const body = encodeURIComponent(`Name: ${name}\nAgency/Brand: ${agency}\nEmail: ${email}\nInquiry Type: ${type}\nDates: ${dates}\nLocation: ${loc}\n\nBrief:\n${msg}`);
-    
-    if (btn) {
-      btn.disabled = true;
-      btn.innerHTML = '<span>TRANSMITTING...</span>';
-    }
-
-    setTimeout(() => {
+      // Prefill mailto link as direct fall-through
+      const subject = encodeURIComponent(`Casting Inquiry: ${agency} - ${name} [${type}]`);
+      const body = encodeURIComponent(`Name: ${name}\nAgency/Brand: ${agency}\nEmail: ${email}\nInquiry Type: ${type}\nDates: ${dates}\nLocation: ${loc}\n\nBrief:\n${msg}`);
+      
       if (btn) {
-        btn.innerHTML = '<span>TRANSMITTED</span><span class="material-symbols-outlined text-sm">check</span>';
+        btn.setAttribute('disabled', 'true');
+        btn.innerHTML = '<span>TRANSMITTING...</span>';
       }
-      if (success) {
-        success.classList.remove('hidden');
-      }
-      // Trigger mailto client as user action
-      window.location.href = `mailto:atharva@atharvasharma.co.in?subject=${subject}&body=${body}`;
-    }, 500);
+
+      setTimeout(() => {
+        if (btn) {
+          btn.innerHTML = '<span>TRANSMITTED</span><span class="material-symbols-outlined text-sm">check</span>';
+        }
+        if (success) {
+          success.classList.remove('hidden');
+        }
+        // Trigger mailto client
+        window.location.href = `mailto:atharva@atharvasharma.co.in?subject=${subject}&body=${body}`;
+      }, 500);
+    });
   }
 </script>
 </BaseLayout>

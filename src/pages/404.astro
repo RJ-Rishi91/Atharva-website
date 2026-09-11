@@ -12,52 +12,52 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   keywords="404, not found, Atharva Sharma portfolio"
   ogImage="assets/images/atharva-studio-bw-stool.png"
 >
-<section class="w-full bg-surface-container-lowest px-gutter-mobile lg:px-margin-desktop py-unit-3xl flex items-center justify-center min-h-[70vh]">
-  <div class="max-w-3xl w-full mx-auto border-2 border-pure-black p-unit-lg sm:p-unit-2xl bg-surface shadow-xl">
+<section class="w-full bg-canvas-warm px-4 sm:px-8 py-12 sm:py-20 flex items-center justify-center min-h-[70vh]">
+  <div class="max-w-3xl w-full mx-auto border-2 border-editorial-ink p-6 sm:p-12 bg-white shadow-xl">
     
-    <div class="flex items-center gap-unit-xs mb-unit-sm font-label-code text-label-code text-primary font-bold">
-      <span class="w-3 h-3 bg-primary inline-block"></span>
+    <div class="flex items-center gap-2 mb-3 font-mono text-xs text-editorial-red font-bold">
+      <span class="w-2.5 h-2.5 bg-editorial-red inline-block"></span>
       <span>ERROR: 404 // UNINDEXED DIRECTORY SPECIMEN</span>
     </div>
 
-    <h1 class="font-headline-lg text-6xl sm:text-7xl lg:text-8xl text-pure-black uppercase leading-none tracking-tight mb-unit-md">
+    <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl text-editorial-ink uppercase leading-none tracking-tight mb-4">
       DISPATCH NOT FOUND
     </h1>
 
-    <div class="w-20 h-1.5 bg-primary mb-unit-md"></div>
+    <div class="w-16 h-1 bg-editorial-red mb-4"></div>
 
-    <p class="font-body-lg text-lg text-secondary leading-relaxed mb-unit-xl">
+    <p class="font-sans text-sm sm:text-base text-editorial-gray leading-relaxed mb-8">
       The requested route or portfolio look is unavailable, moved to vault archives, or has not yet been indexed in the live system.
     </p>
 
-    <div class="border-t border-grid-line pt-unit-lg">
-      <span class="font-label-code text-label-code text-pure-black uppercase font-bold tracking-widest block mb-unit-md">
+    <div class="border-t border-grid-border pt-6">
+      <span class="font-mono text-xs text-editorial-ink uppercase font-bold tracking-widest block mb-4">
         PRIMARY EDITORIAL DIRECTORIES:
       </span>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-unit-sm font-label-code text-label-code">
-        <a href={url("/")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
+        <a href={url("/")} class="p-3 bg-canvas-sheet border border-grid-border text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           01. HOME
         </a>
-        <a href={url("/portfolio")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+        <a href={url("/portfolio")} class="p-3 bg-canvas-sheet border border-grid-border text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           02. PORTFOLIO
         </a>
-        <a href={url("/stats")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+        <a href={url("/stats")} class="p-3 bg-canvas-sheet border border-grid-border text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           03. STATS
         </a>
-        <a href={url("/about")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+        <a href={url("/about")} class="p-3 bg-canvas-sheet border border-grid-border text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           04. ABOUT
         </a>
-        <a href={url("/journal")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+        <a href={url("/journal")} class="p-3 bg-canvas-sheet border border-grid-border text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           05. JOURNAL
         </a>
-        <a href={url("/digitals")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+        <a href={url("/digitals")} class="p-3 bg-canvas-sheet border border-grid-border text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           06. DIGITALS
         </a>
-        <a href={url("/comp-card")} class="p-unit-sm bg-surface-container border border-grid-line text-pure-black hover:bg-primary hover:text-pure-white transition-colors text-center font-bold uppercase">
+        <a href={url("/comp-card")} class="p-3 bg-canvas-sheet border border-grid-border text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           07. COMP-CARD
         </a>
-        <a href={url("/contact")} class="p-unit-sm bg-pure-black text-pure-white hover:bg-primary transition-colors text-center font-bold uppercase">
+        <a href={url("/contact")} class="p-3 bg-editorial-ink text-white hover:bg-editorial-red transition-colors text-center font-bold uppercase min-h-[44px] flex items-center justify-center">
           08. CONTACT
         </a>
       </div>

@@ -50,32 +50,32 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     </section>
 
     <!-- Article Header & Hero Banner -->
-    <section class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pt-10 pb-8">
-      <div class="max-w-[1780px] mx-auto flex flex-col gap-4">
-        <div class="flex flex-wrap items-center gap-3">
-          <a href={url('/journal')} class="font-mono text-xs text-editorial-red uppercase tracking-widest hover:underline font-bold">
+    <section class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pt-8 sm:pt-10 pb-6 sm:pb-8">
+      <div class="max-w-[1780px] mx-auto flex flex-col gap-3 sm:gap-4">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-[11px] sm:text-xs">
+          <a href={url('/journal')} class="text-editorial-red uppercase tracking-widest hover:underline font-bold">
             ← [ ALL DISPATCHES ]
           </a>
-          <span class="text-editorial-gray text-xs">/</span>
-          <span class="font-mono text-xs text-editorial-ink uppercase tracking-widest font-bold">
-            CATEGORY: {data.category}
+          <span class="text-editorial-gray">/</span>
+          <span class="text-editorial-ink uppercase tracking-widest font-bold">
+            {data.category}
           </span>
-          <span class="text-editorial-gray text-xs">•</span>
-          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">
-            PUBLISHED: {data.date} // {data.readTime}
+          <span class="text-editorial-gray hidden xs:inline">•</span>
+          <span class="text-editorial-gray tracking-widest uppercase hidden xs:inline">
+            {data.date} // {data.readTime}
           </span>
         </div>
-        <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl uppercase text-editorial-ink tracking-tight leading-tight max-w-5xl m-0">
+        <h1 class="font-display text-2xl xs:text-3xl sm:text-5xl lg:text-6xl uppercase text-editorial-ink tracking-tight leading-tight max-w-5xl m-0">
           {data.title}
         </h1>
       </div>
     </section>
 
     <!-- Hero Image Specimen Section -->
-    <section class="w-full px-4 sm:px-8 lg:px-12 pb-12 bg-canvas-warm">
+    <section class="w-full px-4 sm:px-8 lg:px-12 pb-8 sm:pb-12 bg-canvas-warm">
       <div class="max-w-[1780px] mx-auto">
         <div class="w-full relative bg-canvas-sheet border border-grid-border overflow-hidden">
-          <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] max-h-[640px] overflow-hidden">
+          <div class="relative w-full aspect-[16/10] sm:aspect-[21/9] max-h-[640px] overflow-hidden">
             <img
               src={url(data.heroImage)}
               alt={data.heroImageAlt}
@@ -83,8 +83,8 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
               style={`object-position: ${data.focusPosition};`}
             />
           </div>
-          <div class="p-3 bg-canvas-alt border-t border-grid-border flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-editorial-gray uppercase">
-            <span>PLATE SPECIMEN: {data.dispatchId} // LOCAL CAPTURE ARCHIVE</span>
+          <div class="p-2.5 sm:p-3 bg-canvas-alt border-t border-grid-border flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] xs:text-[11px] text-editorial-gray uppercase">
+            <span>PLATE SPECIMEN: {data.dispatchId}</span>
             <span>ATHARVA SHARMA // 6'1" (186CM)</span>
           </div>
         </div>

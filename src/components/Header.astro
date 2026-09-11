@@ -53,18 +53,18 @@ const navItems = [
 
     <!-- Mobile Header Actions (Visible on screens < lg) -->
     <div class="flex lg:hidden items-center gap-2">
-      <a class="bg-editorial-ink hover:bg-editorial-red text-white px-3 py-1.5 transition-colors font-mono text-[11px] tracking-widest flex items-center gap-1" href={url('/contact')}>
+      <a class="bg-editorial-ink hover:bg-editorial-red text-white px-3.5 py-2 transition-colors font-mono text-[11px] tracking-widest flex items-center gap-1 min-h-[44px]" href={url('/contact')}>
         <span>BOOK</span>
         <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
       </a>
-      <button id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" class="p-2 text-editorial-ink hover:text-editorial-red focus:outline-none flex items-center justify-center border border-grid-border bg-canvas-alt active:bg-canvas-sheet" aria-label="Toggle navigation menu">
+      <button id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" class="w-11 h-11 text-editorial-ink hover:text-editorial-red focus:outline-none flex items-center justify-center border border-grid-border bg-canvas-alt active:bg-canvas-sheet" aria-label="Toggle navigation menu">
         <span id="menu-icon" class="material-symbols-outlined text-xl">menu</span>
       </button>
     </div>
   </div>
 
   <!-- Mobile Drawer Menu (Accessible full-featured editorial directory) -->
-  <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-grid-border bg-canvas-warm/98 backdrop-blur-xl px-5 py-5 space-y-1 font-mono text-xs uppercase tracking-widest transition-all duration-300 shadow-xl">
+  <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-grid-border bg-canvas-warm/98 backdrop-blur-xl px-5 py-5 space-y-1 font-mono text-xs uppercase tracking-widest transition-all duration-300 shadow-2xl max-h-[calc(100vh-65px)] overflow-y-auto">
     <div class="pb-3 mb-2 border-b border-grid-border/60 flex items-center justify-between text-[10px] text-editorial-gray">
       <span>INDEX DIRECTORY // 07 SECTIONS</span>
       <span class="text-editorial-red font-bold">ATHARVA SHARMA</span>
@@ -90,11 +90,13 @@ const navItems = [
     </a>
     
     <!-- Quick Contact Actions Strip -->
-    <div class="pt-3 grid grid-cols-2 gap-2 text-[11px] normal-case font-mono">
-      <a href="https://wa.me/918209225998" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 py-2.5 bg-emerald-800 text-white font-mono uppercase text-[10px] tracking-wider min-h-[44px]">
-        <span>WHATSAPP DIRECT</span>
+    <div class="pt-3 grid grid-cols-2 gap-2 font-mono">
+      <a href="https://wa.me/918209225998" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 py-3 px-2 bg-emerald-800 hover:bg-emerald-900 text-white uppercase text-[10px] xs:text-[11px] tracking-wider min-h-[48px] text-center">
+        <span class="material-symbols-outlined text-sm">chat</span>
+        <span>WHATSAPP</span>
       </a>
-      <a href="mailto:atharva@atharvasharma.co.in" class="flex items-center justify-center gap-1.5 py-2.5 bg-editorial-ink text-white font-mono uppercase text-[10px] tracking-wider min-h-[44px]">
+      <a href="mailto:atharva@atharvasharma.co.in" class="flex items-center justify-center gap-1.5 py-3 px-2 bg-editorial-ink hover:bg-editorial-red text-white uppercase text-[10px] xs:text-[11px] tracking-wider min-h-[48px] text-center">
+        <span class="material-symbols-outlined text-sm">mail</span>
         <span>DIRECT EMAIL</span>
       </a>
     </div>

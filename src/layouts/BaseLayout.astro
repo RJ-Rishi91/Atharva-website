@@ -156,37 +156,50 @@ if (pageType === 'article') {
   <Footer />
 
   <script>
-    // Mobile navigation toggle with icon swap, aria-expanded, and click-outside
+    // Mobile navigation toggle with icon swap, aria-expanded, body scroll locking, and click-outside
     const navToggle = document.getElementById('mobile-nav-toggle');
     const navDrawer = document.getElementById('mobile-nav-drawer');
     const menuIcon = document.getElementById('menu-icon');
     
     if (navToggle && navDrawer) {
+      const setDrawerState = (isOpen: boolean) => {
+        if (isOpen) {
+          navDrawer.classList.remove('hidden');
+          navToggle.setAttribute('aria-expanded', 'true');
+          if (menuIcon) menuIcon.textContent = 'close';
+          document.body.classList.add('overflow-hidden');
+        } else {
+          navDrawer.classList.add('hidden');
+          navToggle.setAttribute('aria-expanded', 'false');
+          if (menuIcon) menuIcon.textContent = 'menu';
+          document.body.classList.remove('overflow-hidden');
+        }
+      };
+
       navToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isHidden = navDrawer.classList.toggle('hidden');
-        const isExpanded = !isHidden;
-        navToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-        if (menuIcon) {
-          menuIcon.textContent = isExpanded ? 'close' : 'menu';
-        }
+        const isCurrentlyHidden = navDrawer.classList.contains('hidden');
+        setDrawerState(isCurrentlyHidden);
+      });
+
+      // Close drawer when clicking a link inside it
+      navDrawer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          setDrawerState(false);
+        });
       });
 
       // Close drawer on click outside
       document.addEventListener('click', (e) => {
         if (!navDrawer.classList.contains('hidden') && !navDrawer.contains(e.target as Node) && !navToggle.contains(e.target as Node)) {
-          navDrawer.classList.add('hidden');
-          navToggle.setAttribute('aria-expanded', 'false');
-          if (menuIcon) menuIcon.textContent = 'menu';
+          setDrawerState(false);
         }
       });
 
       // Close drawer on Escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !navDrawer.classList.contains('hidden')) {
-          navDrawer.classList.add('hidden');
-          navToggle.setAttribute('aria-expanded', 'false');
-          if (menuIcon) menuIcon.textContent = 'menu';
+          setDrawerState(false);
         }
       });
     }

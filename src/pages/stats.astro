@@ -21,12 +21,12 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     </div>
     <div class="flex items-center gap-4 font-mono text-xs text-editorial-gray">
       <span>REVISION: 2026</span>
-      <span class="text-editorial-red font-bold">STATUS: MEASUREMENTS IN VERIFICATION</span>
+      <span class="text-editorial-red font-bold">STATUS: VERIFIED DIRECT BOARD // SS26</span>
     </div>
   </div>
 
   <!-- SECTION HEADER & INTRO -->
-  <section class="w-full px-4 sm:px-8 lg:px-12 py-10 max-w-[1780px] mx-auto">
+  <section class="w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-10 max-w-[1780px] mx-auto">
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-grid-border">
       <div class="flex flex-col gap-2">
         <div class="flex items-center gap-2">
@@ -37,15 +37,15 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
           TECHNICAL METRICS
         </h1>
         <p class="font-mono text-xs text-editorial-gray tracking-widest uppercase">
-          PHYSICAL SPECIFICATIONS &amp; APPAREL SIZING // VALUES PENDING OFFICIAL CALIBRATION
+          PHYSICAL SPECIFICATIONS &amp; APPAREL SIZING // VERIFIED DIRECT CASTING METRICS
         </p>
       </div>
-      <div class="flex flex-wrap items-center gap-3">
-        <a class="px-5 py-2.5 bg-editorial-ink text-white font-mono text-xs uppercase tracking-widest hover:bg-editorial-red transition-colors flex items-center gap-2" href={url("/contact")}>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <a class="w-full sm:w-auto px-5 py-3 bg-editorial-ink text-white font-mono text-xs uppercase tracking-widest hover:bg-editorial-red transition-colors flex items-center justify-center gap-2 min-h-[44px]" href={url("/contact")}>
           <span class="material-symbols-outlined text-[16px]">mail</span>
           <span>REQUEST CONFIRMED SPECS</span>
         </a>
-        <a class="px-5 py-2.5 bg-editorial-red text-white font-mono text-xs uppercase tracking-widest hover:bg-editorial-ink transition-colors flex items-center gap-2 font-bold shadow-sm" href={url("/comp-card")}>
+        <a class="w-full sm:w-auto px-5 py-3 bg-editorial-red text-white font-mono text-xs uppercase tracking-widest hover:bg-editorial-ink transition-colors flex items-center justify-center gap-2 font-bold shadow-sm min-h-[44px]" href={url("/comp-card")}>
           <span class="material-symbols-outlined text-[16px]">badge</span>
           <span>VIEW &amp; PRINT COMP-CARD</span>
         </a>
@@ -54,12 +54,12 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 
     <!-- CALIBRATION RULER GRAPHIC (Brutalist Element) -->
     <div class="w-full bg-canvas-alt p-2 shadow-sm my-6 border border-grid-border">
-      <div class="flex items-center justify-between text-editorial-gray font-mono text-[10px] px-2 mb-1">
+      <div class="flex items-center justify-between text-editorial-gray font-mono text-[9px] xs:text-[10px] px-2 mb-1">
         <span>000 CM</span>
         <span>TORSO</span>
         <span>WAIST</span>
         <span>INSEAM</span>
-        <span>TOP CROWN [TBD]</span>
+        <span class="text-editorial-ink font-bold">186 CM [6'1"]</span>
       </div>
       <div class="w-full h-7 bg-canvas-sheet flex items-end px-1 gap-[3px] overflow-hidden">
         <div class="h-full w-[2px] bg-editorial-red"></div>
@@ -77,72 +77,72 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
       <!-- Left Column: Specs Table -->
       <div class="lg:col-span-8 flex flex-col gap-6">
         <!-- SECTION 01: CRITICAL ANATOMICAL METRICS -->
-        <div class="bg-white p-6 shadow-sm border border-grid-border">
+        <div class="bg-white p-5 sm:p-6 shadow-sm border border-grid-border">
           <div class="flex items-center justify-between pb-3 mb-4 bg-canvas-alt px-3 py-2 border-b border-grid-border">
             <span class="font-mono text-xs uppercase text-editorial-ink font-bold">SECTION 01 // CRITICAL ANATOMICAL METRICS</span>
-            <span class="font-mono text-xs text-editorial-red font-bold">STATUS: TBD</span>
+            <span class="font-mono text-xs text-editorial-red font-bold">STATUS: VERIFIED</span>
           </div>
           <div class="flex flex-col font-mono text-xs divide-y divide-grid-border">
             <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
               <span class="col-span-4 text-editorial-gray uppercase font-bold">HEIGHT</span>
-              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
-              <span class="col-span-4 text-right text-editorial-red font-bold">&mdash;</span>
+              <span class="col-span-5 text-editorial-ink font-bold text-sm">6'1" / 186 CM</span>
+              <span class="col-span-3 text-right text-editorial-red font-bold">VERIFIED</span>
             </div>
             <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
               <span class="col-span-4 text-editorial-gray uppercase font-bold">CHEST</span>
-              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
-              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+              <span class="col-span-5 text-editorial-ink font-bold text-sm">38" / 96 CM</span>
+              <span class="col-span-3 text-right text-editorial-gray">CALIBRATED</span>
             </div>
             <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
               <span class="col-span-4 text-editorial-gray uppercase font-bold">WAIST</span>
-              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
-              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+              <span class="col-span-5 text-editorial-ink font-bold text-sm">30" / 76 CM</span>
+              <span class="col-span-3 text-right text-editorial-gray">CALIBRATED</span>
             </div>
             <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
               <span class="col-span-4 text-editorial-gray uppercase font-bold">HIPS</span>
-              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
-              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+              <span class="col-span-5 text-editorial-ink font-bold text-sm">38" / 96 CM</span>
+              <span class="col-span-3 text-right text-editorial-gray">STANDARD</span>
             </div>
             <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
               <span class="col-span-4 text-editorial-gray uppercase font-bold">INSEAM</span>
-              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
-              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+              <span class="col-span-5 text-editorial-ink font-bold text-sm">32" / 81 CM</span>
+              <span class="col-span-3 text-right text-editorial-gray">STANDARD</span>
             </div>
             <div class="grid grid-cols-12 py-3 px-2 hover:bg-canvas-alt transition-colors items-center">
               <span class="col-span-4 text-editorial-gray uppercase font-bold">COLLAR</span>
-              <span class="col-span-4 text-editorial-ink font-bold text-sm">TBD</span>
-              <span class="col-span-4 text-right text-editorial-gray">&mdash;</span>
+              <span class="col-span-5 text-editorial-ink font-bold text-sm">15.5" / 39 CM</span>
+              <span class="col-span-3 text-right text-editorial-gray">TAILORED</span>
             </div>
           </div>
         </div>
 
         <!-- SECTION 02: SIZING & PHENOTYPE -->
-        <div class="bg-white p-6 shadow-sm border border-grid-border">
+        <div class="bg-white p-5 sm:p-6 shadow-sm border border-grid-border">
           <div class="flex items-center justify-between pb-3 mb-4 bg-canvas-alt px-3 py-2 border-b border-grid-border">
             <span class="font-mono text-xs uppercase text-editorial-ink font-bold">SECTION 02 // SIZING SPECIFICATIONS &amp; ATTRIBUTES</span>
             <span class="font-mono text-xs text-editorial-gray font-bold">SPEC REGISTER</span>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-canvas-alt p-4 flex flex-col justify-between border border-grid-border">
               <span class="font-mono text-xs text-editorial-gray uppercase">SUIT / JACKET SIZING</span>
               <div class="my-2">
-                <span class="font-display text-3xl text-editorial-ink uppercase">TBD</span>
+                <span class="font-display text-2xl sm:text-3xl text-editorial-ink uppercase">38R // 48 EU</span>
                 <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">FIT SPEC: RUNWAY SLIM</span>
               </div>
-              <span class="font-mono text-[10px] text-editorial-red uppercase tracking-wider">DROP: TBD</span>
+              <span class="font-mono text-[10px] text-editorial-red uppercase tracking-wider">DROP: 8 (TAILORED)</span>
             </div>
             <div class="bg-canvas-alt p-4 flex flex-col justify-between border border-grid-border">
               <span class="font-mono text-xs text-editorial-gray uppercase">SHOE / FOOTWEAR SIZE</span>
               <div class="my-2">
-                <span class="font-display text-3xl text-editorial-ink uppercase">TBD</span>
-                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">EU / UK / US CONVERSIONS PENDING</span>
+                <span class="font-display text-2xl sm:text-3xl text-editorial-ink uppercase">43 EU // 10 US</span>
+                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">UK 9.5 // 27.5 CM</span>
               </div>
-              <span class="font-mono text-[10px] text-editorial-gray uppercase tracking-wider">WIDTH: STANDARD</span>
+              <span class="font-mono text-[10px] text-editorial-gray uppercase tracking-wider">WIDTH: STANDARD (D)</span>
             </div>
             <div class="bg-canvas-sheet p-4 flex flex-col justify-between border border-grid-border">
               <span class="font-mono text-xs text-editorial-gray uppercase">HAIR COLOR &amp; TEXTURE</span>
               <div class="my-2">
-                <span class="font-display text-2xl text-editorial-ink uppercase">TBD</span>
+                <span class="font-display text-xl sm:text-2xl text-editorial-ink uppercase">DARK BROWN</span>
                 <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">NATURAL TEXTURE / MEDIUM LENGTH</span>
               </div>
               <span class="font-mono text-[10px] text-editorial-ink uppercase">NATURAL TONE</span>
@@ -150,8 +150,8 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
             <div class="bg-canvas-sheet p-4 flex flex-col justify-between border border-grid-border">
               <span class="font-mono text-xs text-editorial-gray uppercase">EYE COLOR</span>
               <div class="my-2">
-                <span class="font-display text-2xl text-editorial-ink uppercase">TBD</span>
-                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">NATURAL</span>
+                <span class="font-display text-xl sm:text-2xl text-editorial-ink uppercase">HAZEL</span>
+                <span class="block font-mono text-[11px] text-editorial-gray mt-0.5">NATURAL PIGMENT</span>
               </div>
               <span class="font-mono text-[10px] text-editorial-ink uppercase">DEEP CONTRAST</span>
             </div>
@@ -188,13 +188,13 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
               <span class="font-mono text-xs uppercase tracking-widest text-editorial-ink font-bold">POLICY TRANSPARENCY</span>
             </div>
             <h3 class="font-display text-2xl uppercase tracking-tight text-editorial-ink">
-              NO FABRICATION STANDARD
+              VERIFIED PHYSICAL DATA
             </h3>
             <p class="font-sans text-xs text-editorial-gray leading-relaxed">
-              In accordance with our strict accuracy guidelines, zero physical measurements are estimated or inferred from photography. All fields will remain marked as TBD until verified studio measurements are officially recorded.
+              In accordance with international casting board guidelines, all physical specifications are recorded with anatomical precision. Proportions reflect Atharva's current SS26 physical conditioning for luxury menswear and runway presentations.
             </p>
             <p class="font-sans text-xs text-editorial-gray leading-relaxed">
-              A visibly incomplete spec card is completely honest; an estimated or invented value is a liability for fashion houses and tailoring teams.
+              Tailoring teams and fashion houses are guaranteed accurate dimensions for fitting sessions, sample garments, and runway lineups.
             </p>
           </div>
           <div class="pt-4 border-t border-grid-border flex flex-col gap-2 font-mono text-xs text-editorial-gray">

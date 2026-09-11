@@ -54,30 +54,30 @@ const sortedArticles = allArticles.sort((a, b) => a.data.order - b.data.order);
         </div>
       </div>
 
-      <!-- Category Filter Bar (Interactive tab bar) -->
-      <div class="max-w-[1780px] mx-auto mt-10 bg-canvas-sheet p-2 flex flex-wrap items-center gap-2" id="filter-container">
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-editorial-ink text-white transition-colors duration-150" data-filter="all">
-          [ ALL DISPATCHES ({sortedArticles.length}) ]
+      <!-- Category Filter Bar (Smooth horizontal swipe on mobile, clean bar on desktop) -->
+      <div class="max-w-[1780px] mx-auto mt-8 sm:mt-10 bg-canvas-sheet p-2 flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap -mx-4 px-4 sm:mx-0 sm:px-2" id="filter-container">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-editorial-ink text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="all">
+          [ ALL ({sortedArticles.length}) ]
         </button>
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150" data-filter="CRAFT & TECHNIQUE">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="CRAFT & TECHNIQUE">
           CRAFT &amp; TECHNIQUE
         </button>
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150" data-filter="EDITORIAL DISPATCH">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="EDITORIAL DISPATCH">
           EDITORIAL DISPATCH
         </button>
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150" data-filter="ON LOCATION">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="ON LOCATION">
           ON LOCATION
         </button>
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150" data-filter="INDUSTRY INSIGHTS">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="INDUSTRY INSIGHTS">
           INDUSTRY INSIGHTS
         </button>
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150" data-filter="CAMPAIGN NOTES">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="CAMPAIGN NOTES">
           CAMPAIGN NOTES
         </button>
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150" data-filter="TRAVEL LOG">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="TRAVEL LOG">
           TRAVEL LOG
         </button>
-        <button class="journal-filter-btn px-4 py-2 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150" data-filter="STYLE COMMENTARY">
+        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="STYLE COMMENTARY">
           STYLE COMMENTARY
         </button>
       </div>

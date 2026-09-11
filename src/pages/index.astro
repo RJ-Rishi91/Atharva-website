@@ -15,16 +15,16 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 <!-- ==================== HERO SECTION (Brutalist Poster Composition) ==================== -->
 <section class="relative w-full min-h-[92vh] sm:min-h-screen bg-canvas-warm flex flex-col justify-between pt-4 sm:pt-6 pb-6 sm:pb-8 px-4 sm:px-8 max-w-[1780px] mx-auto overflow-hidden" id="hero">
   <!-- Top Metadata Header Strip -->
-  <div class="anim-fade-up flex items-start justify-between font-mono text-[11px] sm:text-xs tracking-widest uppercase pb-3 border-b border-grid-border relative z-20">
-    <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
+  <div class="anim-fade-up flex items-center justify-between font-mono text-[10px] xs:text-[11px] sm:text-xs tracking-widest uppercase pb-3 border-b border-grid-border relative z-20 gap-2">
+    <div class="flex flex-wrap items-center gap-x-2.5 sm:gap-x-5 gap-y-1">
       <span class="font-bold text-editorial-ink">UDAIPUR, IN</span>
       <span class="text-editorial-gray">|</span>
-      <span class="text-editorial-ink">MODEL / RUNWAY &amp; EDITORIAL</span>
+      <span class="text-editorial-ink">RUNWAY &amp; EDITORIAL</span>
       <span class="text-editorial-gray hidden md:inline">|</span>
       <span class="text-editorial-red font-bold hidden md:inline">● AVAILABLE 2026</span>
     </div>
-    <div class="flex items-center gap-4">
-      <span class="font-semibold text-editorial-ink tracking-widest">PORTFOLIO NO. 01</span>
+    <div class="flex items-center gap-2.5 sm:gap-4 flex-shrink-0">
+      <span class="font-semibold text-editorial-ink tracking-widest hidden sm:inline">PORTFOLIO NO. 01</span>
       <!-- Red Accent Block as specified in poster style -->
       <div aria-hidden="true" class="w-8 h-8 sm:w-11 sm:h-11 bg-editorial-red flex-shrink-0 shadow-sm flex items-center justify-center text-white font-mono text-[10px] font-bold">
         '26
@@ -90,13 +90,13 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   </div>
 
   <!-- Bottom Caption Row & Monospace Details -->
-  <div class="w-full border-t border-grid-border pt-3.5 flex flex-wrap items-center justify-between font-mono text-[11px] sm:text-xs tracking-widest uppercase text-editorial-ink z-20 gap-2">
-    <div class="flex items-center gap-3">
+  <div class="w-full border-t border-grid-border pt-3.5 flex flex-wrap items-center justify-between font-mono text-[10px] xs:text-[11px] sm:text-xs tracking-widest uppercase text-editorial-ink z-20 gap-2">
+    <div class="flex items-center gap-2 sm:gap-3">
       <span class="font-bold tracking-wider text-editorial-red">MAIN BOOK</span>
-      <span class="w-8 h-[1px] bg-editorial-ink/30 inline-block"></span>
-      <span class="text-editorial-gray">HIGH FASHION / SARTORIAL / COMMISSIONS</span>
+      <span class="w-5 sm:w-8 h-[1px] bg-editorial-ink/30 inline-block"></span>
+      <span class="text-editorial-gray text-[10px] xs:text-[11px] sm:text-xs">HIGH FASHION / SARTORIAL / COMMISSIONS</span>
     </div>
-    <div class="flex items-center gap-6">
+    <div class="flex items-center gap-4 sm:gap-6">
       <span class="hidden md:inline text-editorial-gray">INDEX REF: ATH-2026-HQ</span>
       <span class="font-semibold">EST. 2026</span>
     </div>
@@ -186,12 +186,12 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         PORTFOLIO ARCHIVE
       </h2>
     </div>
-    <div class="flex flex-col sm:flex-row sm:items-center gap-4 font-mono text-xs uppercase tracking-wider">
-      <span class="text-editorial-gray flex items-center gap-1.5">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 font-mono text-xs uppercase tracking-wider">
+      <span class="text-editorial-gray flex items-center gap-1.5 text-[11px]">
         <span class="w-1.5 h-1.5 rounded-full bg-editorial-red animate-pulse"></span>
-        <span class="">HOVER TO REVEAL COLOR</span>
+        <span class="">TAP / HOVER TO REVEAL COLOR</span>
       </span>
-      <a href={url("/portfolio")} class="inline-flex items-center gap-2 bg-editorial-ink text-white px-4 py-2 hover:bg-editorial-red transition-colors font-bold text-[11px] tracking-widest">
+      <a href={url("/portfolio")} class="inline-flex items-center justify-center gap-2 bg-editorial-ink text-white px-4 py-2.5 hover:bg-editorial-red transition-colors font-bold text-[11px] tracking-widest min-h-[44px]">
         <span class="">VIEW COMPLETE PORTFOLIO</span>
         <span class="material-symbols-outlined text-xs">arrow_forward</span>
       </a>

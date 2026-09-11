@@ -8,11 +8,20 @@
   background-size: 3px 3px;
 }
 
-/* Edge-to-edge typography clamp */
+/* Edge-to-edge typography clamp (adjusted for narrow 320px-360px phones) */
 .hero-type-bleed {
-  font-size: clamp(3.8rem, 12vw, 12.5rem);
+  font-size: clamp(3rem, 13vw, 12.5rem);
   line-height: 0.85;
   letter-spacing: -0.025em;
+}
+
+/* Hide scrollbar for smooth horizontal touch scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Grayscale to vibrant color hover effect */
@@ -77,4 +86,32 @@
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 2px;
+}
+
+/* Markdown Spec Sheet Tables Mobile Polish */
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.prose th, .prose td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #E5E0D8;
+  text-align: left;
+  font-size: 0.8125rem;
+}
+.prose th {
+  background-color: #F5F3F0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1B1B1B;
+}
+.prose td {
+  color: #4A4A4A;
 }

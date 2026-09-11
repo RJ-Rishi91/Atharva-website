@@ -76,8 +76,8 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Circular/Capsule Crop Group -->
         <div class="flex items-center gap-4 sm:gap-6">
           <!-- Thumbnail 1: Desert Campaign -->
-          <div class="flex flex-col items-center gap-1 group cursor-pointer" onclick="openModal('assets/images/atharva-desert-jeep-bw.jpg', 'ACT I: THAR DESERT EXPEDITION')">
-            <div class="w-16 sm:w-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105" style="min-height: 480px; max-height: 75vh;">
+          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-desert-jeep-bw.jpg")} data-title="ACT I: THAR DESERT EXPEDITION">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105 aspect-square">
               <img alt="Atharva Sharma - Desert Jeep Editorial" class="w-full h-full object-cover rounded-full curated-photo" src={url("/assets/images/atharva-desert-jeep-bw.jpg")}>
             </div>
             <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT I / DESERT</span>
@@ -85,8 +85,8 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
           <div class="w-4 h-[1px] bg-grid-border hidden sm:block"></div>
 
           <!-- Thumbnail 2: Palace Night / Heritage -->
-          <div class="flex flex-col items-center gap-1 group cursor-pointer" onclick="openModal('assets/images/atharva-kurta-palace-night.jpg', 'ACT II: PALACE COURTYARD NOCTURNE')">
-            <div class="w-16 sm:w-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105" style="min-height: 480px; max-height: 75vh;">
+          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-kurta-palace-night.jpg")} data-title="ACT II: PALACE COURTYARD NOCTURNE">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105 aspect-square">
               <img alt="Atharva Sharma - Kurta Palace Night Editorial" class="w-full h-full object-cover rounded-full curated-photo" src={url("/assets/images/atharva-kurta-palace-night.jpg")}>
             </div>
             <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT II / HERITAGE</span>
@@ -94,8 +94,8 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
           <div class="w-4 h-[1px] bg-grid-border hidden sm:block"></div>
 
           <!-- Thumbnail 3: Equestrian / Coast -->
-          <div class="flex flex-col items-center gap-1 group cursor-pointer" onclick="openModal('assets/images/atharva-horse-beach.jpg', 'ACT III: EQUESTRIAN COASTAL STUDY')">
-            <div class="w-16 sm:w-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105" style="min-height: 480px; max-height: 75vh;">
+          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-horse-beach.jpg")} data-title="ACT III: EQUESTRIAN COASTAL STUDY">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105 aspect-square">
               <img alt="Atharva Sharma - Horse Beach Editorial" class="w-full h-full object-cover rounded-full curated-photo" src={url("/assets/images/atharva-horse-beach.jpg")}>
             </div>
             <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT III / COASTAL</span>
@@ -196,10 +196,10 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 
   <!-- LIGHTBOX / EXPAND MODAL (INTERACTIVE VANILLA JS) -->
   <div class="fixed inset-0 z-50 bg-editorial-ink/95 backdrop-blur-md flex items-center justify-center p-4 hidden" id="preview-modal">
-    <div class="relative max-w-4xl w-full flex flex-col gap-3 bg-editorial-ink p-4 sm:p-6 border border-grid-border">
+    <div class="relative max-w-4xl w-full flex flex-col gap-3 bg-editorial-ink p-4 sm:p-6 border border-grid-border" id="modal-content-card">
       <div class="flex items-center justify-between pb-2 border-b border-white/20 font-mono text-xs">
         <span class="text-white uppercase tracking-widest font-bold" id="modal-title">ACT I: THAR DESERT EXPEDITION</span>
-        <button class="text-white hover:text-editorial-red uppercase px-2 py-1 border border-white/30 hover:border-editorial-red transition-colors" onclick="closeModal()">
+        <button class="text-white hover:text-editorial-red uppercase px-3 py-1.5 border border-white/30 hover:border-editorial-red transition-colors min-h-[38px] flex items-center" id="modal-close-btn">
           [ESC / CLOSE]
         </button>
       </div>
@@ -215,26 +215,58 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 </div>
 
 <script>
-  function openModal(imgSrc, titleText) {
-    const modal = document.getElementById('preview-modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalTitle = document.getElementById('modal-title');
+  const modal = document.getElementById('preview-modal');
+  const modalImg = document.getElementById('modal-img') as HTMLImageElement | null;
+  const modalTitle = document.getElementById('modal-title');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalContentCard = document.getElementById('modal-content-card');
+
+  const openLightbox = (imgSrc: string, titleText: string) => {
     if (modal && modalImg && modalTitle) {
       modalImg.src = imgSrc;
       modalTitle.textContent = titleText;
       modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
     }
+  };
+
+  const closeLightbox = () => {
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+  };
+
+  // Thumbnail buttons click listener
+  document.querySelectorAll('.editorial-role-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const img = btn.getAttribute('data-img') || '';
+      const title = btn.getAttribute('data-title') || '';
+      openLightbox(img, title);
+    });
+  });
+
+  // Close button listener
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
   }
 
-  function closeModal() {
-    const modal = document.getElementById('preview-modal');
-    if (modal) modal.classList.add('hidden');
+  // Backdrop click to close
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (modalContentCard && !modalContentCard.contains(e.target as Node)) {
+        closeLightbox();
+      }
+    });
   }
 
-  // ESC key listener to close modal
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeModal();
+  // ESC key listener
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeLightbox();
     }
   });
 </script>
