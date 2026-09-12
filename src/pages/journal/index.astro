@@ -1,4 +1,6 @@
 ---
+// src/pages/journal/index.astro
+// Editorial Journal Archive & Dispatches — Hybrid API + Static Fallback
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -6,7 +8,81 @@ const rawBase = import.meta.env.BASE_URL || "";
 const base = rawBase.replace(/\/$/, "");
 const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 
-const allArticles = await getCollection('journal');
+interface NormalizedArticle {
+  slug: string;
+  data: {
+    title: string;
+    description: string;
+    category: string;
+    dispatchId: string;
+    date: string;
+    readTime: string;
+    volume: string;
+    heroImage: string;
+    heroImageAlt: string;
+    focusPosition: string;
+    order: number;
+  };
+}
+
+const API_URL = import.meta.env.PUBLIC_API_URL || process.env.PUBLIC_API_URL || 'http://localhost:8000';
+let allArticles: NormalizedArticle[] = [];
+
+// Attempt hybrid fetch from FastAPI backend
+try {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 3500);
+  const res = await fetch(`${API_URL}/api/posts`, { signal: controller.signal });
+  clearTimeout(timeoutId);
+
+  if (res.ok) {
+    const apiPosts = await res.json();
+    if (Array.isArray(apiPosts) && apiPosts.length > 0) {
+      allArticles = apiPosts.map((p, idx) => ({
+        slug: p.slug,
+        data: {
+          title: p.title,
+          description: p.excerpt,
+          category: p.category,
+          dispatchId: p.dispatch_id || `ATH-25-0${idx + 1}`,
+          date: p.published_at
+            ? new Date(p.published_at).toISOString().split('T')[0]
+            : '2026-01-01',
+          readTime: `${p.read_time_minutes} MIN READ`,
+          volume: p.volume || 'VOL. 04 // ISSUE 08',
+          heroImage: p.cover_image || 'assets/images/atharva-studio-bw-stool.png',
+          heroImageAlt: p.hero_image_alt || p.title,
+          focusPosition: p.focus_position || 'center 35%',
+          order: p.order ?? (idx + 1),
+        }
+      }));
+    }
+  }
+} catch {
+  // Graceful fallback to local Markdown collection
+}
+
+// Fallback to local Markdown files if API is unreachable or returned no posts
+if (allArticles.length === 0) {
+  const localEntries = await getCollection('journal');
+  allArticles = localEntries.map((entry) => ({
+    slug: entry.slug,
+    data: {
+      title: entry.data.title,
+      description: entry.data.description,
+      category: entry.data.category,
+      dispatchId: entry.data.dispatchId,
+      date: entry.data.date,
+      readTime: entry.data.readTime,
+      volume: entry.data.volume,
+      heroImage: entry.data.heroImage,
+      heroImageAlt: entry.data.heroImageAlt,
+      focusPosition: entry.data.focusPosition,
+      order: entry.data.order,
+    }
+  }));
+}
+
 const sortedArticles = allArticles.sort((a, b) => a.data.order - b.data.order);
 ---
 
@@ -94,7 +170,7 @@ const sortedArticles = allArticles.sort((a, b) => a.data.order - b.data.order);
             <!-- Card Image -->
             <a href={url(`/journal/${article.slug}`)} class="relative w-full aspect-[16/10] overflow-hidden bg-canvas-sheet block">
               <img
-                src={url(article.data.heroImage)}
+                src={article.data.heroImage.startsWith('http') || article.data.heroImage.startsWith('/') ? article.data.heroImage : url(article.data.heroImage)}
                 alt={article.data.heroImageAlt}
                 class="w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105"
                 style={`object-position: ${article.data.focusPosition};`}

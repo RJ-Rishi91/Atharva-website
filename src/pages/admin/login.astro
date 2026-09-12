@@ -1,0 +1,264 @@
+---
+// src/pages/admin/login.astro
+// Editorial CMS Authentication Screen — Atharva Sharma
+import '../../styles/global.css';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="bg-[#FBF9F6]">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS Authentication // ATHARVA SHARMA</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+
+  <style>
+    :root {
+      --canvas-warm: #FBF9F6;
+      --canvas-sheet: #FFFFFF;
+      --canvas-alt: #F5F2EB;
+      --ink: #1B1B1B;
+      --red: #D72626;
+      --red-deep: #B31F1F;
+      --gray: #767676;
+      --grid-border: #E5E0D8;
+    }
+    body {
+      background-color: var(--canvas-warm);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-display {
+      font-family: 'Anton', sans-serif;
+    }
+    .font-mono {
+      font-family: 'Space Mono', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#D72626] selection:text-white">
+
+  <!-- Top Minimal Strip -->
+  <header class="w-full border-b border-[#E5E0D8] bg-[#F5F2EB] px-6 py-4 flex justify-between items-center text-xs">
+    <a href={url('/')} class="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[#1B1B1B]/70 hover:text-[#D72626] transition-colors group">
+      <span class="material-symbols-outlined text-[14px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
+      <span>RETURN TO ATHARVASHARMA.CO.IN</span>
+    </a>
+    <div class="flex items-center gap-3 font-mono text-[11px] text-[#767676]">
+      <span class="inline-block w-2 h-2 rounded-full bg-[#D72626]"></span>
+      <span>EDITORIAL CMS // DESK v2.6</span>
+    </div>
+  </header>
+
+  <!-- Centered Login Terminal -->
+  <main class="w-full flex-1 flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md">
+      
+      <!-- Wordmark & Subtitle -->
+      <div class="text-center mb-8">
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <span class="w-2 h-2 bg-[#D72626]"></span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#767676]">PRIVATE TERMINAL ACCESS</span>
+        </div>
+        <h1 class="font-display text-4xl sm:text-5xl uppercase tracking-tight text-[#1B1B1B] leading-none m-0">
+          ATHARVA SHARMA
+        </h1>
+        <p class="font-mono text-xs uppercase tracking-widest text-[#D72626] mt-1.5 font-bold">
+          EDITORIAL DISPATCH &amp; CMS PANEL
+        </p>
+      </div>
+
+      <!-- Auth Container Box -->
+      <div class="bg-white border border-[#E5E0D8] shadow-sm p-6 sm:p-8 relative">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-[#D72626]"></div>
+
+        <div class="mb-6">
+          <h2 class="font-display text-xl uppercase tracking-wide text-[#1B1B1B] mb-1">
+            CURATOR AUTHENTICATION
+          </h2>
+          <p class="font-sans text-xs text-[#767676] leading-relaxed">
+            Enter master key to manage dispatches, fashion essays, campaign logs, and publishing calendars.
+          </p>
+        </div>
+
+        <form id="loginForm" class="space-y-4">
+          <!-- Password Input -->
+          <div>
+            <div class="flex justify-between items-center mb-1.5 font-mono text-[11px] uppercase tracking-wider text-[#1B1B1B]">
+              <label for="password">MASTER PASSWORD</label>
+              <button type="button" id="toggleBtn" class="text-[#767676] hover:text-[#D72626] transition-colors focus:outline-none">
+                SHOW
+              </button>
+            </div>
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                required
+                autocomplete="current-password"
+                placeholder="Enter master password..."
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] focus:bg-white focus:outline-none px-3.5 py-3 font-mono text-xs tracking-wider transition-colors"
+              />
+            </div>
+          </div>
+
+          <!-- API Endpoint Switcher (Configurable) -->
+          <div class="pt-2 border-t border-[#E5E0D8]/60">
+            <button
+              type="button"
+              id="endpointToggleBtn"
+              class="flex items-center justify-between w-full font-mono text-[10px] uppercase tracking-widest text-[#767676] hover:text-[#1B1B1B] transition-colors"
+            >
+              <span>API ENDPOINT CONFIG</span>
+              <span id="endpointChevron" class="material-symbols-outlined text-[14px]">expand_more</span>
+            </button>
+            <div id="endpointConfigBox" class="hidden mt-2 pt-2 space-y-1.5">
+              <label for="apiEndpointInput" class="block font-mono text-[10px] uppercase tracking-wider text-[#767676]">
+                BACKEND API URL
+              </label>
+              <input
+                type="text"
+                id="apiEndpointInput"
+                placeholder="http://localhost:8000"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] px-3 py-2 font-mono text-[11px] focus:outline-none"
+              />
+              <span class="block font-mono text-[9px] text-[#767676]">
+                Default: http://localhost:8000 or production Render URL.
+              </span>
+            </div>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div id="errorMessage" class="hidden p-3 bg-red-50 border border-[#D72626] font-mono text-xs text-[#D72626]">
+            <div class="flex items-start gap-2">
+              <span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">error</span>
+              <span id="errorText">Invalid master credentials.</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-full mt-4 py-3.5 bg-[#D72626] hover:bg-[#B31F1F] active:bg-[#9B1A1A] text-white font-mono text-xs uppercase tracking-widest font-bold transition-colors flex items-center justify-center gap-2"
+          >
+            <span id="btnText">AUTHENTICATE &amp; ENTER DESK</span>
+            <span id="btnSpinner" class="hidden material-symbols-outlined text-[16px] animate-spin">progress_activity</span>
+          </button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t border-[#E5E0D8] flex items-center justify-between font-mono text-[10px] text-[#767676]">
+          <span>TOKEN PERSISTENCE: 24 HOURS</span>
+          <span>RESTRICTED ACCESS</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Minimal Footer Strip -->
+  <footer class="w-full border-t border-[#E5E0D8] bg-[#F5F2EB] px-6 py-3 flex justify-between items-center font-mono text-[10px] text-[#767676] uppercase tracking-wider">
+    <span>© 2026 ATHARVA SHARMA PORTFOLIO &amp; EDITORIAL ARCHIVE</span>
+    <span>ALL RIGHTS RESERVED</span>
+  </footer>
+
+  <script is:inline define:vars={{ base }}>
+    const form = document.getElementById('loginForm');
+    const passwordInput = document.getElementById('password');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const endpointToggleBtn = document.getElementById('endpointToggleBtn');
+    const endpointConfigBox = document.getElementById('endpointConfigBox');
+    const endpointChevron = document.getElementById('endpointChevron');
+    const apiEndpointInput = document.getElementById('apiEndpointInput');
+    const errorMessage = document.getElementById('errorMessage');
+    const errorText = document.getElementById('errorText');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnSpinner = document.getElementById('btnSpinner');
+
+    // Default API endpoint
+    const DEFAULT_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:8000'
+      : 'https://atharva-api.onrender.com';
+
+    // Retrieve stored custom endpoint or default
+    const storedEndpoint = localStorage.getItem('ath_api_url') || DEFAULT_API;
+    apiEndpointInput.value = storedEndpoint;
+
+    // Toggle endpoint config drawer
+    endpointToggleBtn.addEventListener('click', () => {
+      const isHidden = endpointConfigBox.classList.contains('hidden');
+      if (isHidden) {
+        endpointConfigBox.classList.remove('hidden');
+        endpointChevron.textContent = 'expand_less';
+      } else {
+        endpointConfigBox.classList.add('hidden');
+        endpointChevron.textContent = 'expand_more';
+      }
+    });
+
+    // Password visibility toggle
+    toggleBtn.addEventListener('click', () => {
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+      toggleBtn.textContent = isPassword ? 'HIDE' : 'SHOW';
+    });
+
+    // Handle authentication
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMessage.classList.add('hidden');
+      btnText.textContent = 'AUTHENTICATING...';
+      btnSpinner.classList.remove('hidden');
+      submitBtn.disabled = true;
+
+      const password = passwordInput.value.trim();
+      const apiUrl = (apiEndpointInput.value.trim() || DEFAULT_API).replace(/\/$/, '');
+      localStorage.setItem('ath_api_url', apiUrl);
+
+      try {
+        const res = await fetch(`${apiUrl}/api/admin/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.detail || 'Incorrect master credentials.');
+        }
+
+        const data = await res.json();
+        sessionStorage.setItem('ath_token', data.access_token);
+        
+        // Redirect to admin dashboard
+        window.location.href = `${base}/admin`;
+      } catch (err) {
+        errorText.textContent = err.message || 'Connection to API failed. Please check endpoint.';
+        errorMessage.classList.remove('hidden');
+        btnText.textContent = 'AUTHENTICATE & ENTER DESK';
+        btnSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Auto-redirect if already authenticated
+    const existingToken = sessionStorage.getItem('ath_token');
+    if (existingToken) {
+      window.location.href = `${base}/admin`;
+    }
+  </script>
+</body>
+</html>

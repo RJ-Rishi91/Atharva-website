@@ -1,0 +1,643 @@
+---
+// src/pages/admin/index.astro
+// Atharva Sharma Editorial CMS Dashboard
+import '../../styles/global.css';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="bg-[#FBF9F6]">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS Dashboard // ATHARVA SHARMA</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+
+  <style>
+    :root {
+      --canvas-warm: #FBF9F6;
+      --canvas-sheet: #FFFFFF;
+      --canvas-alt: #F5F2EB;
+      --ink: #1B1B1B;
+      --red: #D72626;
+      --red-deep: #B31F1F;
+      --gray: #767676;
+      --grid-border: #E5E0D8;
+    }
+    body {
+      background-color: var(--canvas-warm);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-display {
+      font-family: 'Anton', sans-serif;
+    }
+    .font-mono {
+      font-family: 'Space Mono', monospace;
+    }
+    .badge-published {
+      background-color: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+    .badge-scheduled {
+      background-color: #FFFBEB;
+      color: #92400E;
+      border: 1px solid #FDE68A;
+    }
+    .badge-draft {
+      background-color: #F3F4F6;
+      color: #4B5563;
+      border: 1px solid #E5E7EB;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-[#D72626] selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="w-full border-b border-[#E5E0D8] bg-[#F5F2EB] sticky top-0 z-30">
+    <div class="max-w-[1780px] mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Section -->
+      <div class="flex items-center gap-4">
+        <a href={url('/admin')} class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 bg-[#D72626]"></span>
+          <span class="font-display text-xl tracking-tight text-[#1B1B1B] uppercase group-hover:text-[#D72626] transition-colors">
+            ATHARVA SHARMA
+          </span>
+          <span class="font-mono text-xs text-[#767676] hidden sm:inline">// CMS DESK</span>
+        </a>
+
+        <!-- Main Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 font-mono text-xs uppercase tracking-wider ml-6 pl-6 border-l border-[#E5E0D8]">
+          <a href={url('/admin')} class="px-3 py-1.5 bg-[#1B1B1B] text-white font-bold">
+            DISPATCHES
+          </a>
+          <a href={url('/admin/calendar')} class="px-3 py-1.5 text-[#767676] hover:text-[#1B1B1B] hover:bg-[#E5E0D8]/60 transition-colors">
+            CALENDAR
+          </a>
+          <a href={url('/journal')} target="_blank" class="px-3 py-1.5 text-[#767676] hover:text-[#D72626] transition-colors flex items-center gap-1">
+            <span>LIVE JOURNAL</span>
+            <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-3">
+        <a
+          href={url('/admin/editor')}
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#D72626] hover:bg-[#B31F1F] text-white font-mono text-xs uppercase tracking-wider font-bold transition-colors shadow-sm"
+        >
+          <span class="material-symbols-outlined text-[16px]">add</span>
+          <span>NEW DISPATCH</span>
+        </a>
+
+        <button
+          type="button"
+          id="logoutBtn"
+          class="p-2 text-[#767676] hover:text-[#D72626] transition-colors title='Logout from CMS'"
+        >
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content Dashboard -->
+  <main class="w-full flex-1 max-w-[1780px] mx-auto px-4 sm:px-8 py-8 flex flex-col gap-6">
+
+    <!-- Page Header & Metrics Strip -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-[#E5E0D8]">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="font-mono text-xs text-[#D72626] uppercase tracking-widest font-bold">[ 01 // ARCHIVE REPOSITORY ]</span>
+          <span class="text-[#767676] text-xs">•</span>
+          <span class="font-mono text-xs text-[#767676] tracking-widest uppercase">REAL-TIME FASTAPI BACKEND</span>
+        </div>
+        <h1 class="font-display text-3xl sm:text-5xl uppercase tracking-tight text-[#1B1B1B] leading-none m-0">
+          EDITORIAL DISPATCHES
+        </h1>
+      </div>
+
+      <!-- KPI Metric Counter Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
+        <div class="p-3 bg-white border border-[#E5E0D8] flex flex-col">
+          <span class="text-[10px] text-[#767676] uppercase tracking-wider">TOTAL</span>
+          <span id="statTotal" class="font-display text-2xl text-[#1B1B1B] leading-none mt-1">--</span>
+        </div>
+        <div class="p-3 bg-white border border-[#E5E0D8] flex flex-col">
+          <span class="text-[10px] text-[#065F46] uppercase tracking-wider">PUBLISHED</span>
+          <span id="statPublished" class="font-display text-2xl text-[#065F46] leading-none mt-1">--</span>
+        </div>
+        <div class="p-3 bg-white border border-[#E5E0D8] flex flex-col">
+          <span class="text-[10px] text-[#92400E] uppercase tracking-wider">SCHEDULED</span>
+          <span id="statScheduled" class="font-display text-2xl text-[#92400E] leading-none mt-1">--</span>
+        </div>
+        <div class="p-3 bg-white border border-[#E5E0D8] flex flex-col">
+          <span class="text-[10px] text-[#4B5563] uppercase tracking-wider">DRAFTS</span>
+          <span id="statDrafts" class="font-display text-2xl text-[#4B5563] leading-none mt-1">--</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter, Search, and Bulk Actions Toolbar -->
+    <div class="bg-white border border-[#E5E0D8] p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-sm">
+      
+      <!-- Status Filter Tabs -->
+      <div class="flex items-center gap-1 font-mono text-xs uppercase overflow-x-auto no-scrollbar">
+        <button class="status-tab px-3 py-1.5 bg-[#1B1B1B] text-white font-bold whitespace-nowrap" data-status="all">
+          ALL DISPATCHES
+        </button>
+        <button class="status-tab px-3 py-1.5 text-[#767676] hover:text-[#1B1B1B] hover:bg-[#F5F2EB] transition-colors whitespace-nowrap" data-status="published">
+          PUBLISHED
+        </button>
+        <button class="status-tab px-3 py-1.5 text-[#767676] hover:text-[#1B1B1B] hover:bg-[#F5F2EB] transition-colors whitespace-nowrap" data-status="scheduled">
+          SCHEDULED
+        </button>
+        <button class="status-tab px-3 py-1.5 text-[#767676] hover:text-[#1B1B1B] hover:bg-[#F5F2EB] transition-colors whitespace-nowrap" data-status="draft">
+          DRAFTS
+        </button>
+      </div>
+
+      <!-- Search, Category Dropdown, and Bulk Import Trigger -->
+      <div class="flex flex-wrap items-center gap-3">
+        <!-- Search Input -->
+        <div class="relative flex-1 sm:w-64">
+          <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-[#767676]">search</span>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search dispatches..."
+            class="w-full pl-9 pr-3 py-2 bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] font-mono text-xs focus:outline-none focus:bg-white transition-colors"
+          />
+        </div>
+
+        <!-- Category Dropdown -->
+        <select
+          id="categorySelect"
+          class="px-3 py-2 bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] font-mono text-xs focus:outline-none cursor-pointer"
+        >
+          <option value="all">ALL CATEGORIES</option>
+          <option value="CRAFT & TECHNIQUE">CRAFT &amp; TECHNIQUE</option>
+          <option value="EDITORIAL DISPATCH">EDITORIAL DISPATCH</option>
+          <option value="ON LOCATION">ON LOCATION</option>
+          <option value="INDUSTRY INSIGHTS">INDUSTRY INSIGHTS</option>
+          <option value="CAMPAIGN NOTES">CAMPAIGN NOTES</option>
+          <option value="TRAVEL LOG">TRAVEL LOG</option>
+          <option value="STYLE COMMENTARY">STYLE COMMENTARY</option>
+        </select>
+
+        <!-- Bulk Import Trigger -->
+        <button
+          type="button"
+          id="openBulkModalBtn"
+          class="inline-flex items-center gap-1.5 px-3 py-2 bg-[#F5F2EB] hover:bg-[#E5E0D8] text-[#1B1B1B] border border-[#E5E0D8] font-mono text-xs uppercase tracking-wider transition-colors"
+        >
+          <span class="material-symbols-outlined text-[16px]">upload_file</span>
+          <span>BULK CSV</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Posts Table Section -->
+    <div class="bg-white border border-[#E5E0D8] shadow-sm overflow-hidden">
+      
+      <!-- Loading Skeleton -->
+      <div id="loadingBox" class="p-12 text-center flex flex-col items-center justify-center gap-3">
+        <span class="material-symbols-outlined text-[32px] text-[#D72626] animate-spin">progress_activity</span>
+        <span class="font-mono text-xs text-[#767676] uppercase tracking-widest">LOADING DISPATCHES FROM API...</span>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyBox" class="hidden p-16 text-center flex flex-col items-center justify-center gap-4">
+        <span class="material-symbols-outlined text-[48px] text-[#767676]">article</span>
+        <div class="max-w-md">
+          <h3 class="font-display text-xl uppercase text-[#1B1B1B] mb-1">NO DISPATCHES FOUND</h3>
+          <p class="font-sans text-xs text-[#767676]">No dispatches match the current filter or search criteria.</p>
+        </div>
+        <a href={url('/admin/editor')} class="px-4 py-2 bg-[#D72626] text-white font-mono text-xs uppercase tracking-widest font-bold">
+          CREATE FIRST DISPATCH
+        </a>
+      </div>
+
+      <!-- Table -->
+      <div id="tableContainer" class="hidden overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-[#F5F2EB] border-b border-[#E5E0D8] font-mono text-[10px] text-[#767676] uppercase tracking-widest">
+              <th class="py-3 px-4 font-bold">DISPATCH / TITLE</th>
+              <th class="py-3 px-4 font-bold">CATEGORY</th>
+              <th class="py-3 px-4 font-bold">STATUS</th>
+              <th class="py-3 px-4 font-bold">READ TIME</th>
+              <th class="py-3 px-4 font-bold">DATE / SCHEDULE</th>
+              <th class="py-3 px-4 font-bold text-right">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="postsTableBody" class="divide-y divide-[#E5E0D8] font-sans text-xs text-[#1B1B1B]">
+            <!-- Rows injected dynamically via JS -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Bulk Import Modal -->
+  <div id="bulkModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-[#E5E0D8] max-w-lg w-full p-6 sm:p-8 relative shadow-2xl">
+      <div class="absolute top-0 left-0 right-0 h-1 bg-[#D72626]"></div>
+      
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display text-xl uppercase text-[#1B1B1B]">BULK IMPORT DISPATCHES (CSV)</h3>
+        <button type="button" id="closeBulkModalBtn" class="text-[#767676] hover:text-[#1B1B1B]">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <p class="font-sans text-xs text-[#767676] mb-4 leading-relaxed">
+        Upload a structured CSV file with headers: <code class="font-mono text-[11px] bg-[#F5F2EB] px-1 py-0.5">title, category, excerpt, body, status</code>.
+      </p>
+
+      <form id="bulkForm" class="space-y-4">
+        <div>
+          <label for="csvFileInput" class="block font-mono text-[11px] uppercase tracking-wider text-[#1B1B1B] mb-2">
+            SELECT CSV FILE
+          </label>
+          <input
+            type="file"
+            id="csvFileInput"
+            accept=".csv"
+            required
+            class="w-full font-mono text-xs p-2 bg-[#FBF9F6] border border-[#E5E0D8] file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-xs file:font-mono file:bg-[#1B1B1B] file:text-white file:cursor-pointer"
+          />
+        </div>
+
+        <div id="bulkResultBox" class="hidden p-3 border font-mono text-xs"></div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-[#E5E0D8]">
+          <button
+            type="button"
+            id="downloadTemplateBtn"
+            class="font-mono text-xs text-[#767676] hover:text-[#D72626] underline uppercase tracking-wider"
+          >
+            DOWNLOAD SAMPLE TEMPLATE
+          </button>
+
+          <button
+            type="submit"
+            id="bulkSubmitBtn"
+            class="px-5 py-2.5 bg-[#D72626] hover:bg-[#B31F1F] text-white font-mono text-xs uppercase tracking-widest font-bold transition-colors"
+          >
+            IMPORT DISPATCHES
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-[#E5E0D8] max-w-sm w-full p-6 relative shadow-2xl">
+      <div class="absolute top-0 left-0 right-0 h-1 bg-[#D72626]"></div>
+      
+      <h3 class="font-display text-xl uppercase text-[#1B1B1B] mb-2">CONFIRM DELETION</h3>
+      <p class="font-sans text-xs text-[#767676] mb-6 leading-relaxed">
+        Are you sure you want to permanently delete this dispatch? This action cannot be undone and will trigger a site rebuild if published.
+      </p>
+
+      <div class="flex items-center justify-end gap-3 font-mono text-xs">
+        <button
+          type="button"
+          id="cancelDeleteBtn"
+          class="px-4 py-2 bg-[#F5F2EB] text-[#1B1B1B] border border-[#E5E0D8] hover:bg-[#E5E0D8] transition-colors uppercase tracking-wider"
+        >
+          CANCEL
+        </button>
+        <button
+          type="button"
+          id="confirmDeleteBtn"
+          class="px-4 py-2 bg-[#D72626] text-white hover:bg-[#B31F1F] transition-colors uppercase tracking-wider font-bold"
+        >
+          DELETE DISPATCH
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ base }}>
+    // Verify Authentication
+    const token = sessionStorage.getItem('ath_token');
+    if (!token) {
+      window.location.href = `${base}/admin/login`;
+    }
+
+    const DEFAULT_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:8000'
+      : 'https://atharva-api.onrender.com';
+    const API_URL = (localStorage.getItem('ath_api_url') || DEFAULT_API).replace(/\/$/, '');
+
+    // DOM Elements
+    const postsTableBody = document.getElementById('postsTableBody');
+    const loadingBox = document.getElementById('loadingBox');
+    const emptyBox = document.getElementById('emptyBox');
+    const tableContainer = document.getElementById('tableContainer');
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const statusTabs = document.querySelectorAll('.status-tab');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Metrics
+    const statTotal = document.getElementById('statTotal');
+    const statPublished = document.getElementById('statPublished');
+    const statScheduled = document.getElementById('statScheduled');
+    const statDrafts = document.getElementById('statDrafts');
+
+    // Delete Modal
+    const deleteModal = document.getElementById('deleteModal');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    let postToDeleteId = null;
+
+    // Bulk Modal
+    const bulkModal = document.getElementById('bulkModal');
+    const openBulkModalBtn = document.getElementById('openBulkModalBtn');
+    const closeBulkModalBtn = document.getElementById('closeBulkModalBtn');
+    const bulkForm = document.getElementById('bulkForm');
+    const csvFileInput = document.getElementById('csvFileInput');
+    const bulkResultBox = document.getElementById('bulkResultBox');
+    const downloadTemplateBtn = document.getElementById('downloadTemplateBtn');
+
+    let allPosts = [];
+    let currentStatusFilter = 'all';
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('ath_token');
+      window.location.href = `${base}/admin/login`;
+    });
+
+    // Fetch All Posts
+    async function loadPosts() {
+      loadingBox.classList.remove('hidden');
+      emptyBox.classList.add('hidden');
+      tableContainer.classList.add('hidden');
+
+      try {
+        const res = await fetch(`${API_URL}/api/admin/posts`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.status === 401) {
+          sessionStorage.removeItem('ath_token');
+          window.location.href = `${base}/admin/login`;
+          return;
+        }
+
+        if (!res.ok) throw new Error('Failed to fetch posts');
+
+        allPosts = await res.json();
+        updateMetrics(allPosts);
+        renderFilteredPosts();
+      } catch (err) {
+        loadingBox.innerHTML = `
+          <div class="text-[#D72626] font-mono text-xs">
+            <p class="font-bold mb-1">API CONNECTION FAILED</p>
+            <p>${err.message}. Is backend running on ${API_URL}?</p>
+            <button onclick="location.reload()" class="mt-3 px-3 py-1.5 bg-[#1B1B1B] text-white uppercase text-[10px]">RETRY</button>
+          </div>
+        `;
+      }
+    }
+
+    function updateMetrics(posts) {
+      const total = posts.length;
+      const published = posts.filter(p => p.status === 'published').length;
+      const scheduled = posts.filter(p => p.status === 'scheduled').length;
+      const drafts = posts.filter(p => p.status === 'draft').length;
+
+      statTotal.textContent = total;
+      statPublished.textContent = published;
+      statScheduled.textContent = scheduled;
+      statDrafts.textContent = drafts;
+    }
+
+    function renderFilteredPosts() {
+      const query = searchInput.value.trim().toLowerCase();
+      const selectedCategory = categorySelect.value;
+
+      const filtered = allPosts.filter(p => {
+        // Status filter
+        if (currentStatusFilter !== 'all' && p.status !== currentStatusFilter) return false;
+        // Category filter
+        if (selectedCategory !== 'all' && p.category !== selectedCategory) return false;
+        // Search query
+        if (query) {
+          const matchTitle = (p.title || '').toLowerCase().includes(query);
+          const matchSlug = (p.slug || '').toLowerCase().includes(query);
+          const matchExcerpt = (p.excerpt || '').toLowerCase().includes(query);
+          const matchDispatch = (p.dispatch_id || '').toLowerCase().includes(query);
+          if (!matchTitle && !matchSlug && !matchExcerpt && !matchDispatch) return false;
+        }
+        return true;
+      });
+
+      loadingBox.classList.add('hidden');
+
+      if (filtered.length === 0) {
+        emptyBox.classList.remove('hidden');
+        tableContainer.classList.add('hidden');
+        return;
+      }
+
+      emptyBox.classList.add('hidden');
+      tableContainer.classList.remove('hidden');
+
+      postsTableBody.innerHTML = filtered.map(post => {
+        const statusBadge = post.status === 'published'
+          ? `<span class="badge-published px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider">PUBLISHED</span>`
+          : post.status === 'scheduled'
+          ? `<span class="badge-scheduled px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider">SCHEDULED</span>`
+          : `<span class="badge-draft px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider">DRAFT</span>`;
+
+        const displayDate = post.published_at
+          ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : post.scheduled_at
+          ? `Sched: ${new Date(post.scheduled_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
+          : 'Not set';
+
+        return `
+          <tr class="hover:bg-[#FBF9F6] transition-colors">
+            <td class="py-3 px-4">
+              <div class="flex flex-col gap-0.5">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-[10px] text-[#D72626] font-bold">[ ${post.dispatch_id || 'ATH-26'} ]</span>
+                  <a href="${base}/admin/editor?id=${post.id}" class="font-bold text-sm text-[#1B1B1B] hover:text-[#D72626] transition-colors line-clamp-1">
+                    ${post.title}
+                  </a>
+                </div>
+                <span class="font-mono text-[10px] text-[#767676] line-clamp-1">/${post.slug}</span>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="font-mono text-[11px] bg-[#F5F2EB] px-2 py-1 text-[#1B1B1B] border border-[#E5E0D8] inline-block whitespace-nowrap">
+                ${post.category}
+              </span>
+            </td>
+            <td class="py-3 px-4 whitespace-nowrap">
+              ${statusBadge}
+            </td>
+            <td class="py-3 px-4 font-mono text-[11px] text-[#767676] whitespace-nowrap">
+              ${post.read_time_minutes} min read
+            </td>
+            <td class="py-3 px-4 font-mono text-[11px] text-[#767676] whitespace-nowrap">
+              ${displayDate}
+            </td>
+            <td class="py-3 px-4 text-right whitespace-nowrap">
+              <div class="flex items-center justify-end gap-2 font-mono text-xs">
+                ${post.status === 'published' ? `
+                  <a href="${base}/journal/${post.slug}" target="_blank" class="p-1.5 text-[#767676] hover:text-[#1B1B1B]" title="View live page">
+                    <span class="material-symbols-outlined text-[16px]">visibility</span>
+                  </a>
+                ` : ''}
+                <a href="${base}/admin/editor?id=${post.id}" class="p-1.5 text-[#767676] hover:text-[#D72626]" title="Edit dispatch">
+                  <span class="material-symbols-outlined text-[16px]">edit</span>
+                </a>
+                <button type="button" onclick="openDeleteModal(${post.id})" class="p-1.5 text-[#767676] hover:text-red-600" title="Delete dispatch">
+                  <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Status Tab Switching
+    statusTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        statusTabs.forEach(t => {
+          t.classList.remove('bg-[#1B1B1B]', 'text-white', 'font-bold');
+          t.classList.add('text-[#767676]');
+        });
+        tab.classList.add('bg-[#1B1B1B]', 'text-white', 'font-bold');
+        tab.classList.remove('text-[#767676]');
+
+        currentStatusFilter = tab.dataset.status;
+        renderFilteredPosts();
+      });
+    });
+
+    // Live search & category filters
+    searchInput.addEventListener('input', renderFilteredPosts);
+    categorySelect.addEventListener('change', renderFilteredPosts);
+
+    // Delete Flow
+    window.openDeleteModal = function(id) {
+      postToDeleteId = id;
+      deleteModal.classList.remove('hidden');
+    };
+
+    cancelDeleteBtn.addEventListener('click', () => {
+      postToDeleteId = null;
+      deleteModal.classList.add('hidden');
+    });
+
+    confirmDeleteBtn.addEventListener('click', async () => {
+      if (!postToDeleteId) return;
+      confirmDeleteBtn.disabled = true;
+      confirmDeleteBtn.textContent = 'DELETING...';
+
+      try {
+        const res = await fetch(`${API_URL}/api/admin/posts/${postToDeleteId}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error('Deletion failed');
+        deleteModal.classList.add('hidden');
+        loadPosts();
+      } catch (err) {
+        alert(err.message || 'Error deleting dispatch');
+      } finally {
+        confirmDeleteBtn.disabled = false;
+        confirmDeleteBtn.textContent = 'DELETE DISPATCH';
+      }
+    });
+
+    // Bulk Import Modal Flow
+    openBulkModalBtn.addEventListener('click', () => bulkModal.classList.remove('hidden'));
+    closeBulkModalBtn.addEventListener('click', () => {
+      bulkModal.classList.add('hidden');
+      bulkResultBox.classList.add('hidden');
+      csvFileInput.value = '';
+    });
+
+    bulkForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const file = csvFileInput.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const submitBtn = document.getElementById('bulkSubmitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'IMPORTING...';
+
+      try {
+        const res = await fetch(`${API_URL}/api/admin/posts/bulk-import`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: formData
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Bulk import failed');
+
+        bulkResultBox.className = 'p-3 border border-green-300 bg-green-50 text-green-800 font-mono text-xs';
+        bulkResultBox.innerHTML = `
+          <p class="font-bold">✓ IMPORT COMPLETED</p>
+          <p>Created: ${data.created_count} | Published: ${data.published_count} | Errors: ${data.error_count}</p>
+        `;
+        bulkResultBox.classList.remove('hidden');
+        loadPosts();
+      } catch (err) {
+        bulkResultBox.className = 'p-3 border border-red-300 bg-red-50 text-red-800 font-mono text-xs';
+        bulkResultBox.textContent = `❌ ${err.message}`;
+        bulkResultBox.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'IMPORT DISPATCHES';
+      }
+    });
+
+    // Sample CSV Template Download
+    downloadTemplateBtn.addEventListener('click', () => {
+      const template = "title,category,excerpt,body,status,scheduled_at,cover_image,dispatch_id,volume,focus_position,board,location,meta_title,meta_description,meta_keywords\\nSample Runway Poise,CRAFT & TECHNIQUE,Physical discipline in menswear.,\"# Heading\\n\\nBody text here.\",published,,assets/images/atharva-studio-bw-stool.png,ATH-26-01,VOL. 04 // ISSUE 08,center 28%,DIRECT MALE RUNWAY,UDAIPUR / MUMBAI / GLOBAL,Sample Meta Title,Sample Meta Description,runway\\n";
+      const blob = new Blob([template], { type: 'text/csv' });
+      const dlUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = dlUrl;
+      a.download = 'atharva-dispatches-template.csv';
+      a.click();
+    });
+
+    // Initial Load
+    loadPosts();
+  </script>
+</body>
+</html>

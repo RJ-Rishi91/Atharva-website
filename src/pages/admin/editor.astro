@@ -1,0 +1,907 @@
+---
+// src/pages/admin/editor.astro
+// Editorial Dispatch Composer & Editor — Atharva Sharma
+import '../../styles/global.css';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="bg-[#FBF9F6]">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dispatch Composer // ATHARVA SHARMA CMS</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+
+  <!-- Client-side marked for instant live preview -->
+  <script is:inline src={url('/assets/js/marked.min.js')}></script>
+
+  <style>
+    :root {
+      --canvas-warm: #FBF9F6;
+      --canvas-sheet: #FFFFFF;
+      --canvas-alt: #F5F2EB;
+      --ink: #1B1B1B;
+      --red: #D72626;
+      --red-deep: #B31F1F;
+      --gray: #767676;
+      --grid-border: #E5E0D8;
+    }
+    body {
+      background-color: var(--canvas-warm);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-display {
+      font-family: 'Anton', sans-serif;
+    }
+    .font-mono {
+      font-family: 'Space Mono', monospace;
+    }
+    .editor-tab-active {
+      background-color: #1B1B1B;
+      color: #FFFFFF;
+    }
+    .editor-tab-inactive {
+      background-color: #F5F2EB;
+      color: #767676;
+    }
+    .editor-tab-inactive:hover {
+      color: #1B1B1B;
+    }
+
+    /* Live Editorial Preview Typography */
+    .preview-prose {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+      font-size: 1rem;
+      color: #1B1B1B;
+    }
+    .preview-prose h1, .preview-prose h2, .preview-prose h3, .preview-prose h4 {
+      font-family: 'Anton', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #1B1B1B;
+      line-height: 1.2;
+    }
+    .preview-prose h2 { font-size: 1.65rem; }
+    .preview-prose h3 { font-size: 1.35rem; }
+    .preview-prose h4 { font-size: 1.15rem; }
+    .preview-prose p {
+      margin-bottom: 1.25rem;
+    }
+    .preview-prose blockquote {
+      border-left: 3px solid #D72626;
+      padding-left: 1.25rem;
+      margin: 1.75rem 0;
+      font-style: italic;
+      color: #767676;
+      background: #F5F2EB/50;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    .preview-prose table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+    }
+    .preview-prose th, .preview-prose td {
+      border: 1px solid #E5E0D8;
+      padding: 0.5rem 0.75rem;
+    }
+    .preview-prose th {
+      background-color: #F5F2EB;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .preview-prose code {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85em;
+      background-color: #F5F2EB;
+      padding: 0.15rem 0.35rem;
+      border: 1px solid #E5E0D8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-[#D72626] selection:text-white">
+
+  <!-- Top Action Header Bar -->
+  <header class="w-full border-b border-[#E5E0D8] bg-[#F5F2EB] sticky top-0 z-30">
+    <div class="max-w-[1780px] mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Back & Document Status -->
+      <div class="flex items-center gap-4">
+        <a href={url('/admin')} class="inline-flex items-center gap-1.5 font-mono text-xs text-[#767676] hover:text-[#D72626] transition-colors uppercase tracking-wider group">
+          <span class="material-symbols-outlined text-[16px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
+          <span>ALL DISPATCHES</span>
+        </a>
+
+        <span class="text-[#E5E0D8]">|</span>
+
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#D72626]" id="liveStatusDot"></span>
+          <span id="composerModeLabel" class="font-mono text-xs font-bold uppercase text-[#1B1B1B] tracking-wider">
+            NEW DISPATCH
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          id="quickDraftBtn"
+          class="px-4 py-2 bg-[#F5F2EB] hover:bg-[#E5E0D8] border border-[#E5E0D8] font-mono text-xs uppercase tracking-wider text-[#1B1B1B] transition-colors"
+        >
+          SAVE DRAFT
+        </button>
+
+        <button
+          type="button"
+          id="mainSubmitBtn"
+          class="inline-flex items-center gap-2 px-5 py-2 bg-[#D72626] hover:bg-[#B31F1F] text-white font-mono text-xs uppercase tracking-widest font-bold transition-colors shadow-sm"
+        >
+          <span id="mainSubmitText">PUBLISH DISPATCH</span>
+          <span id="mainSubmitSpinner" class="hidden material-symbols-outlined text-[16px] animate-spin">progress_activity</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Composer Body Container -->
+  <main class="w-full flex-1 max-w-[1780px] mx-auto px-4 sm:px-8 py-8">
+    <form id="editorForm" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- LEFT COLUMN: Content Composer (8 cols) -->
+      <div class="lg:col-span-8 flex flex-col gap-6">
+
+        <!-- Title & Slug Panel -->
+        <div class="bg-white border border-[#E5E0D8] p-6 shadow-sm flex flex-col gap-4">
+          <div>
+            <label for="postTitle" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1.5 font-bold">
+              DISPATCH TITLE *
+            </label>
+            <input
+              type="text"
+              id="postTitle"
+              required
+              placeholder="e.g. The Architecture of Drapery: Volume and Form in Modern Menswear"
+              class="w-full font-display text-2xl sm:text-3xl text-[#1B1B1B] border-b-2 border-[#E5E0D8] focus:border-[#D72626] pb-2 focus:outline-none placeholder:text-[#E5E0D8] uppercase tracking-tight"
+            />
+          </div>
+
+          <!-- Permalink Slug -->
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="text-[#767676] shrink-0">/journal/</span>
+            <input
+              type="text"
+              id="postSlug"
+              placeholder="auto-generated-from-title"
+              class="flex-1 bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] px-2.5 py-1 text-xs text-[#1B1B1B] focus:outline-none"
+            />
+            <button
+              type="button"
+              id="regenSlugBtn"
+              class="px-2 py-1 bg-[#F5F2EB] border border-[#E5E0D8] text-[10px] uppercase text-[#767676] hover:text-[#1B1B1B]"
+              title="Regenerate slug from title"
+            >
+              SYNC
+            </button>
+          </div>
+
+          <!-- Excerpt / Description -->
+          <div>
+            <label for="postExcerpt" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1.5 font-bold">
+              EDITORIAL EXCERPT / ABSTRACT *
+            </label>
+            <textarea
+              id="postExcerpt"
+              required
+              rows="2"
+              placeholder="Brief 1-2 sentence executive summary of the dispatch..."
+              class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-3 font-sans text-xs text-[#1B1B1B] focus:outline-none leading-relaxed"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Markdown Body Composer & Live Preview Pane -->
+        <div class="bg-white border border-[#E5E0D8] shadow-sm flex flex-col">
+          
+          <!-- Mode Tabs & Formatting Toolbar -->
+          <div class="flex flex-wrap items-center justify-between border-b border-[#E5E0D8] bg-[#F5F2EB] p-2 gap-2">
+            
+            <!-- View Switcher -->
+            <div class="flex items-center gap-1 font-mono text-xs">
+              <button
+                type="button"
+                id="tabWrite"
+                class="px-3 py-1.5 editor-tab-active font-bold uppercase tracking-wider text-xs"
+              >
+                WRITE
+              </button>
+              <button
+                type="button"
+                id="tabPreview"
+                class="px-3 py-1.5 editor-tab-inactive uppercase tracking-wider text-xs"
+              >
+                LIVE PREVIEW
+              </button>
+              <button
+                type="button"
+                id="tabSplit"
+                class="hidden sm:inline-block px-3 py-1.5 editor-tab-inactive uppercase tracking-wider text-xs"
+              >
+                SPLIT VIEW
+              </button>
+            </div>
+
+            <!-- Formatting Quick Tools -->
+            <div id="formatToolbar" class="flex items-center gap-1 text-[#767676]">
+              <button type="button" class="fmt-btn p-1.5 hover:text-[#1B1B1B]" data-prefix="## " title="Heading 2">
+                <span class="font-bold text-xs">H2</span>
+              </button>
+              <button type="button" class="fmt-btn p-1.5 hover:text-[#1B1B1B]" data-prefix="### " title="Heading 3">
+                <span class="font-bold text-xs">H3</span>
+              </button>
+              <button type="button" class="fmt-btn p-1.5 hover:text-[#1B1B1B]" data-wrap="**" title="Bold">
+                <span class="material-symbols-outlined text-[18px]">format_bold</span>
+              </button>
+              <button type="button" class="fmt-btn p-1.5 hover:text-[#1B1B1B]" data-wrap="*" title="Italic">
+                <span class="material-symbols-outlined text-[18px]">format_italic</span>
+              </button>
+              <button type="button" class="fmt-btn p-1.5 hover:text-[#1B1B1B]" data-prefix="> " title="Quote Block">
+                <span class="material-symbols-outlined text-[18px]">format_quote</span>
+              </button>
+              <button type="button" class="fmt-btn p-1.5 hover:text-[#1B1B1B]" data-template="spec_table" title="Insert Production Spec Sheet Table">
+                <span class="material-symbols-outlined text-[18px]">table_chart</span>
+              </button>
+              <button type="button" class="fmt-btn p-1.5 hover:text-[#1B1B1B]" data-template="code_block" title="Code Block">
+                <span class="material-symbols-outlined text-[18px]">code</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Editor Panes Container -->
+          <div class="relative min-h-[520px] flex">
+            
+            <!-- Write Pane -->
+            <div id="writePane" class="w-full flex-1 flex flex-col">
+              <textarea
+                id="postBody"
+                required
+                placeholder="Compose dispatch in Markdown..."
+                class="w-full flex-1 p-6 font-mono text-xs text-[#1B1B1B] bg-transparent focus:outline-none resize-y min-h-[520px] leading-relaxed"
+              ></textarea>
+            </div>
+
+            <!-- Preview Pane -->
+            <div id="previewPane" class="hidden w-full flex-1 p-8 bg-[#FBF9F6] border-l border-[#E5E0D8] overflow-y-auto max-h-[700px]">
+              <div id="previewContent" class="preview-prose max-w-none">
+                <!-- Injected via marked -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Publishing & Editorial Controls (4 cols) -->
+      <div class="lg:col-span-4 flex flex-col gap-6">
+
+        <!-- 1. Publication Status & Actions -->
+        <div class="bg-white border border-[#E5E0D8] p-6 shadow-sm flex flex-col gap-4">
+          <div class="flex items-center justify-between pb-3 border-b border-[#E5E0D8]">
+            <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#1B1B1B]">
+              PUBLISHING WORKFLOW
+            </span>
+            <span id="badgeCurrentStatus" class="px-2 py-0.5 font-mono text-[10px] uppercase font-bold bg-[#F3F4F6] text-[#4B5563] border border-[#E5E7EB]">
+              DRAFT
+            </span>
+          </div>
+
+          <div>
+            <label for="postStatus" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1.5 font-bold">
+              TARGET STATUS
+            </label>
+            <select
+              id="postStatus"
+              class="w-full p-2.5 bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] font-mono text-xs text-[#1B1B1B] focus:outline-none cursor-pointer font-bold"
+            >
+              <option value="draft">DRAFT (PRIVATE)</option>
+              <option value="published">PUBLISH (TRIGGER REBUILD)</option>
+              <option value="scheduled">SCHEDULED RELEASE</option>
+            </select>
+          </div>
+
+          <!-- Schedule Date & Time Picker (Shown when scheduled) -->
+          <div id="scheduledFieldBox" class="hidden p-3 bg-[#FFFBEB] border border-[#FDE68A] flex flex-col gap-2">
+            <label for="postScheduledAt" class="block font-mono text-[10px] text-[#92400E] uppercase tracking-widest font-bold">
+              RELEASE DATE &amp; TIME (UTC)
+            </label>
+            <input
+              type="datetime-local"
+              id="postScheduledAt"
+              class="w-full bg-white border border-[#FDE68A] p-2 font-mono text-xs text-[#92400E] focus:outline-none"
+            />
+            <span class="font-mono text-[9px] text-[#92400E]">
+              Scheduler polls every 5 mins and auto-triggers GitHub Actions deploy when due.
+            </span>
+          </div>
+
+          <!-- Save / Submit CTA -->
+          <button
+            type="submit"
+            id="sideSubmitBtn"
+            class="w-full py-3.5 bg-[#D72626] hover:bg-[#B31F1F] text-white font-mono text-xs uppercase tracking-widest font-bold transition-colors shadow-sm mt-2 flex items-center justify-center gap-2"
+          >
+            <span>SAVE DISPATCH</span>
+          </button>
+        </div>
+
+        <!-- 2. Editorial Metadata Specification -->
+        <div class="bg-white border border-[#E5E0D8] p-6 shadow-sm flex flex-col gap-4">
+          <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#1B1B1B] pb-3 border-b border-[#E5E0D8]">
+            EDITORIAL SPECIFICATION
+          </span>
+
+          <!-- Category -->
+          <div>
+            <label for="postCategory" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1.5 font-bold">
+              CATEGORY *
+            </label>
+            <select
+              id="postCategory"
+              required
+              class="w-full p-2.5 bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] font-mono text-xs text-[#1B1B1B] focus:outline-none cursor-pointer"
+            >
+              <option value="CRAFT & TECHNIQUE">CRAFT &amp; TECHNIQUE</option>
+              <option value="EDITORIAL DISPATCH">EDITORIAL DISPATCH</option>
+              <option value="ON LOCATION">ON LOCATION</option>
+              <option value="INDUSTRY INSIGHTS">INDUSTRY INSIGHTS</option>
+              <option value="CAMPAIGN NOTES">CAMPAIGN NOTES</option>
+              <option value="TRAVEL LOG">TRAVEL LOG</option>
+              <option value="STYLE COMMENTARY">STYLE COMMENTARY</option>
+            </select>
+          </div>
+
+          <!-- Dispatch ID & Volume -->
+          <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+            <div>
+              <label for="postDispatchId" class="block text-[10px] text-[#767676] uppercase tracking-widest mb-1 font-bold">
+                REF ID
+              </label>
+              <input
+                type="text"
+                id="postDispatchId"
+                placeholder="ATH-26-01"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 text-xs focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="postOrder" class="block text-[10px] text-[#767676] uppercase tracking-widest mb-1 font-bold">
+                ORDER #
+              </label>
+              <input
+                type="number"
+                id="postOrder"
+                value="1"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 text-xs focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <!-- Volume & Location -->
+          <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+            <div>
+              <label for="postVolume" class="block text-[10px] text-[#767676] uppercase tracking-widest mb-1 font-bold">
+                VOLUME
+              </label>
+              <input
+                type="text"
+                id="postVolume"
+                value="VOL. 04 // ISSUE 08"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 text-xs focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="postBoard" class="block text-[10px] text-[#767676] uppercase tracking-widest mb-1 font-bold">
+                BOARD
+              </label>
+              <input
+                type="text"
+                id="postBoard"
+                value="DIRECT MALE RUNWAY"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 text-xs focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="postLocation" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1 font-bold">
+              LOCATION
+            </label>
+            <input
+              type="text"
+              id="postLocation"
+              value="UDAIPUR / MUMBAI / GLOBAL"
+              class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 font-mono text-xs text-[#1B1B1B] focus:outline-none"
+            />
+          </div>
+
+        </div>
+
+        <!-- 3. Cover Image & Focal Point -->
+        <div class="bg-white border border-[#E5E0D8] p-6 shadow-sm flex flex-col gap-4">
+          <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#1B1B1B] pb-3 border-b border-[#E5E0D8]">
+            COVER IMAGE &amp; MEDIA
+          </span>
+
+          <!-- Image Preview -->
+          <div id="imagePreviewBox" class="w-full aspect-[16/10] bg-[#F5F2EB] border border-[#E5E0D8] overflow-hidden relative flex items-center justify-center">
+            <img id="coverPreviewImg" class="w-full h-full object-cover hidden" alt="Cover preview" />
+            <span id="coverPlaceholderText" class="font-mono text-[10px] text-[#767676] uppercase tracking-widest">
+              NO IMAGE SELECTED
+            </span>
+          </div>
+
+          <!-- Upload Button -->
+          <div class="flex items-center gap-2">
+            <label class="flex-1 py-2 px-3 bg-[#1B1B1B] hover:bg-[#D72626] text-white font-mono text-xs uppercase tracking-wider cursor-pointer text-center transition-colors">
+              <span>UPLOAD IMAGE FILE</span>
+              <input type="file" id="imageFileInput" accept="image/*" class="hidden" />
+            </label>
+          </div>
+
+          <!-- Image URL input -->
+          <div>
+            <label for="postCoverImage" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1 font-bold">
+              OR IMAGE PATH / URL
+            </label>
+            <input
+              type="text"
+              id="postCoverImage"
+              placeholder="assets/images/atharva-studio-bw-stool.png"
+              class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 font-mono text-xs text-[#1B1B1B] focus:outline-none"
+            />
+          </div>
+
+          <!-- Focus Position -->
+          <div>
+            <label for="postFocusPosition" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1 font-bold">
+              FOCUS POSITION (CSS OBJECT-POSITION)
+            </label>
+            <input
+              type="text"
+              id="postFocusPosition"
+              value="center 35%"
+              class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 font-mono text-xs text-[#1B1B1B] focus:outline-none"
+            />
+            <div class="flex items-center gap-1.5 mt-1.5 font-mono text-[10px]">
+              <button type="button" class="focus-preset px-2 py-0.5 bg-[#F5F2EB] text-[#767676] hover:text-[#1B1B1B]" data-pos="center 20%">TOP (20%)</button>
+              <button type="button" class="focus-preset px-2 py-0.5 bg-[#F5F2EB] text-[#767676] hover:text-[#1B1B1B]" data-pos="center 35%">MID (35%)</button>
+              <button type="button" class="focus-preset px-2 py-0.5 bg-[#F5F2EB] text-[#767676] hover:text-[#1B1B1B]" data-pos="center 50%">CENTER (50%)</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4. SEO & Social Meta Overrides (Collapsible) -->
+        <div class="bg-white border border-[#E5E0D8] p-6 shadow-sm flex flex-col gap-4">
+          <button
+            type="button"
+            id="toggleSeoBtn"
+            class="flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-[#1B1B1B] focus:outline-none"
+          >
+            <span>SEO &amp; SOCIAL OVERRIDES</span>
+            <span id="seoChevron" class="material-symbols-outlined text-[18px]">expand_more</span>
+          </button>
+
+          <div id="seoFieldsBox" class="hidden space-y-3 pt-2 border-t border-[#E5E0D8]">
+            <div>
+              <label for="postMetaTitle" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1">
+                META TITLE OVERRIDE
+              </label>
+              <input
+                type="text"
+                id="postMetaTitle"
+                placeholder="Leave blank to use dispatch title"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 font-mono text-xs text-[#1B1B1B] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label for="postMetaDescription" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1">
+                META DESCRIPTION OVERRIDE
+              </label>
+              <textarea
+                id="postMetaDescription"
+                rows="2"
+                placeholder="Leave blank to use dispatch excerpt"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 font-mono text-xs text-[#1B1B1B] focus:outline-none"
+              ></textarea>
+            </div>
+
+            <div>
+              <label for="postMetaKeywords" class="block font-mono text-[10px] text-[#767676] uppercase tracking-widest mb-1">
+                META KEYWORDS (COMMA-SEPARATED)
+              </label>
+              <input
+                type="text"
+                id="postMetaKeywords"
+                placeholder="runway, menswear, technique"
+                class="w-full bg-[#FBF9F6] border border-[#E5E0D8] focus:border-[#D72626] p-2 font-mono text-xs text-[#1B1B1B] focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+  </main>
+
+  <script is:inline define:vars={{ base }}>
+    // Auth Check
+    const token = sessionStorage.getItem('ath_token');
+    if (!token) {
+      window.location.href = `${base}/admin/login`;
+    }
+
+    const DEFAULT_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:8000'
+      : 'https://atharva-api.onrender.com';
+    const API_URL = (localStorage.getItem('ath_api_url') || DEFAULT_API).replace(/\/$/, '');
+
+    // URL Parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const editingPostId = urlParams.get('id');
+
+    // DOM Elements
+    const form = document.getElementById('editorForm');
+    const composerModeLabel = document.getElementById('composerModeLabel');
+    const mainSubmitText = document.getElementById('mainSubmitText');
+    const mainSubmitSpinner = document.getElementById('mainSubmitSpinner');
+    const mainSubmitBtn = document.getElementById('mainSubmitBtn');
+    const quickDraftBtn = document.getElementById('quickDraftBtn');
+    const sideSubmitBtn = document.getElementById('sideSubmitBtn');
+
+    // Inputs
+    const postTitle = document.getElementById('postTitle');
+    const postSlug = document.getElementById('postSlug');
+    const regenSlugBtn = document.getElementById('regenSlugBtn');
+    const postExcerpt = document.getElementById('postExcerpt');
+    const postBody = document.getElementById('postBody');
+    const postStatus = document.getElementById('postStatus');
+    const postScheduledAt = document.getElementById('postScheduledAt');
+    const scheduledFieldBox = document.getElementById('scheduledFieldBox');
+    const badgeCurrentStatus = document.getElementById('badgeCurrentStatus');
+
+    const postCategory = document.getElementById('postCategory');
+    const postDispatchId = document.getElementById('postDispatchId');
+    const postOrder = document.getElementById('postOrder');
+    const postVolume = document.getElementById('postVolume');
+    const postBoard = document.getElementById('postBoard');
+    const postLocation = document.getElementById('postLocation');
+
+    const postCoverImage = document.getElementById('postCoverImage');
+    const postFocusPosition = document.getElementById('postFocusPosition');
+    const imageFileInput = document.getElementById('imageFileInput');
+    const coverPreviewImg = document.getElementById('coverPreviewImg');
+    const coverPlaceholderText = document.getElementById('coverPlaceholderText');
+
+    // SEO
+    const toggleSeoBtn = document.getElementById('toggleSeoBtn');
+    const seoFieldsBox = document.getElementById('seoFieldsBox');
+    const seoChevron = document.getElementById('seoChevron');
+    const postMetaTitle = document.getElementById('postMetaTitle');
+    const postMetaDescription = document.getElementById('postMetaDescription');
+    const postMetaKeywords = document.getElementById('postMetaKeywords');
+
+    // Panes
+    const tabWrite = document.getElementById('tabWrite');
+    const tabPreview = document.getElementById('tabPreview');
+    const tabSplit = document.getElementById('tabSplit');
+    const writePane = document.getElementById('writePane');
+    const previewPane = document.getElementById('previewPane');
+    const previewContent = document.getElementById('previewContent');
+
+    // Toggle SEO drawer
+    toggleSeoBtn.addEventListener('click', () => {
+      const isHidden = seoFieldsBox.classList.contains('hidden');
+      if (isHidden) {
+        seoFieldsBox.classList.remove('hidden');
+        seoChevron.textContent = 'expand_less';
+      } else {
+        seoFieldsBox.classList.add('hidden');
+        seoChevron.textContent = 'expand_more';
+      }
+    });
+
+    // Auto-generate slug from title
+    function slugify(text) {
+      return text.toString().toLowerCase()
+        .replace(/\\s+/g, '-')
+        .replace(/[^\\w\\-]+/g, '')
+        .replace(/\\-\\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+    }
+
+    postTitle.addEventListener('input', () => {
+      if (!editingPostId && (!postSlug.dataset.custom || postSlug.dataset.custom === 'false')) {
+        postSlug.value = slugify(postTitle.value);
+      }
+    });
+
+    postSlug.addEventListener('input', () => {
+      postSlug.dataset.custom = 'true';
+    });
+
+    regenSlugBtn.addEventListener('click', () => {
+      postSlug.value = slugify(postTitle.value);
+      postSlug.dataset.custom = 'false';
+    });
+
+    // Status Dropdown Changes
+    postStatus.addEventListener('change', () => {
+      const val = postStatus.value;
+      if (val === 'scheduled') {
+        scheduledFieldBox.classList.remove('hidden');
+      } else {
+        scheduledFieldBox.classList.add('hidden');
+      }
+      badgeCurrentStatus.textContent = val.toUpperCase();
+      mainSubmitText.textContent = val === 'published' ? 'PUBLISH DISPATCH' : val === 'scheduled' ? 'SCHEDULE RELEASE' : 'SAVE DRAFT';
+    });
+
+    // Focus Presets
+    document.querySelectorAll('.focus-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        postFocusPosition.value = btn.dataset.pos;
+        if (coverPreviewImg) {
+          coverPreviewImg.style.objectPosition = btn.dataset.pos;
+        }
+      });
+    });
+
+    // Update Cover Image Preview
+    function updateImagePreview(src) {
+      if (!src) {
+        coverPreviewImg.classList.add('hidden');
+        coverPlaceholderText.classList.remove('hidden');
+        return;
+      }
+      coverPreviewImg.src = src.startsWith('http') || src.startsWith('/') ? src : `${base}/${src}`;
+      coverPreviewImg.style.objectPosition = postFocusPosition.value || 'center 35%';
+      coverPreviewImg.classList.remove('hidden');
+      coverPlaceholderText.classList.add('hidden');
+    }
+
+    postCoverImage.addEventListener('input', () => updateImagePreview(postCoverImage.value));
+    postFocusPosition.addEventListener('input', () => {
+      coverPreviewImg.style.objectPosition = postFocusPosition.value;
+    });
+
+    // Image Upload
+    imageFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      coverPlaceholderText.textContent = 'UPLOADING IMAGE...';
+
+      try {
+        const res = await fetch(`${API_URL}/api/admin/upload`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: formData
+        });
+        if (!res.ok) throw new Error('Image upload failed');
+        const data = await res.json();
+        postCoverImage.value = data.url;
+        updateImagePreview(data.url);
+      } catch (err) {
+        alert(err.message);
+        coverPlaceholderText.textContent = 'UPLOAD FAILED';
+      }
+    });
+
+    // View Tabs (Write, Preview, Split)
+    function setEditorMode(mode) {
+      tabWrite.className = mode === 'write' ? 'px-3 py-1.5 editor-tab-active font-bold uppercase tracking-wider text-xs' : 'px-3 py-1.5 editor-tab-inactive uppercase tracking-wider text-xs';
+      tabPreview.className = mode === 'preview' ? 'px-3 py-1.5 editor-tab-active font-bold uppercase tracking-wider text-xs' : 'px-3 py-1.5 editor-tab-inactive uppercase tracking-wider text-xs';
+      tabSplit.className = mode === 'split' ? 'px-3 py-1.5 editor-tab-active font-bold uppercase tracking-wider text-xs' : 'px-3 py-1.5 editor-tab-inactive uppercase tracking-wider text-xs';
+
+      if (mode === 'write') {
+        writePane.classList.remove('hidden');
+        previewPane.classList.add('hidden');
+        writePane.style.width = '100%';
+      } else if (mode === 'preview') {
+        writePane.classList.add('hidden');
+        previewPane.classList.remove('hidden');
+        previewPane.style.width = '100%';
+        updateLivePreview();
+      } else if (mode === 'split') {
+        writePane.classList.remove('hidden');
+        previewPane.classList.remove('hidden');
+        writePane.style.width = '50%';
+        previewPane.style.width = '50%';
+        updateLivePreview();
+      }
+    }
+
+    function updateLivePreview() {
+      if (typeof marked !== 'undefined') {
+        previewContent.innerHTML = marked.parse(postBody.value || '*No content yet...*');
+      }
+    }
+
+    tabWrite.addEventListener('click', () => setEditorMode('write'));
+    tabPreview.addEventListener('click', () => setEditorMode('preview'));
+    tabSplit.addEventListener('click', () => setEditorMode('split'));
+    postBody.addEventListener('input', () => {
+      if (!previewPane.classList.contains('hidden')) updateLivePreview();
+    });
+
+    // Formatting Toolbar Helpers
+    document.querySelectorAll('.fmt-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const start = postBody.selectionStart;
+        const end = postBody.selectionEnd;
+        const text = postBody.value;
+        const selected = text.substring(start, end);
+
+        if (btn.dataset.wrap) {
+          const w = btn.dataset.wrap;
+          postBody.value = text.substring(0, start) + w + (selected || 'text') + w + text.substring(end);
+        } else if (btn.dataset.prefix) {
+          const p = btn.dataset.prefix;
+          postBody.value = text.substring(0, start) + p + selected + text.substring(end);
+        } else if (btn.dataset.template === 'spec_table') {
+          const specTbl = `\\n\\n## Production Spec Sheet\\n\\n| Specification | Detail |\\n| :--- | :--- |\\n| **LOCATION** | Studio B, Direct Daylight & Tungsten |\\n| **STYLING & WARDROBE** | Monochrome Minimalist Essentials |\\n| **MODEL ATTRIBUTES** | Height 6'1\\" // Chest 38\\" // Waist 30\\" |\\n\\n`;
+          postBody.value = text.substring(0, start) + specTbl + text.substring(end);
+        } else if (btn.dataset.template === 'code_block') {
+          postBody.value = text.substring(0, start) + "\\n```\\n" + (selected || "code here") + "\\n```\\n" + text.substring(end);
+        }
+        postBody.focus();
+        if (!previewPane.classList.contains('hidden')) updateLivePreview();
+      });
+    });
+
+    // Load Existing Post if editing
+    async function loadPostToEdit() {
+      if (!editingPostId) return;
+      composerModeLabel.textContent = `EDITING DISPATCH #${editingPostId}`;
+
+      try {
+        const res = await fetch(`${API_URL}/api/admin/posts/${editingPostId}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error('Failed to load dispatch details');
+        const post = await res.json();
+
+        postTitle.value = post.title || '';
+        postSlug.value = post.slug || '';
+        postExcerpt.value = post.excerpt || '';
+        postBody.value = post.body || '';
+        postCategory.value = post.category || 'CRAFT & TECHNIQUE';
+        postDispatchId.value = post.dispatch_id || 'ATH-26-01';
+        postOrder.value = post.order || 1;
+        postVolume.value = post.volume || 'VOL. 04 // ISSUE 08';
+        postBoard.value = post.board || 'DIRECT MALE RUNWAY';
+        postLocation.value = post.location || 'UDAIPUR / MUMBAI / GLOBAL';
+
+        postStatus.value = post.status || 'draft';
+        postStatus.dispatchEvent(new Event('change'));
+
+        if (post.scheduled_at) {
+          postScheduledAt.value = post.scheduled_at.substring(0, 16);
+        }
+
+        postCoverImage.value = post.cover_image || '';
+        postFocusPosition.value = post.focus_position || 'center 35%';
+        updateImagePreview(post.cover_image);
+
+        postMetaTitle.value = post.meta_title || '';
+        postMetaDescription.value = post.meta_description || '';
+        postMetaKeywords.value = post.meta_keywords || '';
+      } catch (err) {
+        alert(`Error: ${err.message}`);
+      }
+    }
+
+    // Save Dispatch Submission
+    async function saveDispatch(overrideStatus = null) {
+      if (overrideStatus) {
+        postStatus.value = overrideStatus;
+        postStatus.dispatchEvent(new Event('change'));
+      }
+
+      const payload = {
+        title: postTitle.value.trim(),
+        slug: postSlug.value.trim() || undefined,
+        excerpt: postExcerpt.value.trim(),
+        body: postBody.value.trim(),
+        category: postCategory.value,
+        dispatch_id: postDispatchId.value.trim() || 'ATH-26-01',
+        volume: postVolume.value.trim() || 'VOL. 04 // ISSUE 08',
+        board: postBoard.value.trim() || 'DIRECT MALE RUNWAY',
+        location: postLocation.value.trim() || 'UDAIPUR / MUMBAI / GLOBAL',
+        order: parseInt(postOrder.value, 10) || 1,
+        status: postStatus.value,
+        scheduled_at: postStatus.value === 'scheduled' && postScheduledAt.value ? new Date(postScheduledAt.value).toISOString() : null,
+        cover_image: postCoverImage.value.trim() || null,
+        focus_position: postFocusPosition.value.trim() || 'center 35%',
+        meta_title: postMetaTitle.value.trim() || null,
+        meta_description: postMetaDescription.value.trim() || null,
+        meta_keywords: postMetaKeywords.value.trim() || null,
+      };
+
+      if (!payload.title || !payload.excerpt || !payload.body) {
+        alert('Please fill out Title, Excerpt, and Body.');
+        return;
+      }
+
+      mainSubmitBtn.disabled = true;
+      sideSubmitBtn.disabled = true;
+      mainSubmitSpinner.classList.remove('hidden');
+
+      try {
+        const method = editingPostId ? 'PUT' : 'POST';
+        const url = editingPostId ? `${API_URL}/api/admin/posts/${editingPostId}` : `${API_URL}/api/admin/posts`;
+
+        const res = await fetch(url, {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await res.json();
+        if (!res.ok) throw new Error(result.detail || 'Failed to save dispatch');
+
+        // Redirect back to admin index
+        window.location.href = `${base}/admin`;
+      } catch (err) {
+        alert(`Save Error: ${err.message}`);
+        mainSubmitBtn.disabled = false;
+        sideSubmitBtn.disabled = false;
+        mainSubmitSpinner.classList.add('hidden');
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      saveDispatch();
+    });
+
+    mainSubmitBtn.addEventListener('click', () => saveDispatch());
+    quickDraftBtn.addEventListener('click', () => saveDispatch('draft'));
+
+    loadPostToEdit();
+  </script>
+</body>
+</html>

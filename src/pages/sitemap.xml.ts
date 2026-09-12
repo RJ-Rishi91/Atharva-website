@@ -1,3 +1,5 @@
+// src/pages/sitemap.xml.ts
+// Dynamic XML Sitemap with Hybrid API Support & Google Image Extensions
 import { getCollection } from 'astro:content';
 
 export async function GET(context: any) {
@@ -16,9 +18,41 @@ export async function GET(context: any) {
     { path: 'comp-card', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Comp-Card' },
   ];
 
-  const journalEntries = await getCollection('journal');
-  const today = new Date().toISOString().split('T')[0];
+  const API_URL = import.meta.env.PUBLIC_API_URL || process.env.PUBLIC_API_URL || 'http://localhost:8000';
+  let articles: Array<{ slug: string; date: string; title: string; image?: string }> = [];
 
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+    const res = await fetch(`${API_URL}/api/posts`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+
+    if (res.ok) {
+      const apiPosts = await res.json();
+      if (Array.isArray(apiPosts) && apiPosts.length > 0) {
+        articles = apiPosts.map(p => ({
+          slug: p.slug,
+          date: p.published_at ? new Date(p.published_at).toISOString().split('T')[0] : '2026-01-01',
+          title: p.title,
+          image: p.cover_image,
+        }));
+      }
+    }
+  } catch {
+    // Graceful fallback
+  }
+
+  if (articles.length === 0) {
+    const journalEntries = await getCollection('journal');
+    articles = journalEntries.map(entry => ({
+      slug: entry.slug,
+      date: entry.data.date,
+      title: entry.data.title,
+      image: entry.data.heroImage,
+    }));
+  }
+
+  const today = new Date().toISOString().split('T')[0];
   const urls: Array<{ loc: string; lastmod?: string; changefreq: string; priority: string; imageLoc?: string; imageTitle?: string }> = [];
 
   staticPages.forEach((page) => {
@@ -32,14 +66,18 @@ export async function GET(context: any) {
     });
   });
 
-  journalEntries.forEach((entry) => {
+  articles.forEach((entry) => {
+    const imgUrl = entry.image
+      ? (entry.image.startsWith('http') || entry.image.startsWith('/') ? entry.image : `${rootUrl}/${entry.image}`)
+      : undefined;
+
     urls.push({
       loc: `${rootUrl}/journal/${entry.slug}`,
-      lastmod: entry.data.date,
+      lastmod: entry.date,
       changefreq: 'monthly',
       priority: '0.7',
-      imageLoc: `${rootUrl}/${entry.data.heroImage}`,
-      imageTitle: entry.data.title,
+      imageLoc: imgUrl,
+      imageTitle: entry.title,
     });
   });
 

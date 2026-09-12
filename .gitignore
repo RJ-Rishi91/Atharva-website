@@ -11,6 +11,25 @@ node_modules/
 .env
 .env.*
 !.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Python & Backend
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+*.db
+*.sqlite3
+backend/*.db
+backend/uploads/
+!backend/uploads/.gitkeep
 
 # System & editor files
 .DS_Store
@@ -19,3 +38,4 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
