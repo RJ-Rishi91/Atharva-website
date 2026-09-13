@@ -11,6 +11,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   description="Curated lookbook archive of Atharva Sharma spanning Commercial & Casual, Ethnic Heritage Couture, and High-Fashion Dramatic Editorials across global and Indian settings."
   keywords="Atharva Sharma portfolio, menswear lookbook, ethnic menswear model, commercial fashion model, luxury menswear India"
   ogImage="assets/images/atharva-kurta-palace-night.jpg"
+  lcpPreloadImage="assets/images/atharva-cafe-beanie.webp"
 >
 <div class="flex flex-col w-full bg-canvas-warm">
   <!-- CONTROL STRIP & FILTER BAR -->
@@ -65,10 +66,22 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 
       <!-- Asymmetrical Visual Mosaic (5 items) -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 mt-10">
-        <!-- Item 1: atharva-cafe-beanie.jpg -->
+        <!-- Item 1: atharva-cafe-beanie.jpg (LCP Candidate) -->
         <article class="md:col-span-7 group relative bg-canvas-sheet flex flex-col border border-grid-border">
           <div class="relative w-full aspect-[4/5] overflow-hidden bg-canvas-sheet">
-            <img alt="Commercial look featuring Atharva Sharma in knit beanie and coffeehouse styling" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-cafe-beanie.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-cafe-beanie.webp")} type="image/webp" />
+              <img
+                alt="Commercial look featuring Atharva Sharma in knit beanie and coffeehouse styling"
+                class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-cafe-beanie.jpg")}
+                width="1024"
+                height="1365"
+                loading="eager"
+                decoding="sync"
+                fetchpriority="high"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
               LOOK // 01-A
             </div>
@@ -101,7 +114,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Item 2: atharva-bedroom-blazer.jpg -->
         <article class="md:col-span-5 group relative bg-canvas-sheet flex flex-col border border-grid-border">
           <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
-            <img alt="Modern tailored commercial blazer look with Atharva Sharma" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-bedroom-blazer.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-bedroom-blazer.webp")} type="image/webp" />
+              <img
+                alt="Modern tailored commercial blazer look with Atharva Sharma"
+                class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-bedroom-blazer.jpg")}
+                width="1024"
+                height="1536"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
               LOOK // 01-B
             </div>
@@ -123,7 +147,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Item 3: atharva-citynight-scarf.jpg -->
         <article class="md:col-span-4 group relative bg-canvas-sheet flex flex-col border border-grid-border">
           <div class="relative w-full aspect-[3/4] overflow-hidden bg-canvas-sheet">
-            <img alt="Atharva Sharma nocturnal city editorial wearing wrapped scarf and structured overcoat" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-citynight-scarf.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-citynight-scarf.webp")} type="image/webp" />
+              <img
+                alt="Atharva Sharma nocturnal city editorial wearing wrapped scarf and structured overcoat"
+                class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-citynight-scarf.jpg")}
+                width="1170"
+                height="1549"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
               LOOK // 01-C
             </div>
@@ -140,7 +175,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Item 4: atharva-lake-backpack.jpg -->
         <article class="md:col-span-4 group relative bg-canvas-sheet flex flex-col border border-grid-border">
           <div class="relative w-full aspect-[3/4] overflow-hidden bg-canvas-sheet">
-            <img alt="Outdoor leisure shoot with Atharva Sharma wearing utilitarian backpack lakeside" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-lake-backpack.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-lake-backpack.webp")} type="image/webp" />
+              <img
+                alt="Outdoor leisure shoot with Atharva Sharma wearing utilitarian backpack lakeside"
+                class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-lake-backpack.jpg")}
+                width="1200"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
               LOOK // 01-D
             </div>
@@ -157,7 +203,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Item 5: atharva-beach-night-linen.jpg -->
         <article class="md:col-span-4 group relative bg-canvas-sheet flex flex-col border border-grid-border">
           <div class="relative w-full aspect-[3/4] overflow-hidden bg-canvas-sheet">
-            <img alt="Atharva Sharma in nighttime coastal linen shirt series" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-beach-night-linen.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-beach-night-linen.webp")} type="image/webp" />
+              <img
+                alt="Atharva Sharma in nighttime coastal linen shirt series"
+                class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-beach-night-linen.jpg")}
+                width="1028"
+                height="1519"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2.5 py-1 font-mono text-[10px] tracking-widest">
               LOOK // 01-E
             </div>
@@ -175,7 +232,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   </section>
 
   <!-- SECTION 02: ETHNIC & TRADITIONAL -->
-  <section class="w-full px-4 sm:px-8 lg:px-12 py-20 bg-editorial-ink text-white" id="ethnic-heritage">
+  <section class="cv-auto w-full px-4 sm:px-8 lg:px-12 py-20 bg-editorial-ink text-white" id="ethnic-heritage">
     <div class="max-w-[1780px] mx-auto">
       <!-- Section Top Header -->
       <div class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/20">
@@ -201,7 +258,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Image Hero (atharva-kurta-palace-night.jpg) -->
         <div class="lg:col-span-7 group relative overflow-hidden border border-white/20 bg-black">
           <div class="relative w-full aspect-[4/5] overflow-hidden">
-            <img alt="Heritage look featuring Atharva Sharma in midnight embroidered royal kurta at illuminated Rajasthani palace courtyard" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-kurta-palace-night.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-kurta-palace-night.webp")} type="image/webp" />
+              <img
+                alt="Heritage look featuring Atharva Sharma in midnight embroidered royal kurta at illuminated Rajasthani palace courtyard"
+                class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-kurta-palace-night.jpg")}
+                width="943"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute inset-0 bg-gradient-to-t from-editorial-ink via-transparent to-transparent opacity-60"></div>
             <div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-end justify-between gap-3">
               <div>
@@ -254,7 +322,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   </section>
 
   <!-- SECTION 03: EDITORIAL & DRAMATIC -->
-  <section class="w-full px-4 sm:px-8 lg:px-12 py-16 lg:py-24 bg-canvas-warm" id="editorial-dramatic">
+  <section class="cv-auto w-full px-4 sm:px-8 lg:px-12 py-16 lg:py-24 bg-canvas-warm" id="editorial-dramatic">
     <div class="max-w-[1780px] mx-auto">
       <div class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b-2 border-editorial-ink">
         <div>
@@ -279,7 +347,19 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Item 1: Studio BW Stool (atharva-studio-bw-stool.png) -->
         <article class="md:col-span-4 group relative flex flex-col bg-canvas-sheet border border-grid-border">
           <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
-            <img alt="Dramatic black and white minimalist studio shoot of Atharva Sharma seated on posing stool" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-studio-bw-stool.png")} style="object-position: center 15%;">
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-studio-bw-stool.webp")} type="image/webp" />
+              <img
+                alt="Dramatic black and white minimalist studio shoot of Atharva Sharma seated on posing stool"
+                class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-studio-bw-stool.png")}
+                width="1023"
+                height="1537"
+                loading="lazy"
+                decoding="async"
+                style="object-position: center 15%;"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink text-white px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase">
               STUDIO // 03-A
             </div>
@@ -304,7 +384,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Item 2: Horse Beach (atharva-horse-beach.jpg) -->
         <article class="md:col-span-4 group relative flex flex-col bg-canvas-sheet border border-grid-border">
           <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
-            <img alt="Cinematic editorial with Atharva Sharma alongside thoroughbred horse on beach" class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-horse-beach.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-horse-beach.webp")} type="image/webp" />
+              <img
+                alt="Cinematic editorial with Atharva Sharma alongside thoroughbred horse on beach"
+                class="curated-photo w-full h-full object-cover object-top grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-horse-beach.jpg")}
+                width="1169"
+                height="1759"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink text-white px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase">
               CINEMATIC // 03-B
             </div>
@@ -329,7 +420,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Item 3: Desert Jeep BW (atharva-desert-jeep-bw.jpg) -->
         <article class="md:col-span-4 group relative flex flex-col bg-canvas-sheet border border-grid-border">
           <div class="relative w-full aspect-[2/3] overflow-hidden bg-canvas-sheet">
-            <img alt="Stark dramatic desert fashion campaign with Atharva Sharma resting on off-road vehicle" class="curated-photo w-full h-full object-cover object-center grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]" src={url("/assets/images/atharva-desert-jeep-bw.jpg")}>
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-desert-jeep-bw.webp")} type="image/webp" />
+              <img
+                alt="Stark dramatic desert fashion campaign with Atharva Sharma resting on off-road vehicle"
+                class="curated-photo w-full h-full object-cover object-center grayscale contrast-108 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.025]"
+                src={url("/assets/images/atharva-desert-jeep-bw.jpg")}
+                width="1262"
+                height="1246"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute top-3 left-3 bg-editorial-ink text-white px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase">
               DRAMATIC // 03-C
             </div>

@@ -49,22 +49,28 @@
   animation-play-state: paused;
 }
 
-/* Hero Stagger Animations */
+/* Hero Stagger Animations - LCP optimized: opacity defaults to 1 for instant paint */
 @keyframes heroFadeUp {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { transform: translateY(16px); }
+  100% { transform: translateY(0); }
 }
 @keyframes heroScaleIn {
-  0% { opacity: 0; transform: scale(1.03); }
-  100% { opacity: 1; transform: scale(1); }
+  0% { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
 .anim-fade-up {
-  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .anim-hero-frame {
-  animation: heroScaleIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-  opacity: 0;
+  animation: heroScaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+/* Core Web Vitals: Defer rendering of offscreen sections to preserve main thread (INP / TBT) */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 650px;
 }
 
 /* Accessibility: prefers-reduced-motion */

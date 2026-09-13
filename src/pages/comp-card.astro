@@ -11,6 +11,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   description="Official composite card (zed card) for Atharva Sharma conforming to international modeling agency standards. 6'1&quot; (186cm), print-ready A5 format."
   keywords="model comp card, zed card India, Atharva Sharma comp card, printable model composite card, male model z-card"
   ogImage="assets/images/atharva-studio-bw-stool.png"
+  lcpPreloadImage="assets/images/atharva-studio-bw-stool.webp"
 >
 <style>
   @media print {
@@ -77,10 +78,22 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- DOUBLE-SIDED GRID PRESENTATION -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-6">
       
-      <!-- FRONT SIDE: HERO LEAD SHOT -->
+      <!-- FRONT SIDE: HERO LEAD SHOT (LCP CANDIDATE) -->
       <div class="lg:col-span-5 flex flex-col border border-editorial-ink p-2 bg-canvas-warm">
         <div class="relative w-full aspect-[3/4] overflow-hidden group bg-editorial-ink">
-          <img src={url("/assets/images/atharva-studio-bw-stool.png")} alt="Atharva Sharma studio portrait" class="w-full h-full object-cover object-top grayscale contrast-115 transition-all duration-500 group-hover:grayscale-0">
+          <picture class="w-full h-full block">
+            <source srcset={url("/assets/images/atharva-studio-bw-stool.webp")} type="image/webp" />
+            <img
+              src={url("/assets/images/atharva-studio-bw-stool.png")}
+              alt="Atharva Sharma studio portrait"
+              class="w-full h-full object-cover object-top grayscale contrast-115 transition-all duration-500 group-hover:grayscale-0"
+              width="1023"
+              height="1537"
+              loading="eager"
+              decoding="sync"
+              fetchpriority="high"
+            />
+          </picture>
           <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[10px] px-2 py-0.5 uppercase tracking-widest">
             A-SIDE // HERO STUDIO PORTRAIT
           </div>
@@ -105,7 +118,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <div class="grid grid-cols-2 gap-2 flex-grow">
           <!-- Quad Look 1: Ethnic Heritage -->
           <div class="relative aspect-[3/4] bg-canvas-sheet overflow-hidden group border border-grid-border">
-            <img src={url("/assets/images/atharva-kurta-palace-night.jpg")} alt="Atharva Sharma royal velvet kurta" class="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500">
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-kurta-palace-night.webp")} type="image/webp" />
+              <img
+                src={url("/assets/images/atharva-kurta-palace-night.jpg")}
+                alt="Atharva Sharma royal velvet kurta"
+                class="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
+                width="943"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-editorial-ink/85 text-white font-mono text-[9px] px-1.5 py-0.5 flex justify-between uppercase">
               <span>01. ETHNIC HERITAGE</span>
               <span>UDAIPUR PALACE</span>
@@ -114,7 +138,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 
           <!-- Quad Look 2: Monolith Desert -->
           <div class="relative aspect-[3/4] bg-canvas-sheet overflow-hidden group border border-grid-border">
-            <img src={url("/assets/images/atharva-desert-jeep-bw.jpg")} alt="Atharva Sharma Thar desert expedition" class="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 transition-all duration-500">
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-desert-jeep-bw.webp")} type="image/webp" />
+              <img
+                src={url("/assets/images/atharva-desert-jeep-bw.jpg")}
+                alt="Atharva Sharma Thar desert expedition"
+                class="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 transition-all duration-500"
+                width="1262"
+                height="1246"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-editorial-ink/85 text-white font-mono text-[9px] px-1.5 py-0.5 flex justify-between uppercase">
               <span>02. EXPEDITION</span>
               <span>THAR DESERT</span>
@@ -123,7 +158,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 
           <!-- Quad Look 3: Coastal Motion -->
           <div class="relative aspect-[3/4] bg-canvas-sheet overflow-hidden group border border-grid-border">
-            <img src={url("/assets/images/atharva-horse-beach.jpg")} alt="Atharva Sharma coastal equestrian" class="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500">
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-horse-beach.webp")} type="image/webp" />
+              <img
+                src={url("/assets/images/atharva-horse-beach.jpg")}
+                alt="Atharva Sharma coastal equestrian"
+                class="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
+                width="1169"
+                height="1759"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-editorial-ink/85 text-white font-mono text-[9px] px-1.5 py-0.5 flex justify-between uppercase">
               <span>03. RESORT EQUINE</span>
               <span>COASTLINE</span>
@@ -132,7 +178,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 
           <!-- Quad Look 4: European Tailored -->
           <div class="relative aspect-[3/4] bg-canvas-sheet overflow-hidden group border border-grid-border">
-            <img src={url("/assets/images/atharva-citynight-scarf.jpg")} alt="Atharva Sharma European city night" class="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 transition-all duration-500">
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-citynight-scarf.webp")} type="image/webp" />
+              <img
+                src={url("/assets/images/atharva-citynight-scarf.jpg")}
+                alt="Atharva Sharma European city night"
+                class="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 transition-all duration-500"
+                width="1170"
+                height="1549"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-editorial-ink/85 text-white font-mono text-[9px] px-1.5 py-0.5 flex justify-between uppercase">
               <span>04. NOCTURNAL TAILORED</span>
               <span>CENTRAL EUROPE</span>

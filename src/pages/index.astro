@@ -11,6 +11,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   description="Official portfolio of Atharva Sharma, Indian male editorial and runway fashion model based in Udaipur, India. 6'1&quot; (186cm), high luxury couture, runway poise, and commercial campaign bookings."
   keywords="Atharva Sharma, male model India, Indian runway model, fashion model Udaipur, high fashion editorial, menswear model, 6'1 model"
   ogImage="assets/images/atharva-studio-bw-stool.png"
+  lcpPreloadImage="assets/images/atharva-studio-bw-stool.webp"
 >
 <!-- ==================== HERO SECTION (Brutalist Poster Composition) ==================== -->
 <section class="relative w-full min-h-[92vh] sm:min-h-screen bg-canvas-warm flex flex-col justify-between pt-4 sm:pt-6 pb-6 sm:pb-8 px-4 sm:px-8 max-w-[1780px] mx-auto overflow-hidden" id="hero">
@@ -41,9 +42,22 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
       </h1>
     </div>
 
-    <!-- Center Sharp Editorial Frame: Real Photo atharva-studio-bw-stool.png -->
+    <!-- Center Sharp Editorial Frame: Real Photo atharva-studio-bw-stool.png (Optimized WebP + Eager LCP) -->
     <div class="anim-hero-frame relative w-[88%] sm:w-[54%] md:w-[42%] lg:w-[34%] max-w-[480px] mx-auto z-10 shadow-2xl bg-canvas-sheet overflow-hidden border-2 border-editorial-ink aspect-[3/4] -my-3 sm:-my-6">
-      <img alt="Atharva Sharma studio seated portrait in dark structured jacket" class="w-full h-full object-cover" src={url("/assets/images/atharva-studio-bw-stool.png")} style="object-position: center 15%;">
+      <picture class="w-full h-full block">
+        <source srcset={url("/assets/images/atharva-studio-bw-stool.webp")} type="image/webp" />
+        <img
+          alt="Atharva Sharma studio seated portrait in dark structured jacket"
+          class="w-full h-full object-cover"
+          src={url("/assets/images/atharva-studio-bw-stool.png")}
+          width="1024"
+          height="1365"
+          loading="eager"
+          decoding="sync"
+          fetchpriority="high"
+          style="object-position: center 15%;"
+        />
+      </picture>
       <!-- Editorial Film Grain & Caption Badge -->
       <div class="absolute inset-0 bg-grain pointer-events-none opacity-30 mix-blend-multiply"></div>
       <div class="absolute bottom-2.5 left-2.5 bg-editorial-ink/90 text-white font-mono text-[9px] sm:text-[10px] tracking-widest uppercase px-2 py-0.5 backdrop-blur-xs flex items-center gap-1.5">
@@ -174,7 +188,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 </section>
 
 <!-- ==================== CURATED LOOKS & EDITORIAL ARCHIVE GRID ==================== -->
-<section class="w-full bg-canvas-warm px-4 sm:px-8 max-w-[1780px] mx-auto py-10" id="portfolio">
+<section class="cv-auto w-full bg-canvas-warm px-4 sm:px-8 max-w-[1780px] mx-auto py-10" id="portfolio">
   <!-- Section Header Bar -->
   <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b-2 border-editorial-ink gap-4">
     <div>
@@ -203,7 +217,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 01 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma on white horse at the beach in white linen" class="curated-photo w-full h-full object-cover object-top" src={url("/assets/images/atharva-horse-beach.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-horse-beach.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma on white horse at the beach in white linen"
+            class="curated-photo w-full h-full object-cover object-top"
+            src={url("/assets/images/atharva-horse-beach.jpg")}
+            width="1169"
+            height="1759"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           01 // GOA
         </div>
@@ -224,7 +249,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 02 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma in black embroidered velvet kurta at illuminated fountain" class="curated-photo w-full h-full object-cover object-top" src={url("/assets/images/atharva-kurta-palace-night.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-kurta-palace-night.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma in black embroidered velvet kurta at illuminated fountain"
+            class="curated-photo w-full h-full object-cover object-top"
+            src={url("/assets/images/atharva-kurta-palace-night.jpg")}
+            width="943"
+            height="1600"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           02 // PALACE
         </div>
@@ -245,7 +281,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 03 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma in jeep sunroof open desert landscape" class="curated-photo w-full h-full object-cover object-center" src={url("/assets/images/atharva-desert-jeep-bw.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-desert-jeep-bw.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma in jeep sunroof open desert landscape"
+            class="curated-photo w-full h-full object-cover object-center"
+            src={url("/assets/images/atharva-desert-jeep-bw.jpg")}
+            width="1262"
+            height="1246"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           03 // THAR
         </div>
@@ -266,7 +313,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 04 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma knit sweater vest tie and beanie at cafe terrace" class="curated-photo w-full h-full object-cover object-center" src={url("/assets/images/atharva-cafe-beanie.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-cafe-beanie.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma knit sweater vest tie and beanie at cafe terrace"
+            class="curated-photo w-full h-full object-cover object-center"
+            src={url("/assets/images/atharva-cafe-beanie.jpg")}
+            width="1024"
+            height="1365"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           04 // URBAN
         </div>
@@ -287,7 +345,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 05 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma backpack overlooking Udaipur lake ghats" class="curated-photo w-full h-full object-cover object-top" src={url("/assets/images/atharva-lake-backpack.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-lake-backpack.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma backpack overlooking Udaipur lake ghats"
+            class="curated-photo w-full h-full object-cover object-top"
+            src={url("/assets/images/atharva-lake-backpack.jpg")}
+            width="1200"
+            height="1600"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           05 // GHAT
         </div>
@@ -308,7 +377,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 06 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma white linen shirt and glasses on night beach" class="curated-photo w-full h-full object-cover object-top" src={url("/assets/images/atharva-beach-night-linen.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-beach-night-linen.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma white linen shirt and glasses on night beach"
+            class="curated-photo w-full h-full object-cover object-top"
+            src={url("/assets/images/atharva-beach-night-linen.jpg")}
+            width="1028"
+            height="1519"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           06 // NOCTURNE
         </div>
@@ -329,7 +409,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 07 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma overlooking European city bridge with plaid scarf" class="curated-photo w-full h-full object-cover object-center" src={url("/assets/images/atharva-citynight-scarf.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-citynight-scarf.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma overlooking European city bridge with plaid scarf"
+            class="curated-photo w-full h-full object-cover object-center"
+            src={url("/assets/images/atharva-citynight-scarf.jpg")}
+            width="1170"
+            height="1549"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           07 // METRO
         </div>
@@ -350,7 +441,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <!-- Look 08 -->
     <article class="group cursor-pointer bg-canvas-sheet border-2 border-editorial-ink p-2 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div class="relative overflow-hidden aspect-[3/4] bg-canvas-alt border border-editorial-ink">
-        <img alt="Atharva Sharma in tailored tweed blazer and glasses laughing indoors" class="curated-photo w-full h-full object-cover object-top" src={url("/assets/images/atharva-bedroom-blazer.jpg")}>
+        <picture class="w-full h-full block">
+          <source srcset={url("/assets/images/atharva-bedroom-blazer.webp")} type="image/webp" />
+          <img
+            alt="Atharva Sharma in tailored tweed blazer and glasses laughing indoors"
+            class="curated-photo w-full h-full object-cover object-top"
+            src={url("/assets/images/atharva-bedroom-blazer.jpg")}
+            width="1024"
+            height="1536"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute top-2 left-2 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-1.5 py-0.5">
           08 // SUITE
         </div>
@@ -371,7 +473,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 </section>
 
 <!-- ==================== JOURNAL & BLOG ARCHIVE SECTION ==================== -->
-<section class="w-full bg-canvas-sheet border-t-2 border-editorial-ink py-12 px-4 sm:px-8 max-w-[1780px] mx-auto" id="blog">
+<section class="cv-auto w-full bg-canvas-sheet border-t-2 border-editorial-ink py-12 px-4 sm:px-8 max-w-[1780px] mx-auto" id="blog">
   <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-editorial-ink/30 gap-4">
     <div>
       <div class="font-mono text-xs tracking-widest uppercase text-editorial-red mb-1 font-bold flex items-center gap-2">
@@ -478,7 +580,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
 </section>
 
 <!-- ==================== A. CATEGORY PREVIEW STRIP ==================== -->
-<section class="w-full bg-canvas-alt border-t-2 border-editorial-ink py-16 px-4 sm:px-8 max-w-[1780px] mx-auto" id="categories">
+<section class="cv-auto w-full bg-canvas-alt border-t-2 border-editorial-ink py-16 px-4 sm:px-8 max-w-[1780px] mx-auto" id="categories">
   <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-editorial-ink/30 gap-4">
     <div>
       <div class="font-mono text-xs tracking-widest uppercase text-editorial-red mb-1 font-bold flex items-center gap-2">
@@ -499,7 +601,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <div class="group cursor-pointer bg-canvas-warm border-2 border-editorial-ink p-4 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div>
         <div class="relative overflow-hidden aspect-[4/5] bg-canvas-sheet border border-editorial-ink mb-4">
-          <img src={url("/assets/images/atharva-cafe-beanie.jpg")} alt="Atharva Sharma - Commercial / Casual" class="w-full h-full object-cover object-center transition duration-500 filter grayscale group-hover:grayscale-0">
+          <picture class="w-full h-full block">
+            <source srcset={url("/assets/images/atharva-cafe-beanie.webp")} type="image/webp" />
+            <img
+              src={url("/assets/images/atharva-cafe-beanie.jpg")}
+              alt="Atharva Sharma - Commercial / Casual"
+              class="w-full h-full object-cover object-center transition duration-500 filter grayscale group-hover:grayscale-0"
+              width="1024"
+              height="1365"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div class="absolute top-2.5 left-2.5 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-2 py-0.5">
             CAT. 01 // CASUAL
           </div>
@@ -521,7 +634,18 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <div class="group cursor-pointer bg-canvas-warm border-2 border-editorial-ink p-4 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div>
         <div class="relative overflow-hidden aspect-[4/5] bg-canvas-sheet border border-editorial-ink mb-4">
-          <img src={url("/assets/images/atharva-kurta-palace-night.jpg")} alt="Atharva Sharma - Ethnic / Traditional" class="w-full h-full object-cover object-top transition duration-500 filter grayscale group-hover:grayscale-0">
+          <picture class="w-full h-full block">
+            <source srcset={url("/assets/images/atharva-kurta-palace-night.webp")} type="image/webp" />
+            <img
+              src={url("/assets/images/atharva-kurta-palace-night.jpg")}
+              alt="Atharva Sharma - Ethnic / Traditional"
+              class="w-full h-full object-cover object-top transition duration-500 filter grayscale group-hover:grayscale-0"
+              width="943"
+              height="1600"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div class="absolute top-2.5 left-2.5 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-2 py-0.5">
             CAT. 02 // HERITAGE
           </div>
@@ -543,7 +667,19 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <div class="group cursor-pointer bg-canvas-warm border-2 border-editorial-ink p-4 flex flex-col justify-between shadow-sm hover:border-editorial-red transition-colors">
       <div>
         <div class="relative overflow-hidden aspect-[4/5] bg-canvas-sheet border border-editorial-ink mb-4">
-          <img src={url("/assets/images/atharva-studio-bw-stool.png")} alt="Atharva Sharma - Editorial / Dramatic" class="w-full h-full object-cover transition duration-500 filter grayscale group-hover:grayscale-0" style="object-position: center 15%;">
+          <picture class="w-full h-full block">
+            <source srcset={url("/assets/images/atharva-studio-bw-stool.webp")} type="image/webp" />
+            <img
+              src={url("/assets/images/atharva-studio-bw-stool.png")}
+              alt="Atharva Sharma - Editorial / Dramatic"
+              class="w-full h-full object-cover transition duration-500 filter grayscale group-hover:grayscale-0"
+              width="1023"
+              height="1537"
+              loading="lazy"
+              decoding="async"
+              style="object-position: center 15%;"
+            />
+          </picture>
           <div class="absolute top-2.5 left-2.5 bg-editorial-ink text-white font-mono text-[9px] tracking-widest uppercase px-2 py-0.5">
             CAT. 03 // HIGH FASHION
           </div>

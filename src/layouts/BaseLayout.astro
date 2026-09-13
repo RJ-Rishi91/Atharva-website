@@ -11,6 +11,7 @@ interface Props {
   pageType?: 'website' | 'article';
   articleDate?: string;
   category?: string;
+  lcpPreloadImage?: string;
 }
 
 const {
@@ -21,16 +22,21 @@ const {
   pageType = "website",
   articleDate = "2026-09-07",
   category = "Editorial",
+  lcpPreloadImage,
 } = Astro.props;
 
 const rawBase = import.meta.env.BASE_URL || "";
 const base = rawBase.replace(/\/$/, "");
-const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, "") : "https://rj-rishi91.github.io";
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, "") : "https://atharvasharma.co.in";
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
 const resolvedOgImage = ogImage.startsWith('http') 
   ? ogImage 
   : `${siteUrl}${base}/${ogImage.replace(/^\//, '')}`;
+
+const resolvedLcpImage = lcpPreloadImage
+  ? (lcpPreloadImage.startsWith('http') || lcpPreloadImage.startsWith('/') ? lcpPreloadImage : `${base}/${lcpPreloadImage.replace(/^\//, '')}`)
+  : null;
 
 const jsonLdGraph = [
   {
@@ -139,9 +145,16 @@ if (pageType === 'article') {
     "@graph": jsonLdGraph
   })} />
 
-  <!-- Preconnect and Google Fonts -->
+  <!-- Preload Critical LCP Image -->
+  {resolvedLcpImage && (
+    <link rel="preload" as="image" href={resolvedLcpImage} fetchpriority="high" />
+  )}
+
+  <!-- Preconnect and Google Fonts with display=swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 </head>
@@ -204,11 +217,11 @@ if (pageType === 'article') {
       });
     }
 
-    // Mobile tap interaction for photos (grayscale to color toggle)
-    document.querySelectorAll('.group').forEach(item => {
+    // Mobile tap interaction for photos (grayscale to color toggle) with passive listener
+    document.querySelectorAll('.curated-photo, .curated-card, .group').forEach(item => {
       item.addEventListener('click', () => {
         item.classList.toggle('is-active');
-      });
+      }, { passive: true });
     });
   </script>
 </body>

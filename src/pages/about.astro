@@ -11,6 +11,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   description="Background, artistic philosophy, equestrian movement roots, and architectural approach to modern menswear modeling by Udaipur-native runway talent Atharva Sharma."
   keywords="Atharva Sharma biography, Indian fashion model background, Udaipur runway talent, menswear editorial model bio"
   ogImage="assets/images/atharva-studio-bw-stool.png"
+  lcpPreloadImage="assets/images/atharva-studio-bw-stool.webp"
 >
 <div class="flex flex-col w-full bg-canvas-warm">
   <!-- SECTION HEADER METRICS BAR -->
@@ -35,11 +36,24 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <span class="text-editorial-red font-bold tracking-widest uppercase">OFFICIAL BOOK 2026</span>
       </div>
 
-      <!-- MAIN PORTRAIT WITH DIRECT BOLD RED TYPOGRAPHIC OVERLAY -->
+      <!-- MAIN PORTRAIT WITH DIRECT BOLD RED TYPOGRAPHIC OVERLAY (LCP CANDIDATE) -->
       <div class="relative w-full overflow-hidden bg-editorial-ink group border-2 border-editorial-ink shadow-lg">
         <!-- Main Portrait Image (atharva-studio-bw-stool.png) -->
         <div class="w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-[16/11] lg:aspect-[16/10] overflow-hidden min-h-[460px] max-h-[80vh]">
-          <img alt="Atharva Sharma studio portrait" class="w-full h-full object-cover object-center curated-photo" src={url("/assets/images/atharva-studio-bw-stool.png")} style="object-position: center 12%;">
+          <picture class="w-full h-full block">
+            <source srcset={url("/assets/images/atharva-studio-bw-stool.webp")} type="image/webp" />
+            <img
+              alt="Atharva Sharma studio portrait"
+              class="w-full h-full object-cover object-center curated-photo"
+              src={url("/assets/images/atharva-studio-bw-stool.png")}
+              width="1023"
+              height="1537"
+              loading="eager"
+              decoding="sync"
+              fetchpriority="high"
+              style="object-position: center 12%;"
+            />
+          </picture>
         </div>
         <!-- Film Texture & Vignette Scrim -->
         <div class="absolute inset-0 bg-gradient-to-t from-editorial-ink/90 via-editorial-ink/30 to-editorial-ink/10 pointer-events-none"></div>
@@ -76,27 +90,60 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         <!-- Circular/Capsule Crop Group -->
         <div class="flex items-center gap-4 sm:gap-6">
           <!-- Thumbnail 1: Desert Campaign -->
-          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-desert-jeep-bw.jpg")} data-title="ACT I: THAR DESERT EXPEDITION">
+          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-desert-jeep-bw.webp")} data-title="ACT I: THAR DESERT EXPEDITION">
             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105 aspect-square">
-              <img alt="Atharva Sharma - Desert Jeep Editorial" class="w-full h-full object-cover rounded-full curated-photo" src={url("/assets/images/atharva-desert-jeep-bw.jpg")}>
+              <picture class="w-full h-full block">
+                <source srcset={url("/assets/images/atharva-desert-jeep-bw.webp")} type="image/webp" />
+                <img
+                  alt="Atharva Sharma - Desert Jeep Editorial"
+                  class="w-full h-full object-cover rounded-full curated-photo"
+                  src={url("/assets/images/atharva-desert-jeep-bw.jpg")}
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT I / DESERT</span>
           </div>
           <div class="w-4 h-[1px] bg-grid-border hidden sm:block"></div>
 
           <!-- Thumbnail 2: Palace Night / Heritage -->
-          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-kurta-palace-night.jpg")} data-title="ACT II: PALACE COURTYARD NOCTURNE">
+          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-kurta-palace-night.webp")} data-title="ACT II: PALACE COURTYARD NOCTURNE">
             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105 aspect-square">
-              <img alt="Atharva Sharma - Kurta Palace Night Editorial" class="w-full h-full object-cover rounded-full curated-photo" src={url("/assets/images/atharva-kurta-palace-night.jpg")}>
+              <picture class="w-full h-full block">
+                <source srcset={url("/assets/images/atharva-kurta-palace-night.webp")} type="image/webp" />
+                <img
+                  alt="Atharva Sharma - Kurta Palace Night Editorial"
+                  class="w-full h-full object-cover rounded-full curated-photo"
+                  src={url("/assets/images/atharva-kurta-palace-night.jpg")}
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT II / HERITAGE</span>
           </div>
           <div class="w-4 h-[1px] bg-grid-border hidden sm:block"></div>
 
           <!-- Thumbnail 3: Equestrian / Coast -->
-          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-horse-beach.jpg")} data-title="ACT III: EQUESTRIAN COASTAL STUDY">
+          <div class="flex flex-col items-center gap-1 group cursor-pointer editorial-role-btn" data-img={url("/assets/images/atharva-horse-beach.webp")} data-title="ACT III: EQUESTRIAN COASTAL STUDY">
             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden p-0.5 bg-editorial-ink border border-grid-border transition-transform duration-300 group-hover:scale-105 aspect-square">
-              <img alt="Atharva Sharma - Horse Beach Editorial" class="w-full h-full object-cover rounded-full curated-photo" src={url("/assets/images/atharva-horse-beach.jpg")}>
+              <picture class="w-full h-full block">
+                <source srcset={url("/assets/images/atharva-horse-beach.webp")} type="image/webp" />
+                <img
+                  alt="Atharva Sharma - Horse Beach Editorial"
+                  class="w-full h-full object-cover rounded-full curated-photo"
+                  src={url("/assets/images/atharva-horse-beach.jpg")}
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <span class="font-mono text-[10px] tracking-widest text-editorial-ink uppercase font-bold mt-2">ACT III / COASTAL</span>
           </div>
@@ -204,7 +251,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
         </button>
       </div>
       <div class="w-full max-h-[75vh] flex items-center justify-center overflow-hidden bg-black py-2">
-        <img alt="Atharva Sharma Full Editorial" class="max-h-[70vh] w-auto object-contain" id="modal-img" src={url("/assets/images/atharva-desert-jeep-bw.jpg")}>
+        <img alt="Atharva Sharma Full Editorial" class="max-h-[70vh] w-auto object-contain" id="modal-img" src={url("/assets/images/atharva-desert-jeep-bw.webp")} width="1262" height="1246" loading="lazy" decoding="async">
       </div>
       <div class="flex justify-between items-center pt-2 text-editorial-gray font-mono text-xs">
         <span>PHOTOGRAPHY: EDITORIAL ARCHIVE</span>

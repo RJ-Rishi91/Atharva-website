@@ -11,6 +11,7 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
   description="Direct casting, agency representation, and campaign booking desk for fashion model Atharva Sharma. Email direct, WhatsApp direct, and production brief intake."
   keywords="book male model, fashion casting India, Atharva Sharma contact, hire runway model, model representation Udaipur Mumbai"
   ogImage="assets/images/atharva-studio-bw-stool.png"
+  lcpPreloadImage="assets/images/atharva-studio-bw-stool.webp"
 >
 <div class="flex flex-col w-full bg-canvas-warm">
   <!-- SECTION HEADER & STATUS -->
@@ -37,10 +38,23 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
       <!-- Left Column: Portrait & Direct Details -->
       <div class="lg:col-span-5 flex flex-col gap-6">
-        <!-- Editorial Portrait Card -->
+        <!-- Editorial Portrait Card (LCP Candidate) -->
         <div class="relative bg-canvas-sheet overflow-hidden group shadow-md border border-grid-border">
           <div class="aspect-[3/4] w-full relative">
-            <img alt="Atharva Sharma editorial studio portrait seated on stool" class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:scale-[1.02] group-hover:grayscale-0" src={url("/assets/images/atharva-studio-bw-stool.png")} style="object-position: center 15%;">
+            <picture class="w-full h-full block">
+              <source srcset={url("/assets/images/atharva-studio-bw-stool.webp")} type="image/webp" />
+              <img
+                alt="Atharva Sharma editorial studio portrait seated on stool"
+                class="curated-photo w-full h-full object-cover grayscale contrast-108 transition-all duration-700 ease-out group-hover:scale-[1.02] group-hover:grayscale-0"
+                src={url("/assets/images/atharva-studio-bw-stool.png")}
+                width="1023"
+                height="1537"
+                loading="eager"
+                decoding="sync"
+                fetchpriority="high"
+                style="object-position: center 15%;"
+              />
+            </picture>
             <div class="absolute inset-0 bg-gradient-to-t from-editorial-ink/80 via-transparent to-transparent"></div>
             <div class="absolute top-3 left-3 bg-editorial-ink/90 text-white px-2 py-1 font-mono text-[10px] tracking-widest uppercase">
               REF: PORTRAIT_01
