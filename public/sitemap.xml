@@ -82,23 +82,13 @@
     </image:image>
   </url>
   <url>
-    <loc>https://atharvasharma.co.in/journal/architecture-dialogue</loc>
-    <lastmod>2024-10-30</lastmod>
+    <loc>https://atharvasharma.co.in/journal/runway-poise</loc>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://atharvasharma.co.in/assets/images/atharva-citynight-scarf.jpg</image:loc>
-      <image:title>Architecture as Dialogue: Capturing Modern Tailoring Across Central Europe</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://atharvasharma.co.in/journal/equine-motion</loc>
-    <lastmod>2024-11-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://atharvasharma.co.in/assets/images/atharva-horse-beach.jpg</image:loc>
-      <image:title>Equine Motion & Coastal Textures: Exploring Fluidity in Resort Menswear</image:title>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
+      <image:title>The Anatomy of Runway Poise: Physical Discipline and Movement in Modern Menswear</image:title>
     </image:image>
   </url>
   <url>
@@ -112,16 +102,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://atharvasharma.co.in/journal/runway-poise</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
-      <image:title>The Anatomy of Runway Poise: Physical Discipline and Movement in Modern Menswear</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://atharvasharma.co.in/journal/thar-monoliths</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -129,6 +109,36 @@
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-desert-jeep-bw.jpg</image:loc>
       <image:title>The Thar Monoliths: Staging High Fashion in Harsh Desert Lighting</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/untouched-digital</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-cafe-beanie.jpg</image:loc>
+      <image:title>The Untouched Digital: Why International Casting Still Demands Pure Daylight Polaroids</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/equine-motion</loc>
+    <lastmod>2024-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-horse-beach.jpg</image:loc>
+      <image:title>Equine Motion &amp; Coastal Textures: Exploring Fluidity in Resort Menswear</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/architecture-dialogue</loc>
+    <lastmod>2024-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-citynight-scarf.jpg</image:loc>
+      <image:title>Architecture as Dialogue: Capturing Modern Tailoring Across Central Europe</image:title>
     </image:image>
   </url>
   <url>
@@ -142,13 +152,103 @@
     </image:image>
   </url>
   <url>
-    <loc>https://atharvasharma.co.in/journal/untouched-digital</loc>
-    <lastmod>2024-12-05</lastmod>
+    <loc>https://atharvasharma.co.in/journal/male-model-measurements-standards-guide</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
+      <image:title>Male Model Measurements &amp; Standards: The Complete Industry Guide</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/international-model-comp-card-guide</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-bedroom-blazer.jpg</image:loc>
+      <image:title>How to Build an International Model Comp Card: Layout, Selection, and Agency Standards</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/south-asian-luxury-menswear-royal-draping</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-kurta-palace-night.jpg</image:loc>
+      <image:title>Royal Draping &amp; Silhouette: The Evolution of South Asian Luxury Menswear</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/mastering-runway-walk-cadence-menswear</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-beach-night-linen.jpg</image:loc>
+      <image:title>Mastering the Runway Walk: Cadence, Center of Gravity, and Runway Mechanics</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/camera-angle-geometry-jawline-studio-lighting</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-citynight-scarf.jpg</image:loc>
+      <image:title>Camera Angle Geometry: Jawline Definition, Bone Structure, and Light Shaping in Editorial Photography</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/rajasthan-fashion-shoot-production-logistics</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-desert-jeep-bw.jpg</image:loc>
+      <image:title>On-Location Fashion Production in Rajasthan: Light, Climate, and Palace Heritage Logistics</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/commercial-vs-editorial-modeling-differences</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-cafe-beanie.jpg</image:loc>
-      <image:title>The Untouched Digital: Why International Casting Still Demands Pure Daylight Polaroids</image:title>
+      <image:title>Commercial vs. Editorial Modeling: Demystifying Market Demands and Career Paths</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/model-casting-checklist-agency-expectations</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-mirror-selfie.jpg</image:loc>
+      <image:title>The High Fashion Model Casting Checklist: What Top Agencies Look for in 2026</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/equestrian-training-physical-presence-fashion</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-horse-beach.jpg</image:loc>
+      <image:title>Equestrian Discipline &amp; Physical Poise: How Riding Informs Menswear Presence</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/journal/raw-polaroids-unretouched-casting-importance</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-lake-backpack.jpg</image:loc>
+      <image:title>Why Raw Polaroids Matter More Than Retouched Portfolios in Modern Model Scouting</image:title>
     </image:image>
   </url>
 </urlset>

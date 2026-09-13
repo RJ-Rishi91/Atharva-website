@@ -11,6 +11,8 @@ focusPosition: "center 60%"
 order: 7
 prevSlug: "architecture-dialogue"
 prevTitle: "Architecture as Dialogue"
+nextSlug: "male-model-measurements-standards-guide"
+nextTitle: "Male Model Measurements & Standards: The Complete Industry Guide"
 ---
 
 > "An unstructured blazer reveals the wearer's authentic skeletal line. Without horsehair canvas and heavy shoulder pads, confidence cannot be faked."

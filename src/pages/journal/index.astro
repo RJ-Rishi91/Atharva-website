@@ -84,6 +84,7 @@ if (allArticles.length === 0) {
 }
 
 const sortedArticles = allArticles.sort((a, b) => a.data.order - b.data.order);
+const categories = Array.from(new Set(sortedArticles.map(a => a.data.category))).filter(Boolean).sort();
 const firstArticleLcp = sortedArticles[0]?.data?.heroImage?.replace(/\.(png|jpg|jpeg)$/i, '.webp') || null;
 ---
 
@@ -137,18 +138,11 @@ const firstArticleLcp = sortedArticles[0]?.data?.heroImage?.replace(/\.(png|jpg|
         <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-editorial-ink text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="all">
           [ ALL ({sortedArticles.length}) ]
         </button>
-        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="CRAFT & TECHNIQUE">
-          CRAFT &amp; TECHNIQUE
-        </button>
-        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="EDITORIAL DISPATCH">
-          EDITORIAL DISPATCH
-        </button>
-        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="HERITAGE & COUTURE">
-          HERITAGE &amp; COUTURE
-        </button>
-        <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter="RUNWAY MECHANICS">
-          RUNWAY MECHANICS
-        </button>
+        {categories.map((cat) => (
+          <button class="journal-filter-btn px-4 py-2.5 font-mono text-xs tracking-widest uppercase bg-canvas-warm text-editorial-ink hover:bg-editorial-ink hover:text-white transition-colors duration-150 whitespace-nowrap flex-shrink-0 min-h-[40px]" data-filter={cat}>
+            {cat}
+          </button>
+        ))}
       </div>
     </section>
 
