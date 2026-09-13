@@ -2,4 +2,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rj-rishi91.github.io/Atharva-website/sitemap.xml
+# Disallow private editorial admin CMS panel
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://atharvasharma.co.in/sitemap.xml
