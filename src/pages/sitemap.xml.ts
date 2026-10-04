@@ -2,6 +2,20 @@
 // Dynamic XML Sitemap with Hybrid API Support, Google Image Extensions, and E-E-A-T Compliance
 import { getCollection } from 'astro:content';
 
+function escapeXml(unsafe: string): string {
+  if (!unsafe) return '';
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      default: return c;
+    }
+  });
+}
+
 export async function GET(context: any) {
   const siteUrl = context.site?.toString().replace(/\/$/, '') || 'https://atharvasharma.co.in';
   const base = (import.meta.env.BASE_URL || '').replace(/\/$/, '');
@@ -65,7 +79,7 @@ export async function GET(context: any) {
       changefreq: page.changefreq,
       priority: page.priority,
       imageLoc: `${rootUrl}/${page.image}`,
-      imageTitle: page.title,
+      imageTitle: escapeXml(page.title),
     });
   });
 
@@ -79,8 +93,8 @@ export async function GET(context: any) {
       lastmod: entry.date,
       changefreq: 'monthly',
       priority: '0.7',
-      imageLoc: imgUrl,
-      imageTitle: entry.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'),
+      imageLoc: imgUrl ? escapeXml(imgUrl) : undefined,
+      imageTitle: escapeXml(entry.title),
     });
   });
 
