@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#111111"/>
+  <!-- Editorial Red Brand Mark -->
+  <rect x="10" y="15" width="5.5" height="34" rx="2" fill="#E53E3E"/>
+  <!-- Bold Architectural Letter 'A' -->
+  <path d="M 25 49 L 34.2 15 L 41.8 15 L 51 49 L 44.5 49 L 42.4 40.5 L 33.6 40.5 L 31.5 49 Z M 35 35 L 41 35 L 38 22 Z" fill="#FFFFFF"/>
+</svg>
