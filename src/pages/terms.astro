@@ -1,0 +1,130 @@
+---
+// src/pages/terms.astro
+// Terms of Service, Casting Evaluation & Booking Conditions
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<BaseLayout
+  title="TERMS OF SERVICE & BOOKING CONDITIONS — Atharva Sharma // Legal Registry"
+  description="Official terms of service, editorial booking conditions, commercial usage rights, and image protection protocols for fashion model Atharva Sharma."
+  keywords="Atharva Sharma terms of service, fashion model booking terms, modeling usage rights, editorial contract conditions, commercial buyout terms"
+  ogImage="assets/images/atharva-studio-bw-stool.png"
+>
+  <div class="flex flex-col w-full">
+    <!-- Sub-Header Indicator Strip -->
+    <section class="w-full bg-canvas-alt px-4 sm:px-8 lg:px-12 py-3 border-b border-grid-border">
+      <div class="max-w-[1780px] mx-auto flex flex-wrap items-center justify-between gap-y-2">
+        <div class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+          <span class="font-mono text-xs text-editorial-ink font-bold uppercase tracking-widest">LEGAL REGISTRY // DOC 02-TERMS</span>
+          <span class="text-editorial-gray text-xs">•</span>
+          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">TERMS OF ENGAGEMENT &amp; USAGE</span>
+        </div>
+        <div class="flex items-center gap-4 font-mono text-xs text-editorial-gray">
+          <span>JURISDICTION: UDAIPUR / RAJASTHAN, INDIA</span>
+          <span class="text-editorial-red font-bold">STATUS: ENFORCED</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Header Section -->
+    <section class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pt-12 pb-8 border-b border-grid-border">
+      <div class="max-w-[1780px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-8 flex flex-col gap-3">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-editorial-red uppercase tracking-widest font-bold">[ COMMERCIAL &amp; EDITORIAL STANDARDS ]</span>
+            <span class="w-12 h-px bg-editorial-red inline-block"></span>
+            <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">PROFESSIONAL CODES</span>
+          </div>
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase text-editorial-ink tracking-tight leading-none m-0">
+            TERMS OF SERVICE <span class="text-editorial-red">//</span> ENGAGEMENT
+          </h1>
+        </div>
+        <div class="lg:col-span-4 flex flex-col justify-end">
+          <p class="font-sans text-sm text-editorial-gray max-w-md leading-relaxed">
+            Standard operating conditions, booking guidelines, intellectual property terms, and campaign usage rights governing all professional engagements with Atharva Sharma.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal Body Content -->
+    <section class="w-full px-4 sm:px-8 lg:px-12 py-12 bg-canvas-warm">
+      <div class="max-w-[1200px] mx-auto bg-white border border-grid-border p-6 sm:p-12 shadow-sm font-sans text-editorial-ink space-y-8">
+        
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">1. NATURE OF DIGITAL PLATFORM</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            This digital platform (<a href={url('/')} class="text-editorial-red hover:underline">https://atharvasharma.co.in</a>) functions as the official portfolio showcase, casting composite card repository, measurement registry, and direct booking conduit for Indian male fashion model <strong>Atharva Sharma</strong>. Access to and use of this platform constitutes unconditional acceptance of these terms.
+          </p>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">2. CASTING DIRECTORS &amp; AGENCY EVALUATION RIGHTS</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray mb-3">
+            Accredited casting directors, model agencies, fashion stylists, and creative production coordinators are granted a revocable, non-transferable license to:
+          </p>
+          <ul class="list-disc pl-5 text-sm text-editorial-gray space-y-1">
+            <li>Download and review official digital composite cards (<a href={url('/comp-card')} class="text-editorial-red hover:underline">Comp-Card</a>) for active casting briefs.</li>
+            <li>Inspect verified biometric measurements and structural proportions (<a href={url('/stats')} class="text-editorial-red hover:underline">Stats</a>) for sample garment sizing.</li>
+            <li>Present Atharva Sharma's portfolio tearsheets to brand clients for specific, non-commercial internal casting pitch presentations.</li>
+          </ul>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">3. COMMERCIAL COMMISSIONS &amp; BOOKING PROTOCOLS</h2>
+          <div class="space-y-3 text-sm text-editorial-gray leading-relaxed">
+            <p>
+              <strong>Direct Option Holds:</strong> An option holds a specific shoot date without financial commitment. If a second client requests a definitive booking for the same date, the first option holder is given 24 hours to confirm or release the date.
+            </p>
+            <p>
+              <strong>Definitive Confirmation &amp; Call Sheets:</strong> A booking is finalized only upon receipt of an official signed talent voucher, agency agreement, or written confirmation detailing: call times, shoot location, stylist credentials, catering, day-rate/half-day rate, and specific media usage rights.
+            </p>
+            <p>
+              <strong>Usage Rights &amp; Buyouts:</strong> Unless otherwise specified in writing, standard editorial rates cover magazine editorial publication and brand social media showcase only. Commercial advertising (billboards, television commercials, point-of-sale retail packaging, international digital buyouts) requires an explicit negotiated buyout fee covering specific territories, mediums, and durations (e.g., 6 months, 1 year, perpetual).
+            </p>
+          </div>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">4. LIKENESS PROTECTION &amp; ANTI-AI SYNTHESIS CLAUSE</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            <strong>Strict Reservation of Biometric &amp; Personality Rights:</strong> Atharva Sharma retains all moral, personality, and statutory publicity rights over his name, image, voice, biometric facial architecture, and physique. Under no circumstances may any imagery, digitals, video captures, or representations from this platform or any commissioned production be used, uploaded, trained on, or indexed by artificial intelligence systems, neural networks, LoRA models, diffusion weights, synthetic digital doubles, or deepfake algorithms without an explicit, standalone, executed AI licensing agreement.
+          </p>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">5. WEATHER, OUTDOOR &amp; PALACE HERITAGE PROTOCOLS</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            For on-location productions in Rajasthan (Udaipur lake palaces, Jodhpur ramparts, Thar desert dunes): client productions are responsible for providing adequate shade, potable hydration, thermal relief, private changing enclosures, and certified heritage monument permits. In the event of extreme climatic hazard (dust storms, torrential monsoon), call-times will be adjusted under mutual agreement without forfeiture of day rates.
+          </p>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">6. CANCELLATIONS &amp; POSTPONEMENTS</h2>
+          <ul class="list-disc pl-5 text-sm text-editorial-gray space-y-1">
+            <li><strong>Cancellation within 24 hours of call-time:</strong> 100% of agreed fee payable.</li>
+            <li><strong>Cancellation between 24 and 48 hours:</strong> 50% of agreed fee payable.</li>
+            <li><strong>Postponement due to verified force majeure:</strong> Re-scheduled within 30 days without penalty subject to calendar availability.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">7. GOVERNING LAW &amp; JURISDICTION</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            These terms and any professional contracts entered into shall be governed by and construed in accordance with the laws of the Republic of India. Any disputes arising out of bookings, intellectual property infringements, or platform usage shall be subject to the exclusive jurisdiction of the competent courts in Udaipur, Rajasthan, India.
+          </p>
+          <div class="mt-4 p-4 bg-canvas-alt border border-grid-border font-mono text-xs">
+            <div><strong>DIRECT LEGAL INQUIRIES:</strong> Atharva Sharma Booking Desk</div>
+            <div><strong>COMMUNICATIONS:</strong> <a href="mailto:atharva@atharvasharma.co.in" class="text-editorial-red">atharva@atharvasharma.co.in</a> // +91 8209225998</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</BaseLayout>

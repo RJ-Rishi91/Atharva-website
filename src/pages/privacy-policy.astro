@@ -1,0 +1,146 @@
+---
+// src/pages/privacy-policy.astro
+// Privacy Policy & Data Protection Registry (DPDP Act 2023 / GDPR / CCPA Compliant)
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+---
+
+<BaseLayout
+  title="PRIVACY POLICY & DATA PROTECTION — Atharva Sharma // Legal Registry"
+  description="Official Privacy Policy and Data Protection declaration for Atharva Sharma. Compliant with the Indian DPDP Act 2023, GDPR, and international commercial casting data standards."
+  keywords="Atharva Sharma privacy policy, modeling data protection, DPDP Act 2023, model casting privacy, fashion booking terms"
+  ogImage="assets/images/atharva-studio-bw-stool.png"
+>
+  <div class="flex flex-col w-full">
+    <!-- Sub-Header Indicator Strip -->
+    <section class="w-full bg-canvas-alt px-4 sm:px-8 lg:px-12 py-3 border-b border-grid-border">
+      <div class="max-w-[1780px] mx-auto flex flex-wrap items-center justify-between gap-y-2">
+        <div class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+          <span class="font-mono text-xs text-editorial-ink font-bold uppercase tracking-widest">LEGAL REGISTRY // DOC 01-PRIV</span>
+          <span class="text-editorial-gray text-xs">•</span>
+          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">EFFECTIVE DATE: OCTOBER 2026</span>
+        </div>
+        <div class="flex items-center gap-4 font-mono text-xs text-editorial-gray">
+          <span>GOVERNING LAW: DPDP ACT (INDIA) &amp; GDPR</span>
+          <span class="text-editorial-red font-bold">STATUS: ACTIVE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Header Section -->
+    <section class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pt-12 pb-8 border-b border-grid-border">
+      <div class="max-w-[1780px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-8 flex flex-col gap-3">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-editorial-red uppercase tracking-widest font-bold">[ DATA PROTECTION NOTICE ]</span>
+            <span class="w-12 h-px bg-editorial-red inline-block"></span>
+            <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">TRANSPARENCY &amp; PRIVACY</span>
+          </div>
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase text-editorial-ink tracking-tight leading-none m-0">
+            PRIVACY POLICY <span class="text-editorial-red">//</span> COMPLIANCE
+          </h1>
+        </div>
+        <div class="lg:col-span-4 flex flex-col justify-end">
+          <p class="font-sans text-sm text-editorial-gray max-w-md leading-relaxed">
+            Our commitment to confidentiality, lawful data processing, casting communications security, and the strict protection of commercial and personal information.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal Body Content -->
+    <section class="w-full px-4 sm:px-8 lg:px-12 py-12 bg-canvas-warm">
+      <div class="max-w-[1200px] mx-auto bg-white border border-grid-border p-6 sm:p-12 shadow-sm font-sans text-editorial-ink space-y-8">
+        
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">1. DATA CONTROLLER &amp; SCOPE</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            This Privacy Policy applies to the official digital portfolio, casting registry, and editorial platform of <strong>Atharva Sharma</strong> (<a href={url('/')} class="text-editorial-red hover:underline">https://atharvasharma.co.in</a>), headquartered in Udaipur, Rajasthan, India. For inquiries related to data protection, compliance, or personal data rights under the Digital Personal Data Protection Act, 2023 (India) and the General Data Protection Regulation (EU GDPR), contact our dedicated desk at <a href="mailto:atharva@atharvasharma.co.in" class="font-mono text-editorial-red font-bold">atharva@atharvasharma.co.in</a>.
+          </p>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">2. INFORMATION WE COLLECT</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray mb-3">
+            We collect and process only the minimal data necessary to facilitate commercial model bookings, editorial casting reviews, and professional campaign coordination:
+          </p>
+          <ul class="list-disc pl-5 text-sm text-editorial-gray space-y-2">
+            <li><strong>Casting &amp; Booking Submissions:</strong> When casting directors, agencies, photographers, or brands contact our management via email, contact forms, or WhatsApp, we collect name, agency name, business email, telephone number, shoot dates, project scope, and budgetary expectations.</li>
+            <li><strong>Telemetry &amp; Access Logs:</strong> Standard web server logs collect IP addresses, browser user-agents, referral URLs, and timestamps to maintain network security, combat DDoS disruptions, and verify Core Web Vitals telemetry.</li>
+            <li><strong>Comp-Card &amp; Asset Requests:</strong> Log data regarding downloads of high-resolution PDF composite cards, lookbooks, or unretouched digitals.</li>
+          </ul>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">3. PURPOSE &amp; LAWFUL BASIS FOR PROCESSING</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray mb-3">
+            All data processing is conducted under clear lawful bases recognized by international data protection statutes:
+          </p>
+          <ul class="list-disc pl-5 text-sm text-editorial-gray space-y-2">
+            <li><strong>Contractual Performance &amp; Pre-contractual Steps:</strong> Reviewing fashion week casting calls, negotiating editorial fees, evaluating travel allowances, and executing booking contracts.</li>
+            <li><strong>Legitimate Professional Interests:</strong> Protecting the proprietary copyright of high-fashion photography, preventing fraudulent agency impersonation, and maintaining optimal platform reliability.</li>
+            <li><strong>Consent:</strong> When you initiate direct communication via email or instant messaging regarding prospective commissions.</li>
+          </ul>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">4. LIKENESS, INTELLECTUAL PROPERTY &amp; ANTI-SCRAPING</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            All photographic images, digitals, polaroids, videos, measurements, and editorial essays published on this domain represent the proprietary intellectual property and personal biometric likeness of <strong>Atharva Sharma</strong> and associated production houses. <strong>The scraping, harvesting, ingestion, or extraction of Atharva Sharma's facial photographs, biometric data, or likeness for training generative artificial intelligence (AI) models, synthetic media, virtual avatars, deepfakes, or facial recognition databases is strictly prohibited without prior written commercial licensing.</strong>
+          </p>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">5. DATA SHARING &amp; THIRD-PARTY PROCESSORS</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            We do not sell, rent, monetize, or broker personal information. Inquiries may be shared strictly on a confidential need-to-know basis with:
+          </p>
+          <ul class="list-disc pl-5 text-sm text-editorial-gray space-y-1 mt-2">
+            <li>Authorized mother agency management and international casting liaison desks (Mumbai, Paris, Milan, New York).</li>
+            <li>Secure hosting and content delivery networks (Cloudflare, GitHub Pages) for low-latency asset delivery.</li>
+            <li>Direct communication conduits (Google Workspace, WhatsApp Business API).</li>
+          </ul>
+        </div>
+
+        <div class="border-b border-grid-border pb-6">
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">6. YOUR RIGHTS (DPDP ACT 2023 / GDPR)</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray mb-3">
+            Depending on your jurisdiction, you maintain comprehensive rights over your personal data:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="p-3 bg-canvas-warm border border-grid-border">
+              <strong>RIGHT OF ACCESS:</strong> Request confirmation and copies of booking communications stored in our records.
+            </div>
+            <div class="p-3 bg-canvas-warm border border-grid-border">
+              <strong>RIGHT TO CORRECTION:</strong> Rectify outdated contact details, agency credentials, or shoot schedules.
+            </div>
+            <div class="p-3 bg-canvas-warm border border-grid-border">
+              <strong>RIGHT TO ERASURE:</strong> Request complete deletion of past casting inquiries when retention is no longer mandatory.
+            </div>
+            <div class="p-3 bg-canvas-warm border border-grid-border">
+              <strong>RIGHT TO GRIEVANCE REDRESSAL:</strong> Lodge a formal inquiry directly with our privacy desk.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-display text-2xl uppercase tracking-wider text-editorial-ink mb-2">7. CONTACT &amp; GRIEVANCE DESK</h2>
+          <p class="text-sm leading-relaxed text-editorial-gray">
+            For questions regarding this policy, to exercise your data rights, or to report unauthorized asset usage:
+          </p>
+          <div class="mt-4 p-4 bg-canvas-alt border border-grid-border font-mono text-xs space-y-1">
+            <div><strong>LEGAL &amp; PRIVACY DESK:</strong> Atharva Sharma Management</div>
+            <div><strong>LOCATION:</strong> Udaipur, Rajasthan 313001, India</div>
+            <div><strong>PRIMARY EMAIL:</strong> <a href="mailto:atharva@atharvasharma.co.in" class="text-editorial-red">atharva@atharvasharma.co.in</a></div>
+            <div><strong>DIRECT SECURE CHANNEL:</strong> <a href="https://wa.me/918209225998" class="text-editorial-red">+91 8209225998 (WhatsApp)</a></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</BaseLayout>

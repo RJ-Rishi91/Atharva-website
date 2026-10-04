@@ -1,0 +1,255 @@
+---
+// src/pages/sitemap.astro
+// Editorial HTML Sitemap & Complete Site Index for Users and Crawlers
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const rawBase = import.meta.env.BASE_URL || "";
+const base = rawBase.replace(/\/$/, "");
+const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
+
+const journalEntries = await getCollection('journal');
+const sortedArticles = journalEntries.sort((a, b) => a.data.order - b.data.order);
+
+// Group articles by category
+const articlesByCategory = sortedArticles.reduce((acc, article) => {
+  const cat = article.data.category || 'OTHER';
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(article);
+  return acc;
+}, {} as Record<string, typeof sortedArticles>);
+
+const categories = Object.keys(articlesByCategory).sort();
+
+const corePortfolios = [
+  { path: '/', label: '01. HOME // EDITORIAL SHOWCASE', desc: 'Main digital portfolio, hero runway specimens, and brand introduction.' },
+  { path: '/portfolio', label: '02. LOOKBOOK PORTFOLIO', desc: 'Curated editorial looks, commercial campaigns, and haute couture shoots.' },
+  { path: '/comp-card', label: '03. OFFICIAL COMPOSITE CARD (ZED CARD)', desc: 'Standardized 5.5x8.5" casting card with dual monochrome/color plates and stats.' },
+  { path: '/digitals', label: '04. RAW DIGITALS & POLAROIDS', desc: 'Strictly unretouched daylight polaroid series for international agency scouts.' },
+  { path: '/stats', label: '05. SPECIFICATIONS & DIMENSIONS', desc: 'Verified millimeter and imperial measurements: 6\'1" (186cm), 38R chest, 30" waist.' },
+];
+
+const conciergePages = [
+  { path: '/about', label: '06. BIOGRAPHY & EDITORIAL IDENTITY', desc: 'Heritage background, Mewar royal aesthetics, runway discipline, and craft journey.' },
+  { path: '/contact', label: '07. BOOKING DESK & CASTINGS', desc: 'Direct agency contact, commission inquiries, runway bookings, and WhatsApp channel.' },
+];
+
+const legalPages = [
+  { path: '/privacy-policy', label: '08. PRIVACY POLICY & DATA PROTECTION', desc: 'DPDP Act 2023, GDPR, CCPA compliance, booking inquiry data handling, and rights.' },
+  { path: '/terms', label: '09. TERMS OF SERVICE & USAGE CONDITIONS', desc: 'Booking terms, photography copyright, commercial usage, and anti-AI-scraping clauses.' },
+];
+
+const machineFeeds = [
+  { path: '/sitemap.xml', label: 'XML SITEMAP (GOOGLE SEARCH)', desc: 'Standardized XML index with 28 verified URLs and Google image metadata.' },
+  { path: '/rss.xml', label: 'RSS 2.0 EDITORIAL FEED', desc: 'Syndication feed for automated news aggregators and real-time article crawling.' },
+  { path: '/robots.txt', label: 'ROBOTS EXCLUSION DIRECTIVES', desc: 'Crawler access rules for search engines and authorized AI search bots.' },
+  { path: '/llms.txt', label: 'LLM CONTEXT MANIFEST', desc: 'Structured summary for conversational AI engines (ChatGPT, Perplexity, Gemini).' },
+];
+---
+
+<BaseLayout
+  title="SITE INDEX & HTML SITEMAP — Atharva Sharma // Complete Editorial Directory"
+  description="Comprehensive index and directory of all portfolio collections, casting comp-cards, measurement specifications, and 17 editorial journal dispatches for Atharva Sharma."
+  keywords="Atharva Sharma sitemap, modeling portfolio directory, editorial journal index, fashion model site map, Atharva Sharma pages"
+  ogImage="assets/images/atharva-studio-bw-stool.png"
+>
+  <div class="flex flex-col w-full">
+    <!-- Sub-Header Indicator Strip -->
+    <section class="w-full bg-canvas-alt px-4 sm:px-8 lg:px-12 py-3 border-b border-grid-border">
+      <div class="max-w-[1780px] mx-auto flex flex-wrap items-center justify-between gap-y-2">
+        <div class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-editorial-red inline-block"></span>
+          <span class="font-mono text-xs text-editorial-ink font-bold uppercase tracking-widest">DIRECTORY // MASTER INDEX</span>
+          <span class="text-editorial-gray text-xs">•</span>
+          <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">ALL ACCESSIBLE ENDPOINTS</span>
+        </div>
+        <div class="flex items-center gap-4 font-mono text-xs text-editorial-gray">
+          <span>TOTAL INDEXED NODES: 28</span>
+          <span class="hidden sm:inline">LOC: UDAIPUR / MUMBAI / GLOBAL</span>
+          <span class="text-editorial-red font-bold">STATUS: VERIFIED</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Title Section -->
+    <section class="w-full bg-canvas-warm px-4 sm:px-8 lg:px-12 pt-12 pb-8 border-b border-grid-border">
+      <div class="max-w-[1780px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-8 flex flex-col gap-3">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-editorial-red uppercase tracking-widest font-bold">[ SYSTEM ARCHITECTURE // MAP ]</span>
+            <span class="w-12 h-px bg-editorial-red inline-block"></span>
+            <span class="font-mono text-xs text-editorial-gray tracking-widest uppercase">CRAWLABLE TREE &amp; DIRECTORY</span>
+          </div>
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase text-editorial-ink tracking-tight leading-none m-0">
+            SITE INDEX <span class="text-editorial-red">//</span> HTML SITEMAP
+          </h1>
+        </div>
+        <div class="lg:col-span-4 flex flex-col justify-end">
+          <p class="font-sans text-sm text-editorial-gray max-w-md leading-relaxed">
+            A comprehensive, transparent taxonomy of every published portfolio section, casting composite card, physical specification, legal disclosure, and editorial journal dispatch.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Directory Grid -->
+    <section class="w-full px-4 sm:px-8 lg:px-12 py-12 bg-canvas-warm">
+      <div class="max-w-[1780px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+        
+        <!-- Left Column: Core Portfolios & Agency Sections (5 cols) -->
+        <div class="lg:col-span-5 space-y-10">
+          
+          <!-- Core Books -->
+          <div class="bg-white border border-grid-border p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center justify-between pb-4 border-b border-grid-border mb-6">
+              <h2 class="font-display text-xl sm:text-2xl uppercase tracking-wider text-editorial-ink m-0">
+                CORE BOOKS &amp; RUNWAY COMP-CARDS
+              </h2>
+              <span class="font-mono text-xs text-editorial-red font-bold">5 NODES</span>
+            </div>
+            <ul class="space-y-4">
+              {corePortfolios.map((item) => (
+                <li class="group">
+                  <a href={url(item.path)} class="block p-3 border border-transparent hover:border-editorial-red hover:bg-canvas-warm transition-all duration-200">
+                    <div class="font-mono text-xs font-bold text-editorial-ink group-hover:text-editorial-red uppercase flex items-center justify-between">
+                      <span>{item.label}</span>
+                      <span class="text-editorial-gray group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                    <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Concierge & Representation -->
+          <div class="bg-white border border-grid-border p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center justify-between pb-4 border-b border-grid-border mb-6">
+              <h2 class="font-display text-xl sm:text-2xl uppercase tracking-wider text-editorial-ink m-0">
+                IDENTITY &amp; CASTING DESK
+              </h2>
+              <span class="font-mono text-xs text-editorial-red font-bold">2 NODES</span>
+            </div>
+            <ul class="space-y-4">
+              {conciergePages.map((item) => (
+                <li class="group">
+                  <a href={url(item.path)} class="block p-3 border border-transparent hover:border-editorial-red hover:bg-canvas-warm transition-all duration-200">
+                    <div class="font-mono text-xs font-bold text-editorial-ink group-hover:text-editorial-red uppercase flex items-center justify-between">
+                      <span>{item.label}</span>
+                      <span class="text-editorial-gray group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                    <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Legal & Compliance -->
+          <div class="bg-white border border-grid-border p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center justify-between pb-4 border-b border-grid-border mb-6">
+              <h2 class="font-display text-xl sm:text-2xl uppercase tracking-wider text-editorial-ink m-0">
+                LEGAL, GOVERNANCE &amp; RIGHTS
+              </h2>
+              <span class="font-mono text-xs text-editorial-red font-bold">2 NODES</span>
+            </div>
+            <ul class="space-y-4">
+              {legalPages.map((item) => (
+                <li class="group">
+                  <a href={url(item.path)} class="block p-3 border border-transparent hover:border-editorial-red hover:bg-canvas-warm transition-all duration-200">
+                    <div class="font-mono text-xs font-bold text-editorial-ink group-hover:text-editorial-red uppercase flex items-center justify-between">
+                      <span>{item.label}</span>
+                      <span class="text-editorial-gray group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                    <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Machine Feeds -->
+          <div class="bg-white border border-grid-border p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center justify-between pb-4 border-b border-grid-border mb-6">
+              <h2 class="font-display text-xl sm:text-2xl uppercase tracking-wider text-editorial-ink m-0">
+                MACHINE FEEDS &amp; SCHEMAS
+              </h2>
+              <span class="font-mono text-xs text-editorial-red font-bold">4 ENDPOINTS</span>
+            </div>
+            <ul class="space-y-4">
+              {machineFeeds.map((item) => (
+                <li class="group">
+                  <a href={url(item.path)} class="block p-3 border border-transparent hover:border-editorial-red hover:bg-canvas-warm transition-all duration-200">
+                    <div class="font-mono text-xs font-bold text-editorial-ink group-hover:text-editorial-red uppercase flex items-center justify-between">
+                      <span>{item.label}</span>
+                      <span class="text-editorial-gray group-hover:translate-x-1 transition-transform">↗</span>
+                    </div>
+                    <p class="font-sans text-xs text-editorial-gray mt-1 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Editorial Journal Directory (7 cols) -->
+        <div class="lg:col-span-7 bg-white border border-grid-border p-6 sm:p-8 shadow-sm">
+          <div class="flex items-center justify-between pb-4 border-b border-grid-border mb-6">
+            <div>
+              <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider text-editorial-ink m-0">
+                EDITORIAL JOURNAL ARCHIVES
+              </h2>
+              <p class="font-sans text-xs text-editorial-gray mt-1">
+                17 In-depth Dispatches on Runway Mechanics, Royal Draping &amp; Industry Standards
+              </p>
+            </div>
+            <a href={url('/journal')} class="font-mono text-xs text-editorial-red font-bold uppercase hover:underline">
+              [ VIEW JOURNAL ]
+            </a>
+          </div>
+
+          <div class="space-y-8">
+            {categories.map((cat) => (
+              <div>
+                <div class="bg-canvas-alt px-3 py-2 border-l-2 border-editorial-red flex items-center justify-between mb-3">
+                  <span class="font-mono text-xs font-bold text-editorial-ink uppercase tracking-wider">
+                    {cat}
+                  </span>
+                  <span class="font-mono text-[10px] text-editorial-gray">
+                    {articlesByCategory[cat].length} {articlesByCategory[cat].length === 1 ? 'DISPATCH' : 'DISPATCHES'}
+                  </span>
+                </div>
+
+                <ul class="space-y-2.5">
+                  {articlesByCategory[cat].map((article) => (
+                    <li class="group border-b border-grid-border/60 pb-2.5 last:border-0">
+                      <a href={url(`/journal/${article.slug}`)} class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 group-hover:text-editorial-red transition-colors">
+                        <span class="font-sans text-sm font-medium text-editorial-ink group-hover:text-editorial-red leading-snug">
+                          {article.data.title}
+                        </span>
+                        <span class="font-mono text-[11px] text-editorial-gray flex-shrink-0 tracking-widest uppercase">
+                          {article.data.date} // {article.data.readTime}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </div>
+</BaseLayout>

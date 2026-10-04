@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://atharvasharma.co.in</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -12,18 +12,8 @@
     </image:image>
   </url>
   <url>
-    <loc>https://atharvasharma.co.in/digitals</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
-      <image:title>Atharva Sharma Digitals</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://atharvasharma.co.in/portfolio</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -32,18 +22,38 @@
     </image:image>
   </url>
   <url>
-    <loc>https://atharvasharma.co.in/stats</loc>
-    <lastmod>2026-09-13</lastmod>
+    <loc>https://atharvasharma.co.in/comp-card</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
+      <image:title>Atharva Sharma Official Comp Card</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/digitals</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
-      <image:title>Atharva Sharma Specifications</image:title>
+      <image:title>Atharva Sharma Digitals &amp; Polaroids</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/stats</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
+      <image:title>Atharva Sharma Specifications &amp; Dimensions</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://atharvasharma.co.in/about</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -53,32 +63,52 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
-      <image:title>Atharva Sharma Journal</image:title>
+      <image:title>Atharva Sharma Editorial Journal</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://atharvasharma.co.in/contact</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
-      <image:title>Book Atharva Sharma</image:title>
+      <image:title>Book Atharva Sharma — Casting Desk</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://atharvasharma.co.in/comp-card</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://atharvasharma.co.in/sitemap</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
-      <image:title>Atharva Sharma Comp-Card</image:title>
+      <image:title>Atharva Sharma Site Directory &amp; HTML Sitemap</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/privacy-policy</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
+      <image:title>Atharva Sharma Privacy Policy &amp; Data Protection</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://atharvasharma.co.in/terms</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-studio-bw-stool.png</image:loc>
+      <image:title>Terms of Service &amp; Booking Conditions</image:title>
     </image:image>
   </url>
   <url>
@@ -98,7 +128,7 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-kurta-palace-night.jpg</image:loc>
-      <image:title>Between Heritage and Haute Couture: Draping Royal Mewar Silhouettes for the Global Lens</image:title>
+      <image:title>Between Heritage and Haute Couture: Reinterpreting Royal Rajasthani Textiles</image:title>
     </image:image>
   </url>
   <url>
@@ -108,7 +138,7 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-desert-jeep-bw.jpg</image:loc>
-      <image:title>The Thar Monoliths: Staging High Fashion in Harsh Desert Lighting</image:title>
+      <image:title>The Thar Monoliths: On-Location Shooting in High-Contrast Natural Light</image:title>
     </image:image>
   </url>
   <url>
@@ -128,7 +158,7 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://atharvasharma.co.in/assets/images/atharva-horse-beach.jpg</image:loc>
-      <image:title>Equine Motion &amp; Coastal Textures: Exploring Fluidity in Resort Menswear</image:title>
+      <image:title>Equine Motion &amp; Coastal Textures: Athleticism Meets Editorial Stillness</image:title>
     </image:image>
   </url>
   <url>
@@ -137,8 +167,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://atharvasharma.co.in/assets/images/atharva-citynight-scarf.jpg</image:loc>
-      <image:title>Architecture as Dialogue: Capturing Modern Tailoring Across Central Europe</image:title>
+      <image:loc>https://atharvasharma.co.in/assets/images/atharva-lake-backpack.jpg</image:loc>
+      <image:title>Architecture as Dialogue: Kinetic Angles Against Rajputana Stone</image:title>
     </image:image>
   </url>
   <url>
@@ -153,7 +183,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/male-model-measurements-standards-guide</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -163,7 +193,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/international-model-comp-card-guide</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-02-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -173,7 +203,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/south-asian-luxury-menswear-royal-draping</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -183,7 +213,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/mastering-runway-walk-cadence-menswear</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -193,7 +223,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/camera-angle-geometry-jawline-studio-lighting</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -203,7 +233,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/rajasthan-fashion-shoot-production-logistics</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -213,7 +243,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/commercial-vs-editorial-modeling-differences</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -223,7 +253,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/model-casting-checklist-agency-expectations</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -233,7 +263,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/equestrian-training-physical-presence-fashion</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -243,7 +273,7 @@
   </url>
   <url>
     <loc>https://atharvasharma.co.in/journal/raw-polaroids-unretouched-casting-importance</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-03-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>

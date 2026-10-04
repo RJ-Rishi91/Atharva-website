@@ -59,9 +59,16 @@ const url = (p: string) => `${base}${p.startsWith('/') ? p : '/' + p}`;
       <a href={url('/journal')} class="hover:text-white transition-colors">06. JOURNAL</a>
       <a href={url('/comp-card')} class="hover:text-editorial-red font-bold transition-colors">COMP-CARD</a>
       <a href={url('/contact')} class="hover:text-white transition-colors">07. CONTACT</a>
+      <a href={url('/sitemap')} class="hover:text-white transition-colors">08. SITEMAP</a>
+      <a href={url('/privacy-policy')} class="hover:text-white transition-colors">PRIVACY</a>
+      <a href={url('/terms')} class="hover:text-white transition-colors">TERMS</a>
     </div>
-    <div class="text-canvas-warm/40 text-[10px]">
-      RUNWAY &amp; EDITORIAL PORTFOLIO // VERIFIED MODEL DESK
+    <div class="flex items-center gap-4 text-canvas-warm/40 text-[10px] font-mono">
+      <a href={url('/sitemap.xml')} class="hover:text-white transition-colors" target="_blank">XML SITEMAP</a>
+      <span>&bull;</span>
+      <a href={url('/rss.xml')} class="hover:text-white transition-colors" target="_blank">RSS FEED</a>
+      <span>&bull;</span>
+      <a href={url('/robots.txt')} class="hover:text-white transition-colors" target="_blank">ROBOTS.TXT</a>
     </div>
   </div>
 </footer>

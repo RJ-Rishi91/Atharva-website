@@ -1,5 +1,5 @@
 // src/pages/sitemap.xml.ts
-// Dynamic XML Sitemap with Hybrid API Support & Google Image Extensions
+// Dynamic XML Sitemap with Hybrid API Support, Google Image Extensions, and E-E-A-T Compliance
 import { getCollection } from 'astro:content';
 
 export async function GET(context: any) {
@@ -9,13 +9,16 @@ export async function GET(context: any) {
 
   const staticPages = [
     { path: '', priority: '1.0', changefreq: 'weekly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Modeling Portfolio' },
-    { path: 'digitals', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Digitals' },
     { path: 'portfolio', priority: '0.9', changefreq: 'weekly', image: 'assets/images/atharva-kurta-palace-night.jpg', title: 'Atharva Sharma Lookbook Portfolio' },
-    { path: 'stats', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Specifications' },
+    { path: 'comp-card', priority: '0.9', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Official Comp Card' },
+    { path: 'digitals', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Digitals & Polaroids' },
+    { path: 'stats', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Specifications & Dimensions' },
     { path: 'about', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'About Atharva Sharma' },
-    { path: 'journal', priority: '0.8', changefreq: 'weekly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Journal' },
-    { path: 'contact', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Book Atharva Sharma' },
-    { path: 'comp-card', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Comp-Card' },
+    { path: 'journal', priority: '0.8', changefreq: 'weekly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Editorial Journal' },
+    { path: 'contact', priority: '0.8', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Book Atharva Sharma — Casting Desk' },
+    { path: 'sitemap', priority: '0.6', changefreq: 'weekly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Site Directory & HTML Sitemap' },
+    { path: 'privacy-policy', priority: '0.5', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Atharva Sharma Privacy Policy & Data Protection' },
+    { path: 'terms', priority: '0.5', changefreq: 'monthly', image: 'assets/images/atharva-studio-bw-stool.png', title: 'Terms of Service & Booking Conditions' },
   ];
 
   const API_URL = import.meta.env.PUBLIC_API_URL || process.env.PUBLIC_API_URL || 'http://localhost:8000';
@@ -30,7 +33,7 @@ export async function GET(context: any) {
     if (res.ok) {
       const apiPosts = await res.json();
       if (Array.isArray(apiPosts) && apiPosts.length > 0) {
-        articles = apiPosts.map(p => ({
+        articles = apiPosts.map((p: any) => ({
           slug: p.slug,
           date: p.published_at ? new Date(p.published_at).toISOString().split('T')[0] : '2026-01-01',
           title: p.title,
@@ -39,7 +42,7 @@ export async function GET(context: any) {
       }
     }
   } catch {
-    // Graceful fallback
+    // Graceful fallback to content collection
   }
 
   if (articles.length === 0) {
@@ -77,7 +80,7 @@ export async function GET(context: any) {
       changefreq: 'monthly',
       priority: '0.7',
       imageLoc: imgUrl,
-      imageTitle: entry.title,
+      imageTitle: entry.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'),
     });
   });
 
@@ -102,7 +105,7 @@ ${urls
 
   return new Response(sitemapXml, {
     headers: {
-      'Content-Type': 'application/xml',
+      'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, max-age=3600',
     },
   });

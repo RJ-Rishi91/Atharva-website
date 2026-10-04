@@ -1,0 +1,100 @@
+# Atharva Sharma — Complete Editorial & Modeling Knowledgebase
+
+> Full documentation of modeling profile, physical specs, agency protocols, and 17 editorial journal dispatches.
+
+## Model Identity
+- **Name**: Atharva Sharma
+- **Profession**: Fashion & Runway Model
+- **Height**: 6'1" (186 cm) | **Chest**: 38" | **Waist**: 30" | **Inseam**: 33" | **Shoes**: 43 EU
+- **Location**: Udaipur / Mumbai / Global
+- **Website**: https://atharvasharma.co.in
+- **Email**: atharva@atharvasharma.co.in | **WhatsApp**: +91 8209225998
+
+---
+
+## Complete Editorial Journal Dispatches (17 Articles)
+
+### 01. The Anatomy of Runway Poise: Physical Discipline and Movement in Modern Menswear
+- **Slug**: `/journal/runway-poise`
+- **Category**: CRAFT & TECHNIQUE
+- **Key Concepts**: Kinetic pedestal, pelvic stability, micro-deceleration, flat midfoot distribution, scapular depression, acromion process alignment.
+
+### 02. Between Heritage and Haute Couture: Reinterpreting Royal Rajasthani Textiles
+- **Slug**: `/journal/heritage-couture`
+- **Category**: EDITORIAL DISPATCH
+- **Key Concepts**: Zardozi embroidery, hand-spun brocades, Banarasi kinkhab, Mewar court sartorial traditions, modern couture translation.
+
+### 03. The Thar Monoliths: On-Location Shooting in High-Contrast Natural Light
+- **Slug**: `/journal/thar-monoliths`
+- **Category**: ON LOCATION
+- **Key Concepts**: Desert landscape, harsh midday sunlight, negative space, earth-tone layering, vintage utility aesthetic.
+
+### 04. The Untouched Digital: Why International Casting Still Demands Pure Daylight Polaroids
+- **Slug**: `/journal/untouched-digital`
+- **Category**: INDUSTRY INSIGHTS
+- **Key Concepts**: Unretouched casting digitals, skin authenticity, bone structure verification, north-facing window lighting, anti-AI manipulation.
+
+### 05. Equine Motion & Coastal Textures: Athleticism Meets Editorial Stillness
+- **Slug**: `/journal/equine-motion`
+- **Category**: CAMPAIGN NOTES
+- **Key Concepts**: Equestrian horsemanship, thoroughbred horses, posture alignment, coastal daylight, linen and leather textures.
+
+### 06. Architecture as Dialogue: Kinetic Angles Against Rajputana Stone
+- **Slug**: `/journal/architecture-dialogue`
+- **Category**: TRAVEL LOG
+- **Key Concepts**: Mughal and Rajputana stone architecture, geometric vectors, shadow lines, palace courtyards, structured coats.
+
+### 07. The Return of the Unstructured Blazer: Candid Sartorial Nuances in Studio Settings
+- **Slug**: `/journal/unstructured-blazer`
+- **Category**: STYLE COMMENTARY
+- **Key Concepts**: Neapolitan deconstruction, zero shoulder padding, rolling lapels, natural posture, modern menswear comfort.
+
+### 08. Male Model Measurements & Standards: The Complete Industry Guide
+- **Slug**: `/journal/male-model-measurements-standards-guide`
+- **Category**: INDUSTRY INSIGHTS
+- **Key Concepts**: International runway benchmarks (6'1"-6'3", 38"-40" chest, 29"-31" waist, 32"-34" inseam), European size 48/50 sample sizing, commercial vs fitness divisions.
+
+### 09. How to Build an International Model Comp Card: Layout, Selection, and Agency Standards
+- **Slug**: `/journal/international-model-comp-card-guide`
+- **Category**: CRAFT & TECHNIQUE
+- **Key Concepts**: Zed card dimensions (5.5" x 8.5"), single-hero cover portrait, 4-shot back grid (silhouette, movement, profile, lifestyle), metric data formatting.
+
+### 10. Royal Draping & Silhouette: The Evolution of South Asian Luxury Menswear
+- **Slug**: `/journal/south-asian-luxury-menswear-royal-draping`
+- **Category**: HERITAGE & COUTURE
+- **Key Concepts**: Bandhgala (Jodhpuri suit), flared angrakha, achkan, royal dupatta and stole drapes, hand-spun raw silk, Banarasi brocades.
+
+### 11. Mastering the Runway Walk: Cadence, Center of Gravity, and Runway Mechanics
+- **Slug**: `/journal/mastering-runway-walk-cadence-menswear`
+- **Category**: RUNWAY MECHANICS
+- **Key Concepts**: Parallel foot tracks, lower abdominal center of mass, 100-116 BPM cadence, infinite horizon eye focus, photographer turn deceleration.
+
+### 12. Camera Angle Geometry: Jawline Definition, Bone Structure, and Light Shaping in Editorial Photography
+- **Slug**: `/journal/camera-angle-geometry-jawline-studio-lighting`
+- **Category**: CRAFT & TECHNIQUE
+- **Key Concepts**: Mandibular line definition, turtle neck extension, tongue press technique, Rembrandt vs split lighting, prime portrait lenses (85mm/105mm).
+
+### 13. On-Location Fashion Production in Rajasthan: Light, Climate, and Palace Heritage Logistics
+- **Slug**: `/journal/rajasthan-fashion-shoot-production-logistics`
+- **Category**: ON LOCATION
+- **Key Concepts**: Golden hour windows (06:15-08:30), thermal sweat management under heavy couture, marble ground reflection, ASI monument permits.
+
+### 14. Commercial vs. Editorial Modeling: Demystifying Market Demands and Career Paths
+- **Slug**: `/journal/commercial-vs-editorial-modeling-differences`
+- **Category**: INDUSTRY INSIGHTS
+- **Key Concepts**: Prestige vs revenue, day rates vs buyouts, approachable vs enigmatic facial expressions, multi-board portfolio strategy.
+
+### 15. The High Fashion Model Casting Checklist: What Top Agencies Look for in 2026
+- **Slug**: `/journal/model-casting-checklist-agency-expectations`
+- **Category**: CAMPAIGN NOTES
+- **Key Concepts**: Standard black t-shirt and slim denim casting uniform, skin hydration, grooming non-negotiables, 60-second in-room protocol.
+
+### 16. Equestrian Discipline & Physical Poise: How Riding Informs Menswear Presence
+- **Slug**: `/journal/equestrian-training-physical-presence-fashion`
+- **Category**: STYLE COMMENTARY
+- **Key Concepts**: Independent seat pelvic balance, scapular anchoring without tension, core stamina, calm demeanor on animal sets.
+
+### 17. Why Raw Polaroids Matter More Than Retouched Portfolios in Modern Model Scouting
+- **Slug**: `/journal/raw-polaroids-unretouched-casting-importance`
+- **Category**: INDUSTRY INSIGHTS
+- **Key Concepts**: Digital deception crisis, 5 essential polaroids (front, left profile, right profile, full-length front, full-length back), DIY home natural daylight setup.

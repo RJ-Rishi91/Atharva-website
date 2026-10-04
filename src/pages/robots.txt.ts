@@ -1,10 +1,15 @@
-# ==============================================================================
+// src/pages/robots.txt.ts
+// Dynamic robots.txt route with site url resolution
+
+export async function GET(context: any) {
+  const siteUrl = context.site?.toString().replace(/\/$/, '') || 'https://atharvasharma.co.in';
+
+  const robots = `# ==============================================================================
 # Robots Exclusion Standard for Atharva Sharma Modeling Portfolio
-# Host: https://atharvasharma.co.in
+# Host: ${siteUrl}
 # Contact: atharva@atharvasharma.co.in
 # ==============================================================================
 
-# Default rule for all search engine web crawlers
 User-agent: *
 Allow: /
 Allow: /assets/
@@ -19,14 +24,12 @@ Allow: /privacy-policy/
 Allow: /terms/
 Allow: /sitemap/
 
-# Protect private admin CMS endpoints and authentication routes
 Disallow: /admin
 Disallow: /admin/
 Disallow: /admin/*
 Disallow: /api/admin/
 Disallow: /api/admin/*
 
-# Explicit rules for major search engines
 User-agent: Googlebot
 Allow: /
 Disallow: /admin/
@@ -46,22 +49,6 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/admin/
 
-User-agent: DuckDuckBot
-Allow: /
-Disallow: /admin/
-Disallow: /api/admin/
-
-User-agent: YandexBot
-Allow: /
-Disallow: /admin/
-Disallow: /api/admin/
-
-User-agent: Baiduspider
-Allow: /
-Disallow: /admin/
-Disallow: /api/admin/
-
-# AI Search & LLM Crawlers (Allow public content and journal discovery)
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /admin/
@@ -78,13 +65,13 @@ User-agent: ClaudeBot
 Allow: /
 Disallow: /admin/
 
-User-agent: anthropic-ai
-Allow: /
-Disallow: /admin/
+Sitemap: ${siteUrl}/sitemap.xml
+`;
 
-User-agent: Google-Extended
-Allow: /
-Disallow: /admin/
-
-# Sitemaps & Machine Feeds
-Sitemap: https://atharvasharma.co.in/sitemap.xml
+  return new Response(robots, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=86400',
+    },
+  });
+}
